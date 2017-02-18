@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[036 Valid Sukodu]]></title>
+      <url>http://wf94.github.io/2017/01/03/036-Valid-Sudoku/</url>
+      <content type="html"><![CDATA[<p>Determine if a Sudoku is valid, according to: <a href="http://sudoku.com.au/TheRules.aspx" target="_blank" rel="external">Sudoku Puzzles - The Rules</a>.</p>
+<p>The Sudoku board could be partially filled, where empty cells are filled with the character <code>&#39;.&#39;</code>.</p>
+<a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>需要熟悉数独的规则，利用哈希表来进行判断。</p>
+<p>数独的棋盘大小是一定的，不需要考虑时间的耗费，直接利用穷举法把所有情况列举出来，判断数独是否有效。</p>
+<p>判断条件是：每一行、每一列、每一个3×3子块，不能有重复的数字。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidSudoku</span><span class="params">(self, board)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type board: List[List[str]]</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        collen = len(board)</div><div class="line">        rowlen = len(board[<span class="number">0</span>])</div><div class="line">        </div><div class="line">        squarelen = <span class="number">3</span></div><div class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> board:</div><div class="line">            linedict = &#123;&#125;</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> line:</div><div class="line">                <span class="keyword">if</span> (i != <span class="string">'.'</span>):</div><div class="line">                    <span class="keyword">if</span> (linedict.has_key(i)):</div><div class="line">                        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        linedict[i] = <span class="number">1</span></div><div class="line"></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(rowlen):</div><div class="line">            rowdict = &#123;&#125;</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(collen):</div><div class="line">                <span class="keyword">if</span> (board[j][i] != <span class="string">'.'</span>):</div><div class="line">                    <span class="keyword">if</span> (rowdict.has_key(board[j][i])):</div><div class="line">                        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        rowdict[board[j][i]] = <span class="number">1</span></div><div class="line">                        </div><div class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">3</span>,<span class="number">6</span>]:</div><div class="line">            <span class="keyword">for</span> n <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">3</span>,<span class="number">6</span>]:</div><div class="line">                squaredict = &#123;&#125;</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(squarelen):</div><div class="line">                    <span class="keyword">for</span> j <span class="keyword">in</span> range(squarelen):</div><div class="line">                        cur = board[i+m][j+n]</div><div class="line">                        <span class="keyword">if</span> (cur != <span class="string">'.'</span>):</div><div class="line">                            <span class="keyword">if</span> (squaredict.has_key(cur)):</div><div class="line">                                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">                            <span class="keyword">else</span>:</div><div class="line">                                squaredict[cur] = <span class="number">1</span></div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[035 Search Insert Position]]></title>
+      <url>http://wf94.github.io/2017/01/03/035-Search-Insert-Position/</url>
+      <content type="html"><![CDATA[<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
+<p>You may assume no duplicates in the array.</p>
+<p>Here are few examples.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[1,3,5,6], 5 → 2</div><div class="line">[1,3,5,6], 2 → 1</div><div class="line">[1,3,5,6], 7 → 4</div><div class="line">[1,3,5,6], 0 → 0</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>本题我就利用O(n)的时间复杂度，鉴于题目难度，时间上还是可以接受的。<br>如果需要优化，可以用二分查找法，在利用二分查找法的时候注意边界条件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">searchInsert</span><span class="params">(self, nums, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type target: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        ans = <span class="number">0</span></div><div class="line">        length = len(nums)</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">            <span class="keyword">if</span> target &gt; nums[i]:</div><div class="line">                ans = i + <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> target == nums[i]:</div><div class="line">                ans = i</div><div class="line">                <span class="keyword">break</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">break</span></div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Array </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[028 Implement strStr]]></title>
+      <url>http://wf94.github.io/2017/01/03/028-Implement-strStr/</url>
+      <content type="html"><![CDATA[<p>Implement strStr(). </p>
+<p>Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. </p>
+<a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>找出haystack字符串中，needle字符串第一次出现的索引号。</p>
+<p>利用两层循环可以得到想要的结果，因为题目难度所限，对于O(n*m)的时间复杂度也没有报超时错误。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">strStr</span><span class="params">(self, haystack, needle)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type haystack: str</div><div class="line">        :type needle: str</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        length = len(haystack)</div><div class="line">        lenned = len(needle)</div><div class="line">        <span class="keyword">if</span> (length == lenned <span class="keyword">and</span> length == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">            </div><div class="line">        <span class="keyword">if</span> (length &lt; lenned):</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">            </div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">                flag = <span class="number">1</span></div><div class="line">                pos = i</div><div class="line">                <span class="comment"># 超出范围，needle不在haystack里</span></div><div class="line">                <span class="keyword">if</span> (pos + lenned &gt; length):</div><div class="line">                    flag = <span class="number">0</span></div><div class="line">                    <span class="keyword">break</span></div><div class="line">                <span class="comment"># 判断needle是不是真的在haystack里</span></div><div class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> needle:</div><div class="line">                    <span class="keyword">if</span> (haystack[pos] != j):</div><div class="line">                        flag = <span class="number">0</span></div><div class="line">                        <span class="keyword">break</span></div><div class="line">                    pos += <span class="number">1</span></div><div class="line">                <span class="comment"># 返回对应的字符串索引</span></div><div class="line">                <span class="keyword">if</span> (flag):</div><div class="line">                    <span class="keyword">return</span> i</div><div class="line">                    </div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span></div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> String </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[024 Swap Nodes in Pairs]]></title>
+      <url>http://wf94.github.io/2017/01/03/024-Swap-Nodes-in-Pairs/</url>
+      <content type="html"><![CDATA[<p>Given a linked list, swap every two adjacent nodes and return its head. </p>
+<p>For example,<br> Given <code>1-&gt;2-&gt;3-&gt;4</code>, you should return the list as <code>2-&gt;1-&gt;4-&gt;3</code>. </p>
+<p>Your algorithm should use only constant space. You may <strong>not</strong> modify the values in the list, only nodes itself can be changed. </p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这是一个单链表的题目，需要对连续两个节点进行操作。需要注意的是，不能改变链表的数值，只能修改结构。</p>
+<p>将连接相邻节点的next指针重置即可得到结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-&gt;1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6</div><div class="line"></div><div class="line">  1 X 2 X 3-&gt;4-&gt;5-&gt;6</div><div class="line"></div><div class="line">  1&lt;-2 X 3-&gt;4-&gt;5-&gt;6</div><div class="line"></div><div class="line"> -&gt;2-&gt;1-&gt;4.....</div></pre></td></tr></table></figure>
+<p>将2指向1，1指向4，即完成一次转换。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for singly-linked list.</span></div><div class="line"><span class="comment"># class ListNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.next = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swapPairs</span><span class="params">(self, head)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type head: ListNode</div><div class="line">        :rtype: ListNode</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> (head <span class="keyword">and</span> head.next):</div><div class="line">            cur1 = head</div><div class="line">            cur2 = <span class="keyword">None</span></div><div class="line">            cur3 = <span class="keyword">None</span></div><div class="line">            <span class="comment"># 用来指示是否是第一次操作，如果是，</span></div><div class="line">            <span class="comment"># 还需要更改头节点的指向，让头节点指向第二个节点</span></div><div class="line">            firsttime = <span class="number">1</span></div><div class="line">            <span class="keyword">while</span> (cur1 <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>):</div><div class="line">                cur2 = cur1.next</div><div class="line">                <span class="keyword">if</span> (cur2):</div><div class="line">                    cur3 = cur2.next</div><div class="line">                    <span class="keyword">if</span> (cur2.next <span class="keyword">and</span> cur2.next.next):</div><div class="line">                        cur1.next = cur2.next.next</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        cur1.next = cur2.next</div><div class="line">                    cur2.next = cur1</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    cur3 = <span class="keyword">None</span></div><div class="line">                <span class="keyword">if</span> (firsttime):</div><div class="line">                    head = cur2</div><div class="line">                cur1 = cur3</div><div class="line">                firsttime = <span class="number">0</span></div><div class="line">        <span class="keyword">return</span> head</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[020 Valid Parentheses]]></title>
+      <url>http://wf94.github.io/2017/01/03/020-Valid-Parentheses/</url>
+      <content type="html"><![CDATA[<p>Given a string containing just the characters (), [], {}, determine if the input string is valid.</p>
+<p>The brackets must close in the correct order.</p>
+<a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>在考虑这样的题目的时候，边界条件一定要判断清楚。首先，不是说任意一对括号相配对就可以了，还需要考虑括号的种类；其次，括号的配对不能错位嵌套。</p>
+<p>本题利用堆栈可以很容易解决。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValid</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        p = []</div><div class="line">        flag = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</div><div class="line">            <span class="keyword">if</span> (i == <span class="string">'('</span> <span class="keyword">or</span> i == <span class="string">'['</span> <span class="keyword">or</span> i == <span class="string">'&#123;'</span>):</div><div class="line">                p.append(i)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">if</span> (len(p)):       </div><div class="line">                    j = p.pop()</div><div class="line">                    <span class="comment"># ord函数可以获得该符号的ASCII码</span></div><div class="line">                    <span class="keyword">if</span> (ord(i) - ord(j) == <span class="number">1</span> <span class="keyword">or</span> ord(i) - ord(j) == <span class="number">2</span>):</div><div class="line">                        flag = <span class="number">1</span></div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        flag = <span class="number">0</span></div><div class="line">                        <span class="keyword">break</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    flag = <span class="number">0</span></div><div class="line">                    <span class="keyword">break</span></div><div class="line">        <span class="keyword">if</span> (flag <span class="keyword">and</span> len(p) == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> String </tag>
+            
+            <tag> Stack </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[019 Remove Nth Node From End of List]]></title>
+      <url>http://wf94.github.io/2017/01/03/019-Remove-Nth-Node-From-End-of-List/</url>
+      <content type="html"><![CDATA[<p>Given a linked list, remove the <em>n</em>th node from the end of list and return its head. Given <em>n</em> will always be valid and try to do this in one pass. </p>
+<p>For example,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2.</div><div class="line"></div><div class="line">After removing the second node from the end, the linked list becomes 1-&gt;2-&gt;3-&gt;5.</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这是一道非常典型的快慢指针题。双指针的操作在链表中比较常用，这样的操作可以省去频繁对链表进行遍历的开销，非常方便。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for singly-linked list.</span></div><div class="line"><span class="comment"># class ListNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.next = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeNthFromEnd</span><span class="params">(self, head, n)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type head: ListNode</div><div class="line">        :type n: int</div><div class="line">        :rtype: ListNode</div><div class="line">        """</div><div class="line">        fast = head</div><div class="line">        headflag = <span class="number">1</span></div><div class="line">        <span class="comment"># 利用快指针来定位倒数第n个元素</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">            fast = fast.next</div><div class="line">        <span class="comment"># 慢指针必须要指到目标元素前一个元素</span></div><div class="line">        <span class="comment"># 才能执行单链表的删除操作</span></div><div class="line">        <span class="keyword">if</span> (fast):</div><div class="line">            fast = fast.next</div><div class="line">            headflag = <span class="number">0</span></div><div class="line">        slow = head</div><div class="line">        <span class="keyword">while</span>(fast):</div><div class="line">            fast = fast.next</div><div class="line">            slow = slow.next</div><div class="line">        <span class="comment"># 经过循环，现在慢指针已经指向目标元素的前一个元素了</span></div><div class="line">        <span class="keyword">if</span> (slow == head):</div><div class="line">            <span class="comment"># 边界条件：如果慢指针还在头部</span></div><div class="line">            <span class="keyword">if</span> (headflag):</div><div class="line">                <span class="comment"># 删除第一个元素</span></div><div class="line">                head = slow.next</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                slow.next = slow.next.next</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            slow.next = slow.next.next</div><div class="line">        <span class="keyword">return</span> head</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Linked List </tag>
+            
+            <tag> Two Pointers </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[014 Longest Common Prefix]]></title>
+      <url>http://wf94.github.io/2017/01/02/014-Longest-Common-Prefix/</url>
+      <content type="html"><![CDATA[<p>Write a function to find the longest common prefix string amongst an array of strings. </p>
+<a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>注意，参数strs是一个string类型的数组。思路很直白，从数组中每一个字符串的起始位置开始搜索并依次进行比较。只要有其中一个字符串在该位置的字符与其它的字符串不同，搜索结束，从而得到字符串数组的最长公共前缀。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonPrefix</span><span class="params">(self, strs)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type strs: List[str]</div><div class="line">        :rtype: str</div><div class="line">        """</div><div class="line">        length = len(strs)</div><div class="line">        <span class="keyword">if</span> (length == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="string">''</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            pos = <span class="number">0</span></div><div class="line">            res = <span class="string">''</span></div><div class="line">            <span class="keyword">while</span>(<span class="keyword">True</span>):</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">                    <span class="keyword">if</span> (pos &gt;= len(strs[i])):</div><div class="line">                        <span class="keyword">return</span> res</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        <span class="keyword">if</span> (strs[i][pos] != strs[<span class="number">0</span>][pos]):</div><div class="line">                            <span class="keyword">return</span> res</div><div class="line">                res += strs[<span class="number">0</span>][pos]</div><div class="line">                pos += <span class="number">1</span></div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> String </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[009 Palindrome Number]]></title>
+      <url>http://wf94.github.io/2017/01/02/009-Palindrome-Number/</url>
+      <content type="html"><![CDATA[<p>Determine whether an integer is a palindrome. Do this without extra space.</p>
+<a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这道题如果想用类似于第八题的方法，把每一位的数字都存在一个数组里，显然空间开销会比较大，从而与题意不符。因此，在循环当中，利用数学方法将各位对应数字计算出来，直接进行比较，会显得比较简洁。</p>
+<p>需要注意的是，负数不是回文数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self, x)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type x: int</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> ( x &gt;= <span class="number">0</span> ):</div><div class="line">            digit = <span class="number">0</span></div><div class="line">            i = x  </div><div class="line">            <span class="keyword">while</span>( i &gt; <span class="number">0</span> ):</div><div class="line">                i = i / <span class="number">10</span></div><div class="line">                digit += <span class="number">1</span></div><div class="line">            high = digit</div><div class="line">            low = <span class="number">1</span></div><div class="line">            m = x</div><div class="line">            n = x</div><div class="line">            <span class="keyword">while</span> (high &gt;= low):</div><div class="line">                <span class="keyword">if</span> (m / (<span class="number">10</span> ** (high<span class="number">-1</span>)) != n % <span class="number">10</span>):</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">                m = m - ( (<span class="number">10</span> ** (high<span class="number">-1</span>)) * (m / (<span class="number">10</span> ** (high<span class="number">-1</span>))))</div><div class="line">                n = n / <span class="number">10</span></div><div class="line">                high -= <span class="number">1</span></div><div class="line">                low += <span class="number">1</span></div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Math </tag>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[008 String to Integer (atoi)]]></title>
+      <url>http://wf94.github.io/2017/01/02/008-String-to-Integer-atoi/</url>
+      <content type="html"><![CDATA[<p>Implement atoi to convert a string to an integer.</p>
+<a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>atoi函数的主要功能就是将字符串转换成整数，题目给出了提示，需要我们考虑清楚所有可能的情况。</p>
+<p>百密必有一疏，在我写完代码第一次运行的时候，还是漏掉了以下三项：</p>
+<ol>
+<li>应当去掉尽可能多的空格；</li>
+<li>字符串起始可以含有+号，并将此数视为正数；</li>
+<li>在数字之后应当可以包含任何字符。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">myAtoi</span><span class="params">(self, str)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type str: str</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        </div><div class="line">        symbols = [<span class="string">"+"</span>,<span class="string">"-"</span>]</div><div class="line">        numbers = [<span class="string">"0"</span>,<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>,<span class="string">"6"</span>,<span class="string">"7"</span>,<span class="string">"8"</span>,<span class="string">"9"</span>]</div><div class="line">        length = len(str)</div><div class="line">        symbol = <span class="string">"+"</span></div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (length == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        </div><div class="line">        res = []</div><div class="line">        cur = <span class="number">0</span></div><div class="line">        <span class="comment"># 去除一开始的空格</span></div><div class="line">        <span class="keyword">while</span> (str[cur] == <span class="string">" "</span>):</div><div class="line">            cur += <span class="number">1</span></div><div class="line">        <span class="comment"># 判断第一个字符是不是所期待的字符</span></div><div class="line">        <span class="keyword">if</span> ( (str[cur] <span class="keyword">not</span> <span class="keyword">in</span> symbols) <span class="keyword">and</span> (str[cur] <span class="keyword">not</span> <span class="keyword">in</span> numbers) ):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="comment"># 是符号的话，就存起来；否则开始转换成数字</span></div><div class="line">            <span class="keyword">if</span> (str[cur] <span class="keyword">in</span> symbols):</div><div class="line">                symbol = str[cur]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                res.append(str[cur])</div><div class="line">            cur += <span class="number">1</span></div><div class="line">            </div><div class="line">            <span class="comment"># 注意到数字之后还能有别的乱七八糟的符号</span></div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(cur, length):</div><div class="line">                <span class="keyword">if</span> (str[i] <span class="keyword">not</span> <span class="keyword">in</span> numbers):</div><div class="line">                    <span class="keyword">break</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    res.append(str[i])</div><div class="line">        </div><div class="line">        <span class="comment"># 处理转换数字的操作</span></div><div class="line">        reslen = len(res)</div><div class="line">        <span class="keyword">if</span> (reslen &lt;= <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            answer = <span class="number">0</span></div><div class="line">            count = <span class="number">0</span></div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> res[::<span class="number">-1</span>]:</div><div class="line">                answer += <span class="number">10</span> ** count * int(i)</div><div class="line">                count += <span class="number">1</span></div><div class="line">            <span class="keyword">if</span> (symbol == <span class="string">"-"</span>):</div><div class="line">                answer = -answer</div><div class="line">            <span class="comment"># 注意数字不能越界，python的整数范围比int的值要大</span></div><div class="line">            <span class="keyword">if</span> (answer &gt; <span class="number">2147483647</span>):</div><div class="line">                answer = <span class="number">2147483647</span></div><div class="line">            <span class="keyword">elif</span> (answer &lt; <span class="number">-2147483648</span>):</div><div class="line">                answer = <span class="number">-2147483648</span></div><div class="line">            <span class="keyword">return</span> answer</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Math </tag>
+            
+            <tag> Medium </tag>
+            
+            <tag> String </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[007 Reverse Integer]]></title>
+      <url>http://wf94.github.io/2017/01/02/007-Reverse-Integer/</url>
+      <content type="html"><![CDATA[<p>Reverse digits of an integer.</p>
+<p><strong>Example1:</strong>  x =  123,   return  321<br><strong>Example2:</strong>  x = -123,   return -321 </p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这是一次失败的尝试。考虑的情况太多，以至于没有好好地去整合。</p>
+<p>必须注意的是，我们需要考虑如果翻转 100 这个数，最后的结果是怎么样的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(self, x)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type x: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> (x != <span class="number">0</span>):</div><div class="line">            <span class="comment"># 首先不应该加一个判断是否为0的分支，没有意义啊。0也是无所谓符号的嘛</span></div><div class="line">            isNegative = <span class="keyword">False</span></div><div class="line">            <span class="keyword">if</span> (x &lt; <span class="number">0</span>):</div><div class="line">                x = -x</div><div class="line">                isNegative = <span class="keyword">True</span></div><div class="line">            <span class="comment"># 获得每一位的数字具体是多少，放到res里面</span></div><div class="line">            res = []</div><div class="line">            <span class="keyword">while</span> (x &gt; <span class="number">0</span>):</div><div class="line">                res.append(x % <span class="number">10</span>)</div><div class="line">                x = x / <span class="number">10</span></div><div class="line">            <span class="keyword">while</span> (res[<span class="number">0</span>] == <span class="number">0</span>):</div><div class="line">                <span class="keyword">del</span> res[<span class="number">0</span>]</div><div class="line"></div><div class="line">            <span class="comment"># 反向遍历res，结果赋值给ans</span></div><div class="line">            length = len(res)</div><div class="line">            <span class="keyword">if</span> (length):</div><div class="line">                ans = <span class="number">0</span></div><div class="line">                <span class="comment">#可以写成 for i, enum in enumerate(res[::-1])</span></div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">                    ans += res[-(i+<span class="number">1</span>)] * ( <span class="number">10</span> ** i )</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (isNegative):</div><div class="line">                ans = -ans</div><div class="line"></div><div class="line">            <span class="comment">#可以利用python自带的MAXINT/MININT参数</span></div><div class="line">            <span class="keyword">if</span> (ans &lt; <span class="number">-2</span> ** <span class="number">31</span> <span class="keyword">or</span> ans &gt; <span class="number">2</span> ** <span class="number">31</span> - <span class="number">1</span>):</div><div class="line">                <span class="keyword">return</span> <span class="number">0</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">return</span> ans</div><div class="line"></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<p>最后，可以参考一下示例代码，不需要这么多判断分支，也能完成这道题。<br><a href="https://discuss.leetcode.com/topic/6005/shortest-code-possible-in-c" target="_blank" rel="external">https://discuss.leetcode.com/topic/6005/shortest-code-possible-in-c</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    int reverse(int x) &#123;</div><div class="line">        long long res = 0;</div><div class="line">        while(x) &#123;</div><div class="line">            res = res*10 + x%10;</div><div class="line">            x /= 10;</div><div class="line">        &#125;</div><div class="line">        return (res&lt;INT_MIN || res&gt;INT_MAX) ? 0 : res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Math </tag>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[006 Zigzag Conversion]]></title>
+      <url>http://wf94.github.io/2017/01/01/006-Zigzag-Conversion/</url>
+      <content type="html"><![CDATA[<p>The string <code>&quot;PAYPALISHIRING&quot;</code> is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">P   A   H   N</div><div class="line">A P L S I I G</div><div class="line">Y   I   R</div></pre></td></tr></table></figure>
+<p>And then read line by line: “PAHNAPLSIIGYIR”</p>
+<p>Write the code that will take a string and make this conversion given a number of rows:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">convert(&quot;PAYPALISHIRING&quot;, 3) ==&gt;  &quot;PAHNAPLSIIGYIR&quot;</div></pre></td></tr></table></figure></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先考虑最简单的情况，行数为2的时候，行数为3的时候每一个元素的分布情况。可以发现，元素分布是有规律的。就拿例子而言，第一行的元素之间相隔3个字符，第二行的元素之间相隔1个字符，利用求余操作就可以得到对应关系。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">convert</span><span class="params">(self, s, numRows)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :type numRows: int</div><div class="line">        :rtype: str</div><div class="line">        """</div><div class="line">        strlist = []</div><div class="line">        length = len(s)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(numRows):</div><div class="line">            strlist.append(<span class="string">""</span>)</div><div class="line">            </div><div class="line">        <span class="keyword">if</span> (numRows != <span class="number">1</span>):</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">                remain = i % (<span class="number">2</span> * (numRows<span class="number">-1</span>) )</div><div class="line">                <span class="keyword">if</span> (remain &gt;= numRows):</div><div class="line">                    remain = (<span class="number">2</span> * (numRows<span class="number">-1</span>) ) - remain</div><div class="line">                strlist[remain] += s[i]</div><div class="line">                </div><div class="line">            res = <span class="string">""</span></div><div class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> strlist:</div><div class="line">                res += k</div><div class="line">            <span class="keyword">return</span> res</div><div class="line">        </div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> s</div></pre></td></tr></table></figure>
+<p>下图也可以更好地理解此题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Δ=2n-2    1                           2n-1                         4n-3</div><div class="line">Δ=        2                     2n-2  2n                    4n-4   4n-2</div><div class="line">Δ=        3               2n-3        2n+1              4n-5       .</div><div class="line">Δ=        .           .               .               .            .</div><div class="line">Δ=        .       n+2                 .           3n               .</div><div class="line">Δ=        n-1 n+1                     3n-3    3n-1                 5n-5</div><div class="line">Δ=2n-2    n                           3n-2                         5n-4</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> String </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[001 Two Sum]]></title>
+      <url>http://wf94.github.io/2017/01/01/001-Two-Sum/</url>
+      <content type="html"><![CDATA[<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.<br>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Given nums = [2, 7, 11, 15], target = 9,</div><div class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</div><div class="line">return [0, 1].</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为题目给出的数组当中一定会有且只有一个解，而且不能重复用一个元素。所以第一层循环用以遍历数组中的元素，第二层循环用以查询此元素之后，是否还有元素满足要求。</p>
+<p>因为这一题的难度是easy，所以利用上面所说，类似于穷举的方法就可以直接得到结果，不需要考虑额外的时间复杂度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type target: int</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        length = len(nums)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">            remain = target - nums[i]</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>, length):</div><div class="line">                <span class="keyword">if</span> (nums[j] == remain):</div><div class="line">                    <span class="keyword">return</span> [i, j]</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Array </tag>
+            
+            <tag> Hashtable </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
+</search>
