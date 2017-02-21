@@ -26,6 +26,92 @@
     </entry>
     
     <entry>
+      <title><![CDATA[119 Pascal's Triangle II]]></title>
+      <url>http://wf94.github.io/2017/01/11/119-Pascal-s-Triangle-II/</url>
+      <content type="html"><![CDATA[<p>Given an index <em>k</em>, return the <em>k</em>th row of the Pascal’s triangle.</p>
+<p>For example, given <em>k</em> = 3,<br> Return <code>[1,3,3,1]</code>. </p>
+<a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>杨辉三角有许多重要的性质。其中一个，就是它第n行数字代表的含义，恰好是n阶多项式展开的系数之值；推而广之，也就是n的各个组合数的值。因此在这一题中，直接采用求组合数的方法，利用组合数求解的公式即可得到结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> math</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getRow</span><span class="params">(self, rowIndex)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type rowIndex: int</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        res = [<span class="number">1</span>]</div><div class="line">        <span class="keyword">if</span> (rowIndex &lt;= <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> res</div><div class="line">        <span class="keyword">elif</span> (rowIndex == <span class="number">1</span>):</div><div class="line">            res.append(<span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> res</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, rowIndex):</div><div class="line">                <span class="comment"># 利用了math类当中的factorial函数求阶乘。</span></div><div class="line">                res.append(math.factorial(rowIndex)/math.factorial(i)/math.factorial(rowIndex-i))</div><div class="line">            res.append(<span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> res</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Array </tag>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[118 Pascal's Triangle]]></title>
+      <url>http://wf94.github.io/2017/01/11/118-Pascal-s-Triangle/</url>
+      <content type="html"><![CDATA[<p>Given <em>numRows</em>, generate the first <em>numRows</em> of Pascal’s triangle.</p>
+<p>For example, given <em>numRows</em> = 5,<br> Return </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">     [1],</div><div class="line">    [1,1],</div><div class="line">   [1,2,1],</div><div class="line">  [1,3,3,1],</div><div class="line"> [1,4,6,4,1]</div><div class="line">]</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>帕斯卡三角，也就是杨辉三角，有着许多重要的性质。</p>
+<p>在本题中，简单地利用该行元素和前一行元素之间的关系，就可以通过迭代的方式求得结果。</p>
+<p>在这两行当中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">  [1, 2, 1],</div><div class="line">   \ / \ /</div><div class="line">    |   |</div><div class="line">[1, 3 , 3 ,1],</div></pre></td></tr></table></figure>
+<p>最后一行除了最左边的1以外，中间两个元素分别可以通过1+2=3求得。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> copy</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate</span><span class="params">(self, numRows)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type numRows: int</div><div class="line">        :rtype: List[List[int]]</div><div class="line">        """</div><div class="line">        res = []</div><div class="line">        row1 = [<span class="number">1</span>]</div><div class="line">        row2 = [<span class="number">1</span>,<span class="number">1</span>]</div><div class="line">        <span class="keyword">if</span> (numRows &lt;= <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> res</div><div class="line">        <span class="keyword">elif</span> (numRows == <span class="number">1</span>):</div><div class="line">            res.append(row1)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            res.append(row1)</div><div class="line">            res.append(row2)</div><div class="line">            <span class="comment"># 利用浅拷贝来防止list出现混乱</span></div><div class="line">            <span class="comment"># 其实也完全可以不用</span></div><div class="line">            prev = copy.copy(row2)</div><div class="line">            <span class="keyword">while</span>(numRows &gt; <span class="number">2</span>):</div><div class="line">                row = [<span class="number">1</span>]</div><div class="line">                length = len(prev)</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(len(prev)<span class="number">-1</span>):</div><div class="line">                    row.append(prev[i] + prev[i+<span class="number">1</span>])</div><div class="line">                row.append(<span class="number">1</span>)</div><div class="line">                res.append(row)</div><div class="line">                prev = copy.copy(row)</div><div class="line">                numRows -= <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Array </tag>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[112 Path Sum]]></title>
+      <url>http://wf94.github.io/2017/01/10/112-Path-Sum/</url>
+      <content type="html"><![CDATA[<p>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum. </p>
+<p><code>sum = 22</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">      5</div><div class="line">     / \</div><div class="line">    4   8</div><div class="line">   /   / \</div><div class="line">  11  13  4</div><div class="line"> /  \      \</div><div class="line">7    2      1</div></pre></td></tr></table></figure>
+<p>return true, as there exist a root-to-leaf path <code>5-&gt;4-&gt;11-&gt;2</code> which sum is 22.</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这一题也是利用深度优先遍历(DFS)的递归方法来进行查找。</p>
+<p>需要注意的是，只有自根节点到叶子节点的路径才算是一条符合题意的路径，其它情况都不需要额外考虑了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hasPathSum</span><span class="params">(self, root, sum)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type root: TreeNode</div><div class="line">        :type sum: int</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> (root):</div><div class="line">            <span class="keyword">return</span> self.DFS(root, sum)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(self, root, sum)</span>:</span></div><div class="line">        <span class="keyword">if</span> (root):</div><div class="line">            val = root.val</div><div class="line">            sum -= val</div><div class="line">            <span class="keyword">if</span>(root.left <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">and</span> root.right <span class="keyword">is</span> <span class="keyword">None</span>):</div><div class="line">                <span class="keyword">if</span> (sum == <span class="number">0</span>):</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">return</span> self.DFS(root.left, sum) <span class="keyword">or</span> self.DFS(root.right, sum)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Tree </tag>
+            
+            <tag> DFS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[111 Minimum Depth of Binary Tree]]></title>
       <url>http://wf94.github.io/2017/01/09/111-Minimum-Depth-of-Binary-Tree/</url>
       <content type="html"><![CDATA[<p>Given a binary tree, find its minimum depth.</p>
@@ -64,7 +150,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  3</div><div class="line"> / \</div><div class="line">9  20</div><div class="line">  /  \</div><div class="line"> 15   7</div></pre></td></tr></table></figure>
 <p>return its bottom-up level order traversal as:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  [15,7],</div><div class="line">  [9,20],</div><div class="line">  [3]</div><div class="line">]</div></pre></td></tr></table></figure>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>104题也是一道层次遍历的题，104题是采用自顶向下的输出方式，而这一题采用了自底向上的输出方式。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>102题也是一道层次遍历的题。在102题中，题目要求是采用自顶向下的输出方式；而这一题采用了自底向上的输出方式。</p>
 <p>由于两道题思路相同，都是在队列访问的时候加入空节点用于分割，就不再赘述了。代码后面附上参考链接。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrderBottom</span><span class="params">(self, root)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type root: TreeNode</div><div class="line">        :rtype: List[List[int]]</div><div class="line">        """</div><div class="line">        q = []</div><div class="line">        res = []</div><div class="line">        layer = []</div><div class="line">        <span class="keyword">if</span> (root):</div><div class="line">            q.append(root)</div><div class="line">            q.append(<span class="keyword">None</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> q</div><div class="line">        <span class="keyword">while</span> (len(q) &gt; <span class="number">0</span>):</div><div class="line">            node = q[<span class="number">0</span>]</div><div class="line">            layer.append(q[<span class="number">0</span>])</div><div class="line">            <span class="keyword">del</span> q[<span class="number">0</span>]</div><div class="line">            <span class="keyword">if</span> (node <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>):</div><div class="line">                <span class="keyword">if</span> (node.left <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>):</div><div class="line">                    q.append(node.left)</div><div class="line">                <span class="keyword">if</span> (node.right <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>):</div><div class="line">                    q.append(node.right)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                layerval = []</div><div class="line">                <span class="keyword">if</span>(len(q) &gt; <span class="number">0</span>):</div><div class="line">                    q.append(<span class="keyword">None</span>)</div><div class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> layer:</div><div class="line">                        <span class="keyword">if</span> (i):</div><div class="line">                            layerval.append(i.val)</div><div class="line">                    res.append(layerval)</div><div class="line">                    layer = []</div><div class="line">        lastlayer = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> layer:</div><div class="line">            <span class="keyword">if</span> (i):</div><div class="line">                lastlayer.append(i.val)</div><div class="line">        res.append(lastlayer)</div><div class="line">        </div><div class="line">        res.reverse()</div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
 <p>参考链接：<a href="http://www.cnblogs.com/miloyip/archive/2010/05/12/binary_tree_traversal.html" target="_blank" rel="external">http://www.cnblogs.com/miloyip/archive/2010/05/12/binary_tree_traversal.html</a></p>
@@ -179,11 +265,11 @@
             
             <tag> Medium </tag>
             
+            <tag> Hash Table </tag>
+            
             <tag> Stack </tag>
             
             <tag> Tree </tag>
-            
-            <tag> Hash Table </tag>
             
         </tags>
         
@@ -267,9 +353,9 @@
             
             <tag> Easy </tag>
             
-            <tag> String </tag>
-            
             <tag> Math </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -474,9 +560,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -614,11 +700,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
