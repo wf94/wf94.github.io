@@ -14,6 +14,8 @@
 <p><a href="http://blog.csdn.net/v_july_v/article/details/51812459" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/51812459</a></p>
 <p>生物医学图像中的深度学习【资料】：</p>
 <p><a href="https://madlymissyou.github.io/2016/10/09/deep-learning-for-neuroimage" target="_blank" rel="external">https://madlymissyou.github.io/2016/10/09/deep-learning-for-neuroimage</a></p>
+<p>机器学习算法系列：浅析Logistic Regression</p>
+<p><a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="external">https://chenrudan.github.io/blog/2016/01/09/logisticregression.html</a></p>
 ]]></content>
       
         <categories>
@@ -22,6 +24,36 @@
             
         </categories>
         
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[125 Valid Palindrome]]></title>
+      <url>http://wf94.github.io/2017/01/12/125-Valid-Palindrome/</url>
+      <content type="html"><![CDATA[<p>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases. </p>
+<p>For example,<br><code>&quot;A man, a plan, a canal: Panama&quot;</code> is a palindrome.<br><code>&quot;race a car&quot;</code> is <em>not</em> a palindrome. </p>
+<p><strong>Note:</strong><br> Have you consider that the string might be empty? This is a good question to ask during an interview.</p>
+<p>For the purpose of this problem, we define empty string as valid palindrome. </p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>判断一个字符串是否为回文。注意，空字符串也是回文。</p>
+<p>在Python当中，如果对字符串频繁采取+操作，会非常耗时。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        s = s.lower()</div><div class="line">        alphabet = <span class="string">"abcdefghijklmnopqrstuvwxyz0123456789"</span></div><div class="line">        res = <span class="string">""</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</div><div class="line">            <span class="keyword">if</span> (i <span class="keyword">in</span> alphabet):</div><div class="line">            	<span class="comment"># 最花时间的操作是在这儿对于字符串的操作</span></div><div class="line">                <span class="comment"># 在python，list.append()的时间复杂度为O(1)，可以考虑转换为list</span></div><div class="line">                res += i</div><div class="line">        </div><div class="line">        length = len(res)</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">            <span class="keyword">if</span> (res[i] != res[-(i+<span class="number">1</span>)]):</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div></pre></td></tr></table></figure>
+<p>利用接下来的代码，便不会超时。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        s = s.lower()</div><div class="line">        <span class="comment">#alphabet = "abcdefghijklmnopqrstuvwxyz0123456789"</span></div><div class="line">        res = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</div><div class="line">            <span class="keyword">if</span> (ord(<span class="string">"a"</span>) &lt;= ord(i) &lt;= ord(<span class="string">"z"</span>) <span class="keyword">or</span> ord(<span class="string">"0"</span>) &lt;= ord(i) &lt;= ord(<span class="string">"9"</span>)):</div><div class="line">                res.append(i)</div><div class="line">        </div><div class="line">        length = len(res)</div><div class="line">        i = <span class="number">0</span></div><div class="line">        j = length - <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> ( i &lt; j ):</div><div class="line">            <span class="keyword">if</span> (res[i] != res[j]):</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">            i += <span class="number">1</span></div><div class="line">            j -= <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
+            
+        </tags>
         
     </entry>
     
@@ -134,9 +166,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -232,9 +264,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -351,11 +383,11 @@
         
         <tags>
             
+            <tag> String </tag>
+            
             <tag> Easy </tag>
             
             <tag> Math </tag>
-            
-            <tag> String </tag>
             
         </tags>
         
@@ -383,9 +415,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -448,9 +480,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -531,9 +563,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -560,9 +592,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -587,9 +619,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Stack </tag>
             
@@ -643,9 +675,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -700,11 +732,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -787,7 +819,7 @@
             
             <tag> Array </tag>
             
-            <tag> Hashtable </tag>
+            <tag> Hash Table </tag>
             
             <tag> Easy </tag>
             
