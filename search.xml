@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title><![CDATA[141 Linked List Cycle]]></title>
+      <url>http://wf94.github.io/2017/02/25/141-Linked-List-Cycle/</url>
+      <content type="html"><![CDATA[<p>Given a linked list, determine if it has a cycle in it. </p>
+<p>Follow up:<br> Can you solve it without using extra space? </p>
+<a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先尝试最直观的方法，将所有的节点都存起来，感觉上是比较麻烦。至少是O(n^2)的复杂度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Solution(object):</div><div class="line">    def hasCycle(self, head):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type head: ListNode</div><div class="line">        :rtype: bool</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        nodes = []</div><div class="line">        cur = head</div><div class="line">        while (cur):</div><div class="line">            nodes.append(cur)</div><div class="line">            if (cur.next):</div><div class="line">                if (cur.next in nodes):</div><div class="line">                    return True</div><div class="line">            cur = cur.next</div><div class="line">        return False</div></pre></td></tr></table></figure>
+<p>利用哈希表对于这些节点进行存储，时间开销就会减少了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Solution(object):</div><div class="line">    def hasCycle(self, head):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type head: ListNode</div><div class="line">        :rtype: bool</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        nodes = &#123;&#125;</div><div class="line">        cur = head</div><div class="line">        while (cur):</div><div class="line">            nodes[cur] = 1</div><div class="line">            if (cur.next):</div><div class="line">                if (nodes.has_key(cur.next)):</div><div class="line">                    return True</div><div class="line">            cur = cur.next</div><div class="line">        return False</div></pre></td></tr></table></figure></p>
+<p>另外，利用快慢指针的方法也非常巧妙。快的指针每次前进两步，慢的指针每次前进一步。如果链表里面有一个环，快慢指针一定会相遇。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Linked List </tag>
+            
+            <tag> Two Pointers </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[CNN与脑部肿瘤分割资料收集]]></title>
       <url>http://wf94.github.io/2017/02/20/CNN-Brain-Tumor-Segmentation/</url>
       <content type="html"><![CDATA[<p>斯坦福大学卷积神经网络教程：</p>
@@ -75,9 +106,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -105,9 +136,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -295,9 +326,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Stack </tag>
             
@@ -324,9 +355,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Two Pointers </tag>
             
@@ -356,9 +387,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -383,11 +414,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -415,9 +446,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -448,9 +479,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -480,9 +511,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -508,9 +539,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -535,9 +566,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -563,9 +594,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -619,9 +650,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Stack </tag>
             
@@ -675,9 +706,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -701,9 +732,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -732,11 +763,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -762,9 +793,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -817,11 +848,11 @@
         
         <tags>
             
+            <tag> Easy </tag>
+            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
-            
-            <tag> Easy </tag>
             
         </tags>
         
