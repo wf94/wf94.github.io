@@ -4,8 +4,32 @@
   
     
     <entry>
-      <title><![CDATA[160 Intersection of Two Linked Lists ]]></title>
-      <url>http://wf94.github.io/2017/02/26/160-Intersection-of-Two-Linked-Lists/</url>
+      <title><![CDATA[CNN与脑部肿瘤分割资料收集]]></title>
+      <url>http://wf94.github.io/2017/02/20/CNN-Brain-Tumor-Segmentation/</url>
+      <content type="html"><![CDATA[<p>斯坦福大学卷积神经网络教程：</p>
+<p><a href="http://ufldl.stanford.edu/tutorial/supervised/ConvolutionalNeuralNetwork/" target="_blank" rel="external">http://ufldl.stanford.edu/tutorial/supervised/ConvolutionalNeuralNetwork/</a></p>
+<p><a href="http://ufldl.stanford.edu/wiki/index.php/UFLDL_Tutorial" target="_blank" rel="external">http://ufldl.stanford.edu/wiki/index.php/UFLDL_Tutorial</a></p>
+<p><a href="http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/" target="_blank" rel="external">http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/</a></p>
+<p>CNN笔记：通俗理解神经网络：</p>
+<p><a href="http://blog.csdn.net/v_july_v/article/details/51812459" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/51812459</a></p>
+<p>生物医学图像中的深度学习【资料】：</p>
+<p><a href="https://madlymissyou.github.io/2016/10/09/deep-learning-for-neuroimage" target="_blank" rel="external">https://madlymissyou.github.io/2016/10/09/deep-learning-for-neuroimage</a></p>
+<p>机器学习算法系列：浅析Logistic Regression</p>
+<p><a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="external">https://chenrudan.github.io/blog/2016/01/09/logisticregression.html</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[160 Intersection of Two Linked Lists]]></title>
+      <url>http://wf94.github.io/2017/01/14/160-Intersection-of-Two-Linked-Lists/</url>
       <content type="html"><![CDATA[<p>Write a program to find the node at which the intersection of two singly linked lists begins.</p>
 <p>For example, the following two linked lists: </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">A:          a1 → a2</div><div class="line">                   ↘</div><div class="line">                     c1 → c2 → c3</div><div class="line">                   ↗            </div><div class="line">B:     b1 → b2 → b3</div></pre></td></tr></table></figure>
@@ -41,7 +65,7 @@
     
     <entry>
       <title><![CDATA[141 Linked List Cycle]]></title>
-      <url>http://wf94.github.io/2017/02/25/141-Linked-List-Cycle/</url>
+      <url>http://wf94.github.io/2017/01/13/141-Linked-List-Cycle/</url>
       <content type="html"><![CDATA[<p>Given a linked list, determine if it has a cycle in it. </p>
 <p>Follow up:<br> Can you solve it without using extra space? </p>
 <a id="more"></a>
@@ -67,30 +91,6 @@
             <tag> Two Pointers </tag>
             
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[CNN与脑部肿瘤分割资料收集]]></title>
-      <url>http://wf94.github.io/2017/02/20/CNN-Brain-Tumor-Segmentation/</url>
-      <content type="html"><![CDATA[<p>斯坦福大学卷积神经网络教程：</p>
-<p><a href="http://ufldl.stanford.edu/tutorial/supervised/ConvolutionalNeuralNetwork/" target="_blank" rel="external">http://ufldl.stanford.edu/tutorial/supervised/ConvolutionalNeuralNetwork/</a></p>
-<p><a href="http://ufldl.stanford.edu/wiki/index.php/UFLDL_Tutorial" target="_blank" rel="external">http://ufldl.stanford.edu/wiki/index.php/UFLDL_Tutorial</a></p>
-<p><a href="http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/" target="_blank" rel="external">http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/</a></p>
-<p>CNN笔记：通俗理解神经网络：</p>
-<p><a href="http://blog.csdn.net/v_july_v/article/details/51812459" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/51812459</a></p>
-<p>生物医学图像中的深度学习【资料】：</p>
-<p><a href="https://madlymissyou.github.io/2016/10/09/deep-learning-for-neuroimage" target="_blank" rel="external">https://madlymissyou.github.io/2016/10/09/deep-learning-for-neuroimage</a></p>
-<p>机器学习算法系列：浅析Logistic Regression</p>
-<p><a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="external">https://chenrudan.github.io/blog/2016/01/09/logisticregression.html</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Tech </category>
-            
-        </categories>
-        
         
     </entry>
     
@@ -142,9 +142,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -172,9 +172,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -233,9 +233,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -331,9 +331,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -391,9 +391,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -423,9 +423,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -450,11 +450,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
             <tag> Easy </tag>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -482,9 +482,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -515,9 +515,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -547,9 +547,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -602,9 +602,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -630,9 +630,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -686,9 +686,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Stack </tag>
             
@@ -742,9 +742,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -768,9 +768,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -799,11 +799,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -829,9 +829,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -884,11 +884,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
