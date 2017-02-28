@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title><![CDATA[190 Reverse Bits]]></title>
+      <url>http://wf94.github.io/2017/02/28/190-Reverse-Bits/</url>
+      <content type="html"><![CDATA[<p>Reverse bits of a given 32 bits unsigned integer.</p>
+<p>For example, given input 43261596 (represented in binary as <strong>00000010100101000001111010011100</strong>), return 964176192 (represented in binary as <strong>00111001011110000010100101000000</strong>).</p>
+<p><strong>Follow up</strong>:<br> If this function is called many times, how would you optimize it? </p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用位操作，将掩码设定为<code>0x80000000</code>，利用左移操作，将每一位由高到低放入list中，再倒转。</p>
+<p>在最后生成结果的时候也采用移位的方法，从list中取出每一位，并将结果进行叠加。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># @param n, an integer</span></div><div class="line">    <span class="comment"># @return an integer</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverseBits</span><span class="params">(self, n)</span>:</span></div><div class="line">        res = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">32</span>):</div><div class="line">            tmp = n &amp; <span class="number">0x80000000</span></div><div class="line">            tmp = tmp &gt;&gt; <span class="number">31</span></div><div class="line">            res.append(tmp)</div><div class="line">            n = n &lt;&lt; <span class="number">1</span></div><div class="line">        <span class="keyword">print</span> res</div><div class="line"></div><div class="line">        ans = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">32</span>):</div><div class="line">            ans = ans &lt;&lt; <span class="number">1</span></div><div class="line">            ans += res[<span class="number">31</span> - i]</div><div class="line"></div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Bit Manipulation </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[CNN与脑部肿瘤分割资料收集]]></title>
       <url>http://wf94.github.io/2017/02/20/CNN-Brain-Tumor-Segmentation/</url>
       <content type="html"><![CDATA[<p>斯坦福大学卷积神经网络教程：</p>
@@ -24,6 +51,61 @@
             
         </categories>
         
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[189 Rotate Array]]></title>
+      <url>http://wf94.github.io/2017/01/17/189-Rotate-Array/</url>
+      <content type="html"><![CDATA[<p>Rotate an array of <em>n</em> elements to the right by <em>k</em> steps.</p>
+<p>For example, with <em>n</em> = 7 and <em>k</em> = 3, the array <code>[1,2,3,4,5,6,7]</code> is rotated to <code>[5,6,7,1,2,3,4]</code>. </p>
+<p><strong>Note:</strong><br> Try to come up as many solutions as you can, there are at least 3 different ways to solve this problem.                                                                                                                                               </p>
+<p><strong>Hint:</strong><br> Could you do it in-place with O(1) extra space? </p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用Python语言对于list操作的性质，可以得到空间复杂度为O(1)的结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, nums, k)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type k: int</div><div class="line">        :rtype: void Do not return anything, modify nums in-place instead.</div><div class="line">        """</div><div class="line">        length = len(nums)</div><div class="line">        <span class="keyword">if</span> (k &gt; length):</div><div class="line">            k = k % length</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length - k):</div><div class="line">            nums.append(nums[<span class="number">0</span>])</div><div class="line">            <span class="keyword">del</span> nums[<span class="number">0</span>]</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Array </tag>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[168 Excel Sheet Column Title]]></title>
+      <url>http://wf94.github.io/2017/01/16/168-Excel-Sheet-Column-Title/</url>
+      <content type="html"><![CDATA[<p>Given a positive integer, return its corresponding column title as appear in an Excel sheet.</p>
+<p>For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1 -&gt; A</div><div class="line">2 -&gt; B</div><div class="line">3 -&gt; C</div><div class="line">...</div><div class="line">26 -&gt; Z</div><div class="line">27 -&gt; AA</div><div class="line">28 -&gt; AB</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>归根到底，这道题就是一个进制转换的问题。只不过把传统的10-&gt;2 / 10-&gt;8 / 8-&gt;16 等等，变成了26进制的转化而已。</p>
+<p>注意在python当中，<code>ord()</code>函数用来获取一个字符的ASCII码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Solution(object):</div><div class="line">    def convertToTitle(self, n):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type n: int</div><div class="line">        :rtype: str</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        res = &quot;&quot;</div><div class="line">        while (n &gt; 0):</div><div class="line">            if (n % 26 != 0):</div><div class="line">                res = chr(n % 26 + ord(&quot;A&quot;) - 1) + res</div><div class="line">                n = n / 26</div><div class="line">            else:</div><div class="line">                res = &quot;Z&quot; + res</div><div class="line">                n = (n / 26) - 1</div><div class="line">        return res</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Math </tag>
+            
+        </tags>
         
     </entry>
     
@@ -49,9 +131,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> String </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -263,9 +345,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -361,9 +443,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -482,9 +564,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -689,9 +771,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -829,11 +911,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
             <tag> Medium </tag>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -888,9 +970,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> String </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
