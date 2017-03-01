@@ -74,8 +74,32 @@
     </entry>
     
     <entry>
+      <title><![CDATA[CNN与脑部肿瘤分割资料收集]]></title>
+      <url>http://wf94.github.io/2017/02/20/CNN-Brain-Tumor-Segmentation/</url>
+      <content type="html"><![CDATA[<p>斯坦福大学卷积神经网络教程：</p>
+<p><a href="http://ufldl.stanford.edu/tutorial/supervised/ConvolutionalNeuralNetwork/" target="_blank" rel="external">http://ufldl.stanford.edu/tutorial/supervised/ConvolutionalNeuralNetwork/</a></p>
+<p><a href="http://ufldl.stanford.edu/wiki/index.php/UFLDL_Tutorial" target="_blank" rel="external">http://ufldl.stanford.edu/wiki/index.php/UFLDL_Tutorial</a></p>
+<p><a href="http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/" target="_blank" rel="external">http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/</a></p>
+<p>CNN笔记：通俗理解神经网络：</p>
+<p><a href="http://blog.csdn.net/v_july_v/article/details/51812459" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/51812459</a></p>
+<p>生物医学图像中的深度学习【资料】：</p>
+<p><a href="https://madlymissyou.github.io/2016/10/09/deep-learning-for-neuroimage" target="_blank" rel="external">https://madlymissyou.github.io/2016/10/09/deep-learning-for-neuroimage</a></p>
+<p>机器学习算法系列：浅析Logistic Regression</p>
+<p><a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="external">https://chenrudan.github.io/blog/2016/01/09/logisticregression.html</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[190 Reverse Bits]]></title>
-      <url>http://wf94.github.io/2017/02/28/190-Reverse-Bits/</url>
+      <url>http://wf94.github.io/2017/01/18/190-Reverse-Bits/</url>
       <content type="html"><![CDATA[<p>Reverse bits of a given 32 bits unsigned integer.</p>
 <p>For example, given input 43261596 (represented in binary as <strong>00000010100101000001111010011100</strong>), return 964176192 (represented in binary as <strong>00111001011110000010100101000000</strong>).</p>
 <p><strong>Follow up</strong>:<br> If this function is called many times, how would you optimize it? </p>
@@ -97,30 +121,6 @@
             <tag> Bit Manipulation </tag>
             
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[CNN与脑部肿瘤分割资料收集]]></title>
-      <url>http://wf94.github.io/2017/02/20/CNN-Brain-Tumor-Segmentation/</url>
-      <content type="html"><![CDATA[<p>斯坦福大学卷积神经网络教程：</p>
-<p><a href="http://ufldl.stanford.edu/tutorial/supervised/ConvolutionalNeuralNetwork/" target="_blank" rel="external">http://ufldl.stanford.edu/tutorial/supervised/ConvolutionalNeuralNetwork/</a></p>
-<p><a href="http://ufldl.stanford.edu/wiki/index.php/UFLDL_Tutorial" target="_blank" rel="external">http://ufldl.stanford.edu/wiki/index.php/UFLDL_Tutorial</a></p>
-<p><a href="http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/" target="_blank" rel="external">http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/</a></p>
-<p>CNN笔记：通俗理解神经网络：</p>
-<p><a href="http://blog.csdn.net/v_july_v/article/details/51812459" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/51812459</a></p>
-<p>生物医学图像中的深度学习【资料】：</p>
-<p><a href="https://madlymissyou.github.io/2016/10/09/deep-learning-for-neuroimage" target="_blank" rel="external">https://madlymissyou.github.io/2016/10/09/deep-learning-for-neuroimage</a></p>
-<p>机器学习算法系列：浅析Logistic Regression</p>
-<p><a href="https://chenrudan.github.io/blog/2016/01/09/logisticregression.html" target="_blank" rel="external">https://chenrudan.github.io/blog/2016/01/09/logisticregression.html</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Tech </category>
-            
-        </categories>
-        
         
     </entry>
     
