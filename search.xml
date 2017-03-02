@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title><![CDATA[203 Remove Linked List Elements ]]></title>
+      <url>http://wf94.github.io/2017/03/02/203-Remove-Linked-List-Elements/</url>
+      <content type="html"><![CDATA[<p>Remove all elements from a linked list of integers that have value <strong>val</strong>.</p>
+<p><strong>Example</strong><br><strong>Given:</strong> 1 –&gt; 2 –&gt; 6 –&gt; 3 –&gt; 4 –&gt; 5 –&gt; 6,  <strong>val</strong> = 6<br><strong>Return:</strong> 1 –&gt; 2 –&gt; 3 –&gt; 4 –&gt; 5 </p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>简单的链表删除操作。</p>
+<p>一定要搞清楚边界条件：如果删除第一个或者最后一个元素会怎么样。然后问题就迎刃而解了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for singly-linked list.</span></div><div class="line"><span class="comment"># class ListNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.next = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeElements</span><span class="params">(self, head, val)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type head: ListNode</div><div class="line">        :type val: int</div><div class="line">        :rtype: ListNode</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> (head):</div><div class="line">            cur = head</div><div class="line">            <span class="keyword">while</span> (cur):</div><div class="line">                <span class="keyword">if</span> (cur.val == val):</div><div class="line">                    <span class="keyword">if</span> (cur.next):</div><div class="line">                        head = cur.next</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        head = <span class="keyword">None</span></div><div class="line">                    cur = head</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">break</span></div><div class="line">            <span class="keyword">if</span> (cur):   </div><div class="line">                <span class="keyword">while</span> (cur.next <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>):</div><div class="line">                    <span class="keyword">if</span> (cur.next.val == val):</div><div class="line">                        cur.next = cur.next.next</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        cur = cur.next</div><div class="line">                </div><div class="line">        <span class="keyword">return</span> head</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Linked List </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[利用Docker配置基础Caffe环境]]></title>
       <url>http://wf94.github.io/2017/02/28/Playing-with-Docker-Caffe/</url>
       <content type="html"><![CDATA[<p><del>闲来无事【划掉！！！】</del>，我听闻Caffe在配置起来超级麻烦，又是编译有问题，又是依赖解决不了，十分棘手。我马上联想起了方便轻量的Docker。为何不利用Docker在自己的笔记本电脑上搭建Caffe来玩玩呢？</p>
@@ -94,6 +120,40 @@
             
         </categories>
         
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[198 House Robber]]></title>
+      <url>http://wf94.github.io/2017/01/19/198-House-Robber/</url>
+      <content type="html"><![CDATA[<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and <strong>it will automatically contact the police if two adjacent houses were broken into on the same night</strong>.</p>
+<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight <strong>without alerting the police</strong>.</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这道题就相当于是给定一个一维数组，不能访问连续的两个元素，还要保证取到的元素之和最大。</p>
+<p>我们考虑利用动态规划的方法来做。</p>
+<p>首先确定最基本的问题，我们假设街道里的房子放在<code>nums</code>数组里。如果街道里没有房子，或者只有一栋房子，最大值当然是空值或者唯一值。而如果街道里有两栋房子，取收益最大的那栋即可。</p>
+<p>现在考虑三栋房子的情况。假设我们已经知道了前两栋房子的最大收益，现在将第三栋房子加入考虑。如果取到了第三栋房子，那么第二栋房子就不能取。所以我们能够得到的最大值，就是<code>nums[1]</code>与<code>nums[3]</code>之和与<code>nums[2]</code>之间的最大值。</p>
+<p>如果加入第四栋房子，其实情况也是一样的，我们能够得到的最大值，是<code>nums[2]</code>与<code>nums[1]</code>的最大值，加上<code>nums[4]</code>的值——与<code>nums[3]</code>，也就是第三栋房子的时候取到的最大值之间，所得到的最大值。</p>
+<p>这样一来，我们就建立了一个可以一直往下寻找的问题，推出了问题的解决方法。</p>
+<p>现在我们需要开一个新的空间来存储我们得到的最大值。直觉上来说，我们就利用一个一维数组，就可以记录这些值。一维数组的每一项，都对应着我们从左到右遍历到该元素之前可以达到的收益最大值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rob</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        median = []</div><div class="line">        length = len(nums)</div><div class="line">        <span class="keyword">if</span> (length &lt;= <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">elif</span> (length == <span class="number">1</span>):</div><div class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>]</div><div class="line">        <span class="keyword">elif</span> (length == <span class="number">2</span>):</div><div class="line">            <span class="keyword">return</span> max(nums[<span class="number">0</span>], nums[<span class="number">1</span>])</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            median.append(nums[<span class="number">0</span>])</div><div class="line">            median.append(max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]))</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,length):</div><div class="line">                median.append(max(nums[i] + median[i<span class="number">-2</span>], median[i<span class="number">-1</span>]))</div><div class="line">            <span class="keyword">return</span> median[length<span class="number">-1</span>]</div></pre></td></tr></table></figure>
+<p><a href="http://xiadong.info/2016/11/leetcode-198-house-robber/" target="_blank" rel="external">http://xiadong.info/2016/11/leetcode-198-house-robber/</a></p>
+<p><a href="http://bookshadow.com/weblog/2015/04/01/leetcode-house-robber/" target="_blank" rel="external">http://bookshadow.com/weblog/2015/04/01/leetcode-house-robber/</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Dynamic Programming </tag>
+            
+        </tags>
         
     </entry>
     
@@ -634,9 +694,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -981,9 +1041,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
+            
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
