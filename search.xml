@@ -4,32 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[203 Remove Linked List Elements ]]></title>
-      <url>http://wf94.github.io/2017/03/02/203-Remove-Linked-List-Elements/</url>
-      <content type="html"><![CDATA[<p>Remove all elements from a linked list of integers that have value <strong>val</strong>.</p>
-<p><strong>Example</strong><br><strong>Given:</strong> 1 –&gt; 2 –&gt; 6 –&gt; 3 –&gt; 4 –&gt; 5 –&gt; 6,  <strong>val</strong> = 6<br><strong>Return:</strong> 1 –&gt; 2 –&gt; 3 –&gt; 4 –&gt; 5 </p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>简单的链表删除操作。</p>
-<p>一定要搞清楚边界条件：如果删除第一个或者最后一个元素会怎么样。然后问题就迎刃而解了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for singly-linked list.</span></div><div class="line"><span class="comment"># class ListNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.next = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeElements</span><span class="params">(self, head, val)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type head: ListNode</div><div class="line">        :type val: int</div><div class="line">        :rtype: ListNode</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> (head):</div><div class="line">            cur = head</div><div class="line">            <span class="keyword">while</span> (cur):</div><div class="line">                <span class="keyword">if</span> (cur.val == val):</div><div class="line">                    <span class="keyword">if</span> (cur.next):</div><div class="line">                        head = cur.next</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        head = <span class="keyword">None</span></div><div class="line">                    cur = head</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">break</span></div><div class="line">            <span class="keyword">if</span> (cur):   </div><div class="line">                <span class="keyword">while</span> (cur.next <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>):</div><div class="line">                    <span class="keyword">if</span> (cur.next.val == val):</div><div class="line">                        cur.next = cur.next.next</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        cur = cur.next</div><div class="line">                </div><div class="line">        <span class="keyword">return</span> head</div></pre></td></tr></table></figure>]]></content>
-      
-        <categories>
-            
-            <category> LeetCode </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Easy </tag>
-            
-            <tag> Linked List </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[利用Docker配置基础Caffe环境]]></title>
       <url>http://wf94.github.io/2017/02/28/Playing-with-Docker-Caffe/</url>
       <content type="html"><![CDATA[<p><del>闲来无事【划掉！！！】</del>，我听闻Caffe在配置起来超级麻烦，又是编译有问题，又是依赖解决不了，十分棘手。我马上联想起了方便轻量的Docker。为何不利用Docker在自己的笔记本电脑上搭建Caffe来玩玩呢？</p>
@@ -120,6 +94,72 @@
             
         </categories>
         
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[204 Count Primes]]></title>
+      <url>http://wf94.github.io/2017/01/21/204-Count-Primes/</url>
+      <content type="html"><![CDATA[<p>Count the number of prime numbers less than a non-negative number, <strong>n</strong>.</p>
+<a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li><p>Let’s start with a <em>isPrime</em> function. To determine if a number is prime, we need to check if it is not divisible by any number less than <em>n</em>. The runtime complexity of <em>isPrime</em> function would be O(<em>n</em>) and hence counting the total prime numbers up to <em>n</em> would be O(<em>n</em>2). Could we do better?</p>
+</li>
+<li><p>As we know the number must not be divisible by any number &gt; <em>n</em> / 2, we can immediately cut the total iterations half by dividing only up to <em>n</em> / 2. Could we still do better?</p>
+</li>
+<li><p>Let’s write down all of 12’s factors:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">2 × 6 = 12</div><div class="line">3 × 4 = 12</div><div class="line">4 × 3 = 12</div><div class="line">6 × 2 = 12</div></pre></td></tr></table></figure>
+<p>As you can see, calculations of 4 × 3 and 6 × 2 are not necessary. Therefore, we only need to consider factors up to √<em>n</em> because, if <em>n</em> is divisible by some number <em>p</em>, then <em>n</em> = <em>p</em> × <em>q</em> and since <em>p</em> ≤ <em>q</em>, we could derive that <em>p</em> ≤ √<em>n</em>.</p>
+<p>Our total runtime has now improved to O(<em>n</em>1.5), which is slightly better. Is there a faster approach?</p>
+</li>
+</ol>
+<ol>
+<li><p>The <a href="http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes" target="_blank" rel="external">Sieve of Eratosthenes</a> is one of the most efficient ways to find all prime numbers up to <em>n</em>. But don’t let that name scare you, I promise that the concept is surprisingly simple.</p>
+<p><img src="https://leetcode.com/static/images/solutions/Sieve_of_Eratosthenes_animation.gif" alt="img"></p>
+<p>Sieve of Eratosthenes: algorithm steps for primes below 121. “<a href="http://commons.wikimedia.org/wiki/File:Sieve_of_Eratosthenes_animation.gif" target="_blank" rel="external">Sieve of Eratosthenes Animation</a>“ by <a href="http://de.wikipedia.org/wiki/Benutzer:SKopp" target="_blank" rel="external">SKopp</a> is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" target="_blank" rel="external">CC BY 2.0</a>. </p>
+<p>We start off with a table of <em>n</em> numbers. Let’s look at the first number, 2. We know all multiples of 2 must not be primes, so we mark them off as non-primes. Then we look at the next number, 3. Similarly, all multiples of 3 such as 3 × 2 = 6, 3 × 3 = 9, … must not be primes, so we mark them off as well. Now we look at the next number, 4, which was already marked off. What does this tell you? Should you mark off all multiples of 4 as well?</p>
+</li>
+<li><p>4 is not a prime because it is divisible by 2, which means all multiples of 4 must also be divisible by 2 and were already marked off. So we can skip 4 immediately and go to the next number, 5. Now, all multiples of 5 such as 5 × 2 = 10, 5 × 3 = 15, 5 × 4 = 20, 5 × 5 = 25, … can be marked off. There is a slight optimization here, we do not need to start from 5 × 2 = 10. Where should we start marking off?</p>
+</li>
+<li><p>In fact, we can mark off multiples of 5 starting at 5 × 5 = 25, because 5 × 2 = 10 was already marked off by multiple of 2, similarly 5 × 3 = 15 was already marked off by multiple of 3. Therefore, if the current number is <em>p</em>, we can always mark off multiples of <em>p</em> starting at <em>p</em>2, then in increments of <em>p</em>: <em>p</em>2 + <em>p</em>, <em>p</em>2 + 2<em>p</em>, … Now what should be the terminating loop condition?</p>
+</li>
+<li><p>It is easy to say that the terminating loop condition is <em>p</em> &lt; <em>n</em>, which is certainly correct but not efficient. Do you still remember <em>Hint #3</em>?</p>
+</li>
+</ol>
+<p>这也就是官方给出的思路，所以我先试了一下，给出 <em>p</em> ≤ √<em>n</em>的情况，能不能通过。</p>
+<p>O(n^1.5), Time limit exceeded. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> math</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countPrimes</span><span class="params">(self, n)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type n: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        count = <span class="number">0</span></div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,n):</div><div class="line">            flag = <span class="number">1</span></div><div class="line">            k = <span class="number">2</span></div><div class="line">            <span class="keyword">while</span> (k * k &lt;= i):</div><div class="line">                <span class="keyword">if</span> (i % k == <span class="number">0</span>):</div><div class="line">                    flag = <span class="number">0</span></div><div class="line">                    <span class="keyword">break</span></div><div class="line">                k += <span class="number">1</span></div><div class="line">            <span class="keyword">if</span> (flag):</div><div class="line">                count += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
+<p>答案显然是不行。</p>
+<p>接下来我们试一下图中所给的方法。</p>
+<p>要注意，<code>primes</code>数组存储的应当是布尔量而不是普通的整数。如果是普通的整数，会造成<code>memory limit exceed</code>的错误。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countPrimes</span><span class="params">(self, n)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type n: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        count = <span class="number">0</span></div><div class="line">        primes = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n+<span class="number">1</span>):</div><div class="line">            primes.append(<span class="keyword">True</span>)</div><div class="line">        </div><div class="line">        i = <span class="number">2</span></div><div class="line">        </div><div class="line">        <span class="keyword">while</span> (i * i &lt; n):</div><div class="line">            <span class="keyword">if</span> (primes[i] == <span class="keyword">True</span>):</div><div class="line">                k = i</div><div class="line">                <span class="keyword">while</span>(i * k &lt;= n):</div><div class="line">                    <span class="keyword">if</span> (primes[i * k] &gt; <span class="number">0</span>):</div><div class="line">                        primes[i * k] = <span class="keyword">False</span></div><div class="line">                    k += <span class="number">1</span></div><div class="line">            i += <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,n):</div><div class="line">            <span class="keyword">if</span> (primes[i] == <span class="keyword">True</span>):</div><div class="line">                count += <span class="number">1</span></div><div class="line">                </div><div class="line">        <span class="keyword">return</span> count</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[203 Remove Linked List Elements ]]></title>
+      <url>http://wf94.github.io/2017/01/20/203-Remove-Linked-List-Elements/</url>
+      <content type="html"><![CDATA[<p>Remove all elements from a linked list of integers that have value <strong>val</strong>.</p>
+<p><strong>Example</strong><br><strong>Given:</strong> 1 –&gt; 2 –&gt; 6 –&gt; 3 –&gt; 4 –&gt; 5 –&gt; 6,  <strong>val</strong> = 6<br><strong>Return:</strong> 1 –&gt; 2 –&gt; 3 –&gt; 4 –&gt; 5 </p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>简单的链表删除操作。</p>
+<p>一定要搞清楚边界条件：如果删除第一个或者最后一个元素会怎么样。然后问题就迎刃而解了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for singly-linked list.</span></div><div class="line"><span class="comment"># class ListNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.next = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeElements</span><span class="params">(self, head, val)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type head: ListNode</div><div class="line">        :type val: int</div><div class="line">        :rtype: ListNode</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> (head):</div><div class="line">            cur = head</div><div class="line">            <span class="keyword">while</span> (cur):</div><div class="line">                <span class="keyword">if</span> (cur.val == val):</div><div class="line">                    <span class="keyword">if</span> (cur.next):</div><div class="line">                        head = cur.next</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        head = <span class="keyword">None</span></div><div class="line">                    cur = head</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">break</span></div><div class="line">            <span class="keyword">if</span> (cur):   </div><div class="line">                <span class="keyword">while</span> (cur.next <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>):</div><div class="line">                    <span class="keyword">if</span> (cur.next.val == val):</div><div class="line">                        cur.next = cur.next.next</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        cur = cur.next</div><div class="line">                </div><div class="line">        <span class="keyword">return</span> head</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Linked List </tag>
+            
+        </tags>
         
     </entry>
     
@@ -1043,9 +1083,9 @@
             
             <tag> String </tag>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
