@@ -4,6 +4,52 @@
   
     
     <entry>
+      <title><![CDATA[350 Intersection of Two Arrays II]]></title>
+      <url>http://wf94.github.io/2017/03/07/350-Intersection-of-Two-Arrays-II/</url>
+      <content type="html"><![CDATA[<p>Given two arrays, write a function to compute their intersection. </p>
+<p><strong>Example:</strong><br> Given <em>nums1</em> = <code>[1, 2, 2, 1]</code>, <em>nums2</em> = <code>[2, 2]</code>, return <code>[2, 2]</code>. </p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Each element in the result should appear as many times as it shows in both arrays.</li>
+<li>The result can be in any order.</li>
+</ul>
+<p><strong>Follow up:</strong></p>
+<ul>
+<li>What if the given array is already sorted? How would you optimize your algorithm?</li>
+<li>What if <em>nums1</em>‘s size is small compared to <em>nums2</em>‘s size? Which algorithm is better?</li>
+<li>What if elements of <em>nums2</em> are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?</li>
+</ul>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先对两个list进行排序，从nums1来开始看，对nums2来进行寻找。</p>
+<p>如果找到相同的元素，就把元素记录到结果list当中。因为list是已经排好序了的，所以如果nums2此时的元素比nums1要大，说明nums1的迭代还没有到能够对应nums2位置的部分。反之亦然。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intersect</span><span class="params">(self, nums1, nums2)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums1: List[int]</div><div class="line">        :type nums2: List[int]</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        result = []</div><div class="line">        pos = <span class="number">0</span></div><div class="line">        len1 = len(nums1)</div><div class="line">        len2 = len(nums2)</div><div class="line">        <span class="keyword">if</span> ((<span class="keyword">not</span> len1) <span class="keyword">or</span> (<span class="keyword">not</span> len2)):</div><div class="line">            <span class="keyword">return</span> result</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            nums1.sort()</div><div class="line">            nums2.sort()</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> nums1:</div><div class="line">                <span class="keyword">if</span> (pos == len2):</div><div class="line">                    <span class="keyword">break</span></div><div class="line">                <span class="keyword">while</span>(pos &lt; len2):</div><div class="line">                    <span class="keyword">if</span> (i == nums2[pos]):</div><div class="line">                        pos += <span class="number">1</span></div><div class="line">                        result.append(i)</div><div class="line">                        <span class="keyword">break</span></div><div class="line">                    <span class="keyword">elif</span> (i &gt; nums2[pos]):</div><div class="line">                        pos += <span class="number">1</span></div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        <span class="keyword">break</span></div><div class="line">            <span class="keyword">return</span> result</div></pre></td></tr></table></figure>
+<p>其实还可以用哈希表来做这道题，比双指针更加简单明了。</p>
+<p><a href="https://discuss.leetcode.com/topic/45893/c-hash-table-solution-and-sort-two-pointers-solution-with-time-and-space-complexity" target="_blank" rel="external">https://discuss.leetcode.com/topic/45893/c-hash-table-solution-and-sort-two-pointers-solution-with-time-and-space-complexity</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Two Pointers </tag>
+            
+            <tag> Hash Table </tag>
+            
+            <tag> Binary Search </tag>
+            
+            <tag> Sort </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[216 Combination Sum III]]></title>
       <url>http://wf94.github.io/2017/03/06/216-Combination-Sum-III/</url>
       <content type="html"><![CDATA[<p>Find all possible combinations of <strong>k</strong> numbers that add up to a number <strong>n</strong>, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.</p>
@@ -32,9 +78,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Backtracking </tag>
             
@@ -238,9 +284,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -302,9 +348,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -405,9 +451,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -439,9 +485,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -492,11 +538,11 @@
         
         <tags>
             
-            <tag> Array </tag>
+            <tag> Math </tag>
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
+            <tag> Array </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -554,9 +600,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -624,9 +670,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Binary Search </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -689,11 +735,11 @@
         
         <tags>
             
+            <tag> Easy </tag>
+            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
-            
-            <tag> Easy </tag>
             
         </tags>
         
@@ -745,11 +791,11 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
+            <tag> Math </tag>
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -862,9 +908,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -889,9 +935,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1075,9 +1121,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1105,9 +1151,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1295,9 +1341,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Stack </tag>
             
@@ -1324,11 +1370,11 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1356,9 +1402,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -1383,11 +1429,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
             
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1415,9 +1461,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1448,9 +1494,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -1480,9 +1526,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1508,9 +1554,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1535,9 +1581,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1563,9 +1609,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1619,9 +1665,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Stack </tag>
             
@@ -1675,9 +1721,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1701,9 +1747,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1762,9 +1808,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1817,11 +1863,11 @@
         
         <tags>
             
+            <tag> Easy </tag>
+            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
-            
-            <tag> Easy </tag>
             
         </tags>
         
