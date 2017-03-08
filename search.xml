@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title><![CDATA[241 Different Ways to Add Parentheses：分治法初探]]></title>
+      <url>http://wf94.github.io/2017/03/09/241-Different-Ways-to-Add-Parentheses/</url>
+      <content type="html"><![CDATA[<p>Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are <code>+</code>, <code>-</code> and <code>*</code>.</p>
+<p>Example 1</p>
+<p>Input: <code>&quot;2-1-1&quot;</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">((2-1)-1) = 0</div><div class="line">(2-(1-1)) = 2</div></pre></td></tr></table></figure>
+<p>Output: <code>[0, 2]</code></p>
+<p>Example 2</p>
+<p>Input: <code>&quot;2*3-4*5&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(2*(3-(4*5))) = -34</div><div class="line">((2*3)-(4*5)) = -14</div><div class="line">((2*(3-4))*5) = -10</div><div class="line">(2*((3-4)*5)) = -10</div><div class="line">(((2*3)-4)*5) = 10</div></pre></td></tr></table></figure>
+<p>Output: <code>[-34, -14, -10, -10, 10]</code></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这道题如果先把所有的情况的算式用字符串的方式存储起来，再分别用中缀表达式转后缀表达式，会显得非常复杂。这也不是题意所要求的。</p>
+<p>我们需要采用分治法来解决此问题。</p>
+<blockquote>
+<p>分治法适用于什么样的情况呢？分治法所能解决的问题一般具有以下几个特征：    </p>
+<ol>
+<li><p>该问题的规模缩小到一定的程度就可以容易地解决    </p>
+</li>
+<li><p>该问题可以分解为若干个规模较小的相同问题，即该问题具有最优子结构性质。    </p>
+</li>
+<li><p>利用该问题分解出的子问题的解可以合并为该问题的解；    </p>
+</li>
+<li><p>该问题所分解出的各个子问题是相互独立的，即子问题之间不包含公共的子子问题。</p>
+</li>
+</ol>
+<p>第一条特征是绝大多数问题都可以满足的，因为问题的计算复杂性一般是随着问题规模的增加而增加；</p>
+<p><strong>第二条特征是应用分治法的前提</strong>，它也是大多数问题可以满足的，此特征反映了递归思想的应用；</p>
+<p><strong>第三条特征是关键，能否利用分治法完全取决于问题是否具有第三条特征</strong>，如果<strong>具备了第一条和第二条特征，而不具备第三条特征，则可以考虑用贪心法或动态规划法</strong>。</p>
+<p><strong>第四条特征涉及到分治法的效率</strong>，如果各子问题是不独立的则分治法要做许多不必要的工作，重复地解公共的子问题，此时虽然可用分治法，但<strong>一般用动态规划法较好</strong>。</p>
+</blockquote>
+<p>满足了以上条件，我们来遵循分治法的步骤分析这个问题。</p>
+<p>首先，我们需要将原问题分解成为规模比较小的子问题；之后，我们需要递归地将子问题进行求解；最后，我们把子问题的解合并为原问题的解。这也就是分治法的三个步骤。</p>
+<p>具体而言， <code>&quot;2*3-4*5&quot;</code>可以分解为以下三个子问题：2 / 345; 23 / 45; 234 / 5。我们在划分的时候，数字长度如果为n，我们就需要划分n-1次。每一次划分之间的结果相互独立，也满足了前文所述的分治法第四条特征。</p>
+<p>解决子问题，就需要采取递归的方式。最后，将所求的答案输出到数组里即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">diffWaysToCompute</span><span class="params">(self, input)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type input: str</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        s = [<span class="string">"+"</span>,<span class="string">"-"</span>,<span class="string">"*"</span>]</div><div class="line">        digits = []</div><div class="line">        symbols = []</div><div class="line">        self.ans = []</div><div class="line">        tmp = <span class="string">''</span></div><div class="line">        <span class="comment"># 注意算式中数字和符号的划分</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> input:</div><div class="line">            <span class="keyword">if</span> i <span class="keyword">in</span> s:</div><div class="line">                symbols.append(i)</div><div class="line">                digits.append(int(tmp))</div><div class="line">                tmp = <span class="string">''</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                tmp += i</div><div class="line">        digits.append(int(tmp))</div><div class="line">                </div><div class="line">        self.length = len(digits)</div><div class="line">        <span class="keyword">return</span> self.subproblem(digits, symbols)</div><div class="line"></div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subproblem</span><span class="params">(self, digits, symbols)</span>:</span></div><div class="line">        n = len(digits)</div><div class="line">        <span class="comment"># 最后求得的结果用数组保存。</span></div><div class="line">        <span class="comment"># 因为当 n == 3 时，已经出现两个结果，返回值需放在数组当中</span></div><div class="line">        result = []</div><div class="line">        <span class="comment"># 解决最简单的子问题 n == 1</span></div><div class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>):</div><div class="line">            <span class="keyword">return</span> [digits[<span class="number">0</span>]]</div><div class="line">        <span class="comment"># 在这个地方，有三个if语句的判断，可以将其放在一个helper函数里，会比较简洁。</span></div><div class="line">        <span class="comment"># n == 2 时的结果</span></div><div class="line">        <span class="keyword">elif</span> (n == <span class="number">2</span>):</div><div class="line">            <span class="keyword">if</span> (symbols[<span class="number">0</span>] == <span class="string">'+'</span>):</div><div class="line">                result = [digits[<span class="number">0</span>] + digits[<span class="number">1</span>]]</div><div class="line">            <span class="keyword">elif</span> (symbols[<span class="number">0</span>] == <span class="string">'-'</span>):</div><div class="line">                result = [digits[<span class="number">0</span>] - digits[<span class="number">1</span>]]</div><div class="line">            <span class="keyword">elif</span> (symbols[<span class="number">0</span>] == <span class="string">'*'</span>):</div><div class="line">                result = [digits[<span class="number">0</span>] * digits[<span class="number">1</span>]]</div><div class="line">            <span class="keyword">return</span> result</div><div class="line">        <span class="comment"># n &gt; 2</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, n):</div><div class="line">                <span class="keyword">if</span> (symbols[k<span class="number">-1</span>] == <span class="string">"+"</span>):</div><div class="line">                    <span class="comment"># 由于函数返回值是一个数组，我们将结果全部遍历</span></div><div class="line">                    <span class="comment"># 进行操作之后，得到新的一组结果</span></div><div class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> self.subproblem(digits[:k], symbols[:k<span class="number">-1</span>]):</div><div class="line">                        <span class="keyword">for</span> j <span class="keyword">in</span> self.subproblem(digits[k:], symbols[k:]):</div><div class="line">                            result.append(i + j)</div><div class="line">                <span class="keyword">elif</span> (symbols[k<span class="number">-1</span>] == <span class="string">"-"</span>):</div><div class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> self.subproblem(digits[:k], symbols[:k<span class="number">-1</span>]):</div><div class="line">                        <span class="keyword">for</span> j <span class="keyword">in</span> self.subproblem(digits[k:], symbols[k:]):</div><div class="line">                            result.append(i - j)</div><div class="line">                <span class="keyword">elif</span> (symbols[k<span class="number">-1</span>] == <span class="string">"*"</span>):</div><div class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> self.subproblem(digits[:k], symbols[:k<span class="number">-1</span>]):</div><div class="line">                        <span class="keyword">for</span> j <span class="keyword">in</span> self.subproblem(digits[k:], symbols[k:]):</div><div class="line">                            result.append(i * j)</div><div class="line">                    </div><div class="line">            <span class="keyword">return</span> result</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Divide and Conquer </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[216 Combination Sum III]]></title>
       <url>http://wf94.github.io/2017/03/06/216-Combination-Sum-III/</url>
       <content type="html"><![CDATA[<p>Find all possible combinations of <strong>k</strong> numbers that add up to a number <strong>n</strong>, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.</p>
@@ -468,9 +522,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -658,11 +712,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Array </tag>
             
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -911,11 +965,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Hash Table </tag>
             
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1055,9 +1109,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1332,9 +1386,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -1430,9 +1484,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -1522,9 +1576,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -1551,9 +1605,9 @@
             
             <tag> String </tag>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1603,6 +1657,8 @@
 <p>参考：<a href="https://en.wikipedia.org/wiki/Maximum_subarray_problem" target="_blank" rel="external">https://en.wikipedia.org/wiki/Maximum_subarray_problem</a></p>
 <p>分治算法：<a href="http://xiadong.info/2016/08/leetcode-53-maximum-subarray/" target="_blank" rel="external">http://xiadong.info/2016/08/leetcode-53-maximum-subarray/</a></p>
 <p><a href="https://discuss.leetcode.com/topic/426/how-to-solve-maximum-subarray-by-using-the-divide-and-conquer-approach/2" target="_blank" rel="external">https://discuss.leetcode.com/topic/426/how-to-solve-maximum-subarray-by-using-the-divide-and-conquer-approach/2</a></p>
+<p>最大子数组问题详解：</p>
+<p><a href="http://www.cnblogs.com/zghaobac/p/3315719.html" target="_blank" rel="external">http://www.cnblogs.com/zghaobac/p/3315719.html</a></p>
 ]]></content>
       
         <categories>
@@ -1867,9 +1923,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1928,9 +1984,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
