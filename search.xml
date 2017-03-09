@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title><![CDATA[Climbing Stairs：分治法初探]]></title>
+      <url>http://wf94.github.io/2017/03/09/Climbing-Stairs-Divide-and-Conquer/</url>
+      <content type="html"><![CDATA[<p>在算法书里，我们总能看得到一道经典的题目。</p>
+<blockquote>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。 </p>
+</blockquote>
+<p>我们可以利用分治法来解决这一题。首先需要找到上台阶子问题的分割方法，再递归地求解子问题，最后把所有子问题的结果合并。</p>
+<p>很容易看出，只有1级台阶的时候，只有1种跳法。2级台阶有2种跳法，3级台阶有3种跳法。如果有4级台阶，有5种跳法。</p>
+<p>怎么求呢？我们可以把求解4级台阶，分解成求解两个2级台阶的子问题。这样一来，我们可以算出2×2种不同的跳法【1-2-3-4，12-3-4，1-2-34，12-34】。需要注意的是，分解成两个子问题之后，还会有跨越这两个子问题的情况。在本题中，跨越子问题的情况只可能是从前一个子问题，到下一个子问题，走过了两级台阶。在4级台阶中，这种情况是【1-23-4】</p>
+<p>所以我们在合并所有子问题的时候，将上述两种情况合并起来就可以了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jumpFloor</span><span class="params">(self, number)</span>:</span></div><div class="line">        <span class="comment"># write code here</span></div><div class="line">        <span class="keyword">return</span> self.helper(number)</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, number)</span>:</span></div><div class="line">        <span class="keyword">if</span> (number &lt;= <span class="number">3</span>):</div><div class="line">            <span class="keyword">return</span> number</div><div class="line">       	<span class="keyword">else</span>:</div><div class="line">            <span class="keyword">if</span> (number % <span class="number">2</span> == <span class="number">0</span>):</div><div class="line">                <span class="comment"># 台阶个数为偶数，恰好能等分成两个子问题</span></div><div class="line">                <span class="comment"># 子问题内的跳法个数 + 跨越子问题的跳法个数</span></div><div class="line">            	<span class="keyword">return</span> self.helper(number / <span class="number">2</span>) * self.helper(number / <span class="number">2</span>) + self.helper(number / <span class="number">2</span> - <span class="number">1</span>) * self.helper(number / <span class="number">2</span> <span class="number">-1</span>)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="comment"># 台阶个数为奇数，分割子问题的时候尽量均分</span></div><div class="line">                <span class="comment"># 子问题内的跳法个数 + 跨越子问题的跳法个数</span></div><div class="line">                <span class="keyword">return</span> self.helper(number / <span class="number">2</span>) * self.helper(number - number / <span class="number">2</span>) + self.helper(number / <span class="number">2</span> - <span class="number">1</span>) * self.helper(number - number / <span class="number">2</span> <span class="number">-1</span>)</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Divide and Conquer </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[241 Different Ways to Add Parentheses：分治法初探]]></title>
       <url>http://wf94.github.io/2017/03/09/241-Different-Ways-to-Add-Parentheses/</url>
       <content type="html"><![CDATA[<p>Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are <code>+</code>, <code>-</code> and <code>*</code>.</p>
@@ -86,9 +115,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -458,9 +487,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Two Pointers </tag>
             
@@ -774,9 +803,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1515,9 +1544,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Stack </tag>
             
@@ -1603,9 +1632,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Math </tag>
             
@@ -1635,9 +1664,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -1702,9 +1731,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -1730,9 +1759,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1785,9 +1814,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -1841,9 +1870,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Stack </tag>
             
@@ -1897,9 +1926,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
