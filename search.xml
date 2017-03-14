@@ -115,9 +115,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Backtracking </tag>
             
@@ -297,6 +297,225 @@
     </entry>
     
     <entry>
+      <title><![CDATA[414 Third Maximum Number]]></title>
+      <url>http://wf94.github.io/2017/02/14/414-Third-Maximum-Number/</url>
+      <content type="html"><![CDATA[<p>Given a <strong>non-empty</strong> array of integers, return the <strong>third</strong> maximum number in this array. If it does not exist, return the maximum number. The time complexity must be in O(n).</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [3, 2, 1]</div><div class="line"></div><div class="line">Output: 1</div><div class="line"></div><div class="line">Explanation: The third maximum is 1.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [1, 2]</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation: The third maximum does not exist, so the maximum (2) is returned instead.</div></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [2, 2, 3, 1]</div><div class="line"></div><div class="line">Output: 1</div><div class="line"></div><div class="line">Explanation: Note that the third maximum here means the third maximum distinct number.</div><div class="line">Both numbers with value 2 are both considered as second maximum.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>粗暴地进行三次求最大值操作，把第三大的数找出来。这堆代码写得很乱，<a href="https://discuss.leetcode.com/topic/64696/a-python-amusing-solution-which-actually-beats-98" target="_blank" rel="external">详见这个简洁的</a></p>
+<p>其实一趟操作完全可以做到。<a href="https://discuss.leetcode.com/topic/63715/java-neat-and-easy-understand-solution-o-n-time-o-1-space" target="_blank" rel="external">详见这个解法</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">thirdMax</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        maxnum = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</div><div class="line">            <span class="keyword">while</span> (len(nums)):</div><div class="line">                tmp = max(nums)</div><div class="line">                nums.remove(tmp)</div><div class="line">                <span class="keyword">if</span> (len(nums)):</div><div class="line">                    <span class="keyword">if</span> (max(nums) != tmp):</div><div class="line">                        <span class="keyword">break</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">break</span></div><div class="line">            </div><div class="line">            maxnum.append(tmp)</div><div class="line">            </div><div class="line">            <span class="keyword">print</span> nums</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">not</span> len(nums) <span class="keyword">and</span> i != <span class="number">2</span>):</div><div class="line">                <span class="keyword">return</span> maxnum[<span class="number">0</span>]</div><div class="line">        <span class="keyword">return</span> maxnum[<span class="number">-1</span>]</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Array </tag>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[413 Arithmetic Slices]]></title>
+      <url>http://wf94.github.io/2017/02/14/413-Arithmetic-Slices/</url>
+      <content type="html"><![CDATA[<p>A sequence of number is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.</p>
+<p>For example, these are arithmetic sequence:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1, 3, 5, 7, 9</div><div class="line">7, 7, 7, 7</div><div class="line">3, -1, -5, -9</div></pre></td></tr></table></figure>
+<p>The following sequence is not arithmetic.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1, 1, 2, 5, 7</div></pre></td></tr></table></figure>
+<p>A zero-indexed array A consisting of N numbers is given. A slice of that array is any pair of integers (P, Q) such that 0 &lt;= P &lt; Q &lt; N.</p>
+<p>A slice (P, Q) of array A is called arithmetic if the sequence:<br>​    A[P], A[p + 1], …, A[Q - 1], A[Q] is arithmetic. In particular, this means that P + 1 &lt; Q.</p>
+<p>The function should return the number of arithmetic slices in the array A. </p>
+<p><strong>Example:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">A = [1, 2, 3, 4]</div><div class="line"></div><div class="line">return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>我们首先需要判断这个数组里面有几个连续的arithmetic sequence。Arithmetic sequence的长度与arithmetic slice的数目有一个定量的关系，而且这个关系可利用等差数列的公式来表示【number函数】。由此可以得出结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numberOfArithmeticSlices</span><span class="params">(self, A)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type A: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        length = len(A)</div><div class="line">        <span class="keyword">if</span> (length &lt; <span class="number">3</span>):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            diff = A[<span class="number">1</span>] - A[<span class="number">0</span>]</div><div class="line">            count = <span class="number">0</span></div><div class="line">            ans = <span class="number">0</span></div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,length):</div><div class="line">                <span class="keyword">if</span> (A[i] - A[i<span class="number">-1</span>] == diff):</div><div class="line">                    count += <span class="number">1</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    ans += self.number(count)</div><div class="line">                    diff = A[i] - A[i<span class="number">-1</span>]</div><div class="line">                    count = <span class="number">0</span></div><div class="line">                    </div><div class="line">            ans += self.number(count)</div><div class="line">        <span class="keyword">return</span> ans</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">number</span><span class="params">(self, num)</span>:</span></div><div class="line">        res = (num + <span class="number">1</span>) * num / <span class="number">2</span></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Math </tag>
+            
+            <tag> Dynamic Programming </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[412 Fizz Buzz]]></title>
+      <url>http://wf94.github.io/2017/02/13/412-Fizz-Buzz/</url>
+      <content type="html"><![CDATA[<p>Write a program that outputs the string representation of numbers from 1 to <em>n</em>.</p>
+<p>But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.</p>
+<p><strong>Example:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">n = 15,</div><div class="line"></div><div class="line">Return:</div><div class="line">[</div><div class="line">    &quot;1&quot;,</div><div class="line">    &quot;2&quot;,</div><div class="line">    &quot;Fizz&quot;,</div><div class="line">    &quot;4&quot;,</div><div class="line">    &quot;Buzz&quot;,</div><div class="line">    &quot;Fizz&quot;,</div><div class="line">    &quot;7&quot;,</div><div class="line">    &quot;8&quot;,</div><div class="line">    &quot;Fizz&quot;,</div><div class="line">    &quot;Buzz&quot;,</div><div class="line">    &quot;11&quot;,</div><div class="line">    &quot;Fizz&quot;,</div><div class="line">    &quot;13&quot;,</div><div class="line">    &quot;14&quot;,</div><div class="line">    &quot;FizzBuzz&quot;</div><div class="line">]</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>此题比较简单，可能出错的就是，使用某种语言的时候不熟悉语言本身的特性了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fizzBuzz</span><span class="params">(self, n)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type n: int</div><div class="line">        :rtype: List[str]</div><div class="line">        """</div><div class="line">        result = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</div><div class="line">            <span class="keyword">if</span> ((i % <span class="number">3</span> == <span class="number">0</span>) <span class="keyword">and</span> (i % <span class="number">5</span> != <span class="number">0</span>)):</div><div class="line">                result.append(<span class="string">"Fizz"</span>)</div><div class="line">            <span class="keyword">elif</span> ((i % <span class="number">3</span> != <span class="number">0</span>) <span class="keyword">and</span> (i % <span class="number">5</span> == <span class="number">0</span>)):</div><div class="line">                result.append(<span class="string">"Buzz"</span>)</div><div class="line">            <span class="keyword">elif</span> ((i % <span class="number">3</span> == <span class="number">0</span>) <span class="keyword">and</span> (i % <span class="number">5</span> == <span class="number">0</span>)):</div><div class="line">                result.append(<span class="string">"FizzBuzz"</span>)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                result.append(str(i))</div><div class="line">        <span class="keyword">return</span> result</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[409 Longest Palindrome]]></title>
+      <url>http://wf94.github.io/2017/02/13/409-Longest-Palindrome/</url>
+      <content type="html"><![CDATA[<p>Given a string which consists of lowercase or uppercase letters, find the length of the longest palindromes that can be built with those letters.</p>
+<p>This is case sensitive, for example <code>&quot;Aa&quot;</code> is not considered a palindrome here.</p>
+<p><strong>Note:</strong><br> Assume the length of given string will not exceed 1,010. </p>
+<p><strong>Example: </strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">&quot;abccccdd&quot;</div><div class="line"></div><div class="line">Output:</div><div class="line">7</div><div class="line"></div><div class="line">Explanation:</div><div class="line">One longest palindrome that can be built is &quot;dccaccd&quot;, whose length is 7.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>用哈希表简单统计一下字符的个数，也可以用数组进行统计；当然，如果字符仅限大写或者小写，还可以用一个整数通过位运算来统计。</p>
+<p>如果某一种字符的个数是偶数，自然可以是组成回文；如果统计出来的个数是奇数，前偶数个字符可以组成回文，剩下一个被排除在外。如果存在被排除在外的字符，在最后返回长度的时候加上1即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        hash = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</div><div class="line">            <span class="comment"># 可以用has_key()函数代替，效率更高</span></div><div class="line">            <span class="keyword">if</span> (i <span class="keyword">not</span> <span class="keyword">in</span> hash):</div><div class="line">                hash[i] = <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                hash[i] += <span class="number">1</span></div><div class="line">        values = hash.values()</div><div class="line">        result = <span class="number">0</span></div><div class="line">        has1 = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> values:</div><div class="line">            <span class="keyword">if</span> ((j % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">and</span> (j &gt; <span class="number">1</span>)):</div><div class="line">                result += j</div><div class="line">            <span class="keyword">if</span> ((j % <span class="number">2</span> == <span class="number">1</span>) <span class="keyword">and</span> (j &gt; <span class="number">1</span>)):</div><div class="line">                result += (j<span class="number">-1</span>)</div><div class="line">                has1 += <span class="number">1</span></div><div class="line">            <span class="keyword">if</span> (j == <span class="number">1</span>):</div><div class="line">                has1 += <span class="number">1</span></div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (has1 &gt; <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> result+<span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> result</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[406 Queue Reconstruction by Height]]></title>
+      <url>http://wf94.github.io/2017/02/12/406-Queue-Reconstruction-by-Height/</url>
+      <content type="html"><![CDATA[<p>Suppose you have a random list of people standing in a queue. Each person is described by a pair of integers <code>(h, k)</code>, where <code>h</code> is the height of the person and <code>k</code> is the number of people in front of this person who have a height greater than or equal to <code>h</code>. Write an algorithm to reconstruct the queue. </p>
+<p><strong>Note:</strong><br> The number of people is less than 1,100. </p>
+<p><strong>Example</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]</div><div class="line"></div><div class="line">Output:</div><div class="line">[[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>Based on the thought of<br><a href="https://discuss.leetcode.com/topic/60394/easy-concept-with-python-c-java-solution" target="_blank" rel="external">https://discuss.leetcode.com/topic/60394/easy-concept-with-python-c-java-solution</a></p>
+<ol>
+<li><p><strong>Pick out tallest group of people and sort them</strong> in a subarray (S). Since there’s no other groups of people taller than them, therefore <strong>each guy’s index will be just as same as his k value</strong>.</p>
+</li>
+<li><p>For 2nd tallest group (and the rest), insert each one of them into (S) by k value. So on and so forth.</p>
+</li>
+</ol>
+<p>E.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">input: [[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]</div><div class="line">subarray after step 1: [[7,0], [7,1]]</div><div class="line">subarray after step 2: [[7,0], [6,1], [7,1]]</div></pre></td></tr></table></figure>
+<p>However meet a lot of problems during realization of the code.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reconstructQueue</span><span class="params">(self, people)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type people: List[List[int]]</div><div class="line">        :rtype: List[List[int]]</div><div class="line">        """</div><div class="line">        stats = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> person <span class="keyword">in</span> people:</div><div class="line">            <span class="keyword">if</span> (stats.has_key(person[<span class="number">0</span>])):</div><div class="line">                stats[person[<span class="number">0</span>]] += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                stats[person[<span class="number">0</span>]] = <span class="number">1</span></div><div class="line">    </div><div class="line">        <span class="keyword">if</span> (people):</div><div class="line">            people.sort(reverse = <span class="keyword">True</span>)</div><div class="line">            <span class="keyword">print</span> people</div><div class="line">            result = []</div><div class="line"></div><div class="line">            <span class="keyword">for</span> person <span class="keyword">in</span> people:</div><div class="line">                count = stats[person[<span class="number">0</span>]]</div><div class="line">                <span class="keyword">if</span> (<span class="keyword">not</span> result):</div><div class="line">                    result.append(person)</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">if</span> (person[<span class="number">1</span>]-count+<span class="number">1</span> &gt;= len(result)):</div><div class="line">                        result.append(person)</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">					  <span class="comment">#There is a gap between the right answer and the direct insert method</span></div><div class="line">					  <span class="comment">#The insert index should add a bias of (-count+1) to fill that gap</span></div><div class="line">                        result.insert(person[<span class="number">1</span>]-count+<span class="number">1</span>, person)</div><div class="line">                stats[person[<span class="number">0</span>]] -= <span class="number">1</span>    </div><div class="line">            <span class="keyword">return</span> result</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> []</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Greedy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[405 Convert a Number to Hexadecimal]]></title>
+      <url>http://wf94.github.io/2017/02/11/405-Convert-a-Number-to-Hexadecimal/</url>
+      <content type="html"><![CDATA[<p>Given an integer, write an algorithm to convert it to hexadecimal. For negative integer, <a href="https://en.wikipedia.org/wiki/Two%27s_complement" target="_blank" rel="external">two’s complement</a> method is used. </p>
+<p><strong>Note:</strong> </p>
+<ol>
+<li>All letters in hexadecimal (<code>a-f</code>) must be in lowercase.</li>
+<li>The hexadecimal string must not contain extra leading <code>0</code>s. If the number is zero, it is represented by a single zero character <code>&#39;0&#39;</code>; otherwise, the first character in the hexadecimal string will not be the zero character.</li>
+<li>The given number is guaranteed to fit within the range of a 32-bit signed integer.</li>
+<li>You <strong>must not use any method provided by the library</strong> which converts/formats the number to hex directly.</li>
+</ol>
+<p><strong>Example 1:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">26</div><div class="line"></div><div class="line">Output:</div><div class="line">&quot;1a&quot;</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">-1</div><div class="line"></div><div class="line">Output:</div><div class="line">&quot;ffffffff&quot;</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>我们利用位运算来解决这个问题。所有的数在内存中都是以二进制的方式存储的。二进制转十六进制的方法非常简单，只要每四位二进制数转换成一位十六进制数即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> math</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">toHex</span><span class="params">(self, num)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type num: int</div><div class="line">        :rtype: str</div><div class="line">        """</div><div class="line">        </div><div class="line">        hexmap = [<span class="string">'0'</span>,<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>,<span class="string">'6'</span>,<span class="string">'7'</span>,<span class="string">'8'</span>,<span class="string">'9'</span>,<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>]</div><div class="line">        reslist = []</div><div class="line">        mask = <span class="number">0xf</span></div><div class="line">        flag = <span class="number">0</span></div><div class="line">        iter = <span class="number">0</span></div><div class="line">        <span class="comment"># 注意小于0的情况</span></div><div class="line">        <span class="keyword">if</span> (num &lt; <span class="number">0</span>):</div><div class="line">            num = num &amp; <span class="number">0x7fffffff</span></div><div class="line">            iter = <span class="number">7</span></div><div class="line">            flag = <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span>(num == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="string">'0'</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            iter = int(math.log(abs(num), <span class="number">16</span>))</div><div class="line">            </div><div class="line">        reslist.append( hexmap[num &amp; mask] )</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(iter):</div><div class="line">            num = num &gt;&gt; <span class="number">4</span></div><div class="line">            tmp = num &amp; mask</div><div class="line">            <span class="keyword">if</span> (i == iter<span class="number">-1</span> <span class="keyword">and</span> flag == <span class="number">1</span>):</div><div class="line">                tmp += <span class="number">8</span></div><div class="line">            reslist.append( hexmap[tmp] )</div><div class="line"></div><div class="line">        reslist.reverse()</div><div class="line">        res = <span class="string">''</span>.join(reslist)</div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Bit Manipulation </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[404 Sum of Left Leaves]]></title>
+      <url>http://wf94.github.io/2017/02/10/404-Sum-of-Left-Leaves/</url>
+      <content type="html"><![CDATA[<p>Find the sum of all left leaves in a given binary tree.</p>
+<a id="more"></a>
+<p><strong>Example:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    3</div><div class="line">   / \</div><div class="line">  9  20</div><div class="line">    /  \</div><div class="line">   15   7</div><div class="line"></div><div class="line">There are two left leaves in the binary tree, with values 9 and 15 respectively. Return 24.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>简单的递归求解即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumOfLeftLeaves</span><span class="params">(self, root)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type root: TreeNode</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        count = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> (root == <span class="keyword">None</span>):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> ((root.left) <span class="keyword">and</span> (root.left.left == <span class="keyword">None</span>) <span class="keyword">and</span> (root.left.right == <span class="keyword">None</span>)):</div><div class="line">            count += root.left.val</div><div class="line">        <span class="keyword">if</span> ( (root.left) <span class="keyword">and</span> ( (root.left.left) <span class="keyword">or</span> (root.left.right) ) ):</div><div class="line">            count += self.sumOfLeftLeaves(root.left)</div><div class="line">        <span class="keyword">if</span> ( (root.right) ):</div><div class="line">            count += self.sumOfLeftLeaves(root.right)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> count</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Tree </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[401 Binary Watch]]></title>
       <url>http://wf94.github.io/2017/02/09/401-Binary-Watch/</url>
       <content type="html"><![CDATA[<p>A binary watch has 4 LEDs on the top which represent the <strong>hours</strong> (<strong>0-11</strong>), and the 6 LEDs on the bottom represent the <strong>minutes</strong> (<strong>0-59</strong>).</p>
@@ -329,9 +548,11 @@
         
         <tags>
             
-            <tag> Bit Manipulation </tag>
+            <tag> Easy </tag>
             
             <tag> Backtracking </tag>
+            
+            <tag> Bit Manipulation </tag>
             
         </tags>
         
@@ -559,9 +780,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -875,9 +1096,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -945,9 +1166,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Binary Search </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Binary Search </tag>
             
         </tags>
         
@@ -1616,9 +1837,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Stack </tag>
             
@@ -1704,9 +1925,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Math </tag>
             
@@ -1736,9 +1957,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1803,9 +2024,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1831,9 +2052,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1886,9 +2107,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1942,9 +2163,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Stack </tag>
             
@@ -1998,9 +2219,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
