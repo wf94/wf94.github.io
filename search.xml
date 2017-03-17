@@ -115,9 +115,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -192,11 +192,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -297,6 +297,101 @@
     </entry>
     
     <entry>
+      <title><![CDATA[424 Longest Repeating Character Replacement]]></title>
+      <url>http://wf94.github.io/2017/02/18/424-Longest-Repeating-Character-Replacement/</url>
+      <content type="html"><![CDATA[<p>Given a string that consists of only uppercase English letters, you can replace any letter in the string with another letter at most <em>k</em> times. Find the length of a longest substring containing all repeating letters you can get after performing the above operations.</p>
+<p><strong>Note:</strong><br> Both the string’s length and <em>k</em> will not exceed 104. </p>
+<p><strong>Example 1:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">s = &quot;ABAB&quot;, k = 2</div><div class="line"></div><div class="line">Output:</div><div class="line">4</div><div class="line"></div><div class="line">Explanation:</div><div class="line">Replace the two &apos;A&apos;s with two &apos;B&apos;s or vice versa.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">s = &quot;AABABBA&quot;, k = 1</div><div class="line"></div><div class="line">Output:</div><div class="line">4</div><div class="line"></div><div class="line">Explanation:</div><div class="line">Replace the one &apos;A&apos; in the middle with &apos;B&apos; and form &quot;AABBBBA&quot;.</div><div class="line">The substring &quot;BBBB&quot; has the longest repeating letters, which is 4.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>用暴力解法方法会有TLE。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">characterReplacement</span><span class="params">(self, s, k)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :type k: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        length = len(s)</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> length):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        prev = <span class="string">""</span></div><div class="line">        ans = <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">            <span class="keyword">if</span> (prev != s[i]):</div><div class="line">                prev = s[i]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            count = <span class="number">1</span></div><div class="line">            attempt = k</div><div class="line">            j = i + <span class="number">1</span></div><div class="line">            <span class="keyword">while</span>(j &lt; length):</div><div class="line">                <span class="keyword">if</span> (prev == s[j]):</div><div class="line">                    count += <span class="number">1</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">if</span> (attempt):</div><div class="line">                        count += <span class="number">1</span></div><div class="line">                        attempt -= <span class="number">1</span></div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        <span class="keyword">break</span></div><div class="line">                j += <span class="number">1</span></div><div class="line">            <span class="keyword">if</span> (attempt):</div><div class="line">                <span class="keyword">if</span> (attempt &lt;= i):</div><div class="line">                    count += attempt</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    count += i</div><div class="line">            <span class="keyword">if</span> count &gt; ans:</div><div class="line">                ans = count</div><div class="line"></div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
+<p>用Slide Window的解法。</p>
+<p>考虑用一个stats的数组统计Sliding Window内数组各个字母的数目。窗口每滑倒一个新的状态，stats数组的统计量都会更新一次。这个Sliding Window需要从头滑到尾，从而找出最长的可替换子数组。</p>
+<p>算法复杂度是O(26*n)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">characterReplacement</span><span class="params">(self, s, k)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :type k: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        length = len(s)</div><div class="line">        stats = [<span class="number">0</span>] * <span class="number">26</span></div><div class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> length):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        prev = <span class="string">""</span></div><div class="line">        ans = <span class="number">0</span></div><div class="line">        start = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">            ans += <span class="number">1</span></div><div class="line">            cur = s[i]</div><div class="line">            index = ord(cur) - ord(<span class="string">'A'</span>)</div><div class="line">            stats[index] += <span class="number">1</span></div><div class="line">            maximum = max(stats)</div><div class="line">            <span class="keyword">if</span> (ans - maximum &gt; k):</div><div class="line">                stats[ord(s[start]) - ord(<span class="string">'A'</span>)] -= <span class="number">1</span></div><div class="line">                start += <span class="number">1</span></div><div class="line">                ans -= <span class="number">1</span></div><div class="line"></div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[434 Number of Segments in a String]]></title>
+      <url>http://wf94.github.io/2017/02/18/434-Number-of-Segments-in-a-String/</url>
+      <content type="html"><![CDATA[<p>Count the number of segments in a string, where a segment is defined to be a contiguous sequence of non-space characters.</p>
+<p>Please note that the string does not contain any <strong>non-printable</strong> characters.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: &quot;Hello, my name is John&quot;</div><div class="line">Output: 5</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>统计字符串的片段数。片段之间用空格隔开。</p>
+<p>注意一开始如果有空格的话，需要去掉一个间隔数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countSegments</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line"></div><div class="line">        length = len(s)</div><div class="line">        count = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> (length == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(length<span class="number">-1</span>):</div><div class="line">                <span class="keyword">if</span> (s[i] == <span class="string">' '</span> <span class="keyword">and</span> s[i+<span class="number">1</span>] != <span class="string">' '</span>):</div><div class="line">                    count += <span class="number">1</span></div><div class="line">            <span class="keyword">if</span> (s[<span class="number">0</span>] == <span class="string">' '</span>):</div><div class="line">                <span class="keyword">return</span> count</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">return</span> count+<span class="number">1</span></div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> String </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[423 Reconstruct Original Digits from English]]></title>
+      <url>http://wf94.github.io/2017/02/17/423-Reconstruct-Original-Digits-from-English/</url>
+      <content type="html"><![CDATA[<p>Given a <strong>non-empty</strong> string containing an out-of-order English representation of digits <code>0-9</code>, output the digits in ascending order.</p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>Input contains only lowercase English letters.</li>
+<li>Input is guaranteed to be valid and can be transformed to its original digits. That means invalid inputs such as “abc” or “zerone” are not permitted.</li>
+<li>Input length is less than 50,000.</li>
+</ol>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: &quot;owoztneoer&quot;</div><div class="line">Output: &quot;012&quot;</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: &quot;fviefuro&quot;</div><div class="line">Output: &quot;45&quot;</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>我们只要找到以下关系即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">zero [构成的字串里只要有一个z，就对应一个0, z &lt;-&gt; 0]</div><div class="line">one</div><div class="line">two [w &lt;-&gt; 2]</div><div class="line">three [除了8之外，只有3有&apos;h&apos;]</div><div class="line">four [u &lt;-&gt; 4]</div><div class="line">five [除了4之外，只有5有&apos;f&apos;]</div><div class="line">six [x &lt;-&gt; 6]</div><div class="line">seven [除了5之外，只有7有&apos;v&apos;]</div><div class="line">eight [g &lt;-&gt; 8]</div><div class="line">nine</div></pre></td></tr></table></figure>
+<p>剩下的两个数可以同理求出。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">originalDigits</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :rtype: str</div><div class="line">        """</div><div class="line">        stats = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</div><div class="line">            <span class="keyword">if</span> (stats.has_key(i)):</div><div class="line">                stats[i] += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                stats[i] = <span class="number">1</span></div><div class="line">        </div><div class="line">        res = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</div><div class="line">            res.append(<span class="number">0</span>)</div><div class="line">            </div><div class="line">        res[<span class="number">0</span>] = self.getdictnum(stats, <span class="string">"z"</span>)</div><div class="line">        res[<span class="number">2</span>] = self.getdictnum(stats, <span class="string">"w"</span>)</div><div class="line">        res[<span class="number">4</span>] = self.getdictnum(stats, <span class="string">"u"</span>)</div><div class="line">        res[<span class="number">5</span>] = self.getdictnum(stats, <span class="string">"f"</span>) - res[<span class="number">4</span>]</div><div class="line">        res[<span class="number">6</span>] = self.getdictnum(stats, <span class="string">"x"</span>)</div><div class="line">        res[<span class="number">7</span>] = self.getdictnum(stats, <span class="string">"v"</span>) - res[<span class="number">5</span>]</div><div class="line">        res[<span class="number">8</span>] = self.getdictnum(stats, <span class="string">"g"</span>)</div><div class="line">        res[<span class="number">3</span>] = self.getdictnum(stats, <span class="string">"h"</span>) - res[<span class="number">8</span>]</div><div class="line">        res[<span class="number">9</span>] = self.getdictnum(stats, <span class="string">"i"</span>) - res[<span class="number">5</span>] - res[<span class="number">6</span>] - res[<span class="number">8</span>]</div><div class="line">        res[<span class="number">1</span>] = self.getdictnum(stats, <span class="string">"o"</span>) - res[<span class="number">2</span>] - res[<span class="number">0</span>] - res[<span class="number">4</span>]</div><div class="line">        </div><div class="line">        ans = []</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i, enum <span class="keyword">in</span> enumerate(res):</div><div class="line">            <span class="keyword">for</span> p <span class="keyword">in</span> range(enum):</div><div class="line">                ans.append(i)</div><div class="line">                </div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>.join(str(x) <span class="keyword">for</span> x <span class="keyword">in</span> ans)</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getdictnum</span><span class="params">(self, stats, i)</span>:</span></div><div class="line">        <span class="keyword">if</span> (stats.has_key(i)):</div><div class="line">            <span class="keyword">return</span> stats[i]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Math </tag>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[419 Battleship in a Board]]></title>
       <url>http://wf94.github.io/2017/02/16/419-Battleship-in-a-Board/</url>
       <content type="html"><![CDATA[<p>Given an 2D board, count how many battleships are in it. The battleships are represented with <code>&#39;X&#39;</code>s, empty slots are represented with <code>&#39;.&#39;</code>s. You may assume the following rules: </p>
@@ -354,9 +449,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -386,9 +481,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -419,9 +514,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -475,9 +570,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -616,9 +711,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Bit Manipulation </tag>
-            
             <tag> Backtracking </tag>
+            
+            <tag> Bit Manipulation </tag>
             
         </tags>
         
@@ -647,9 +742,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -676,9 +771,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -807,11 +902,11 @@
         
         <tags>
             
+            <tag> Hash Table </tag>
+            
             <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
-            
-            <tag> Hash Table </tag>
             
             <tag> Binary Search </tag>
             
@@ -846,9 +941,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Two Pointers </tag>
             
@@ -910,9 +1005,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1013,9 +1108,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1047,9 +1142,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1100,11 +1195,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Array </tag>
             
             <tag> Easy </tag>
             
-            <tag> Array </tag>
+            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -1162,9 +1257,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1232,9 +1327,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Binary Search </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -1297,11 +1392,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1353,11 +1448,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Hash Table </tag>
             
             <tag> Easy </tag>
             
-            <tag> Hash Table </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -1470,9 +1565,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1497,9 +1592,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1683,9 +1778,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1713,9 +1808,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1774,9 +1869,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -1872,9 +1967,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -1903,11 +1998,11 @@
         
         <tags>
             
+            <tag> Hash Table </tag>
+            
             <tag> Medium </tag>
             
             <tag> Stack </tag>
-            
-            <tag> Hash Table </tag>
             
             <tag> Tree </tag>
             
@@ -1932,11 +2027,11 @@
         
         <tags>
             
+            <tag> Array </tag>
+            
             <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
-            
-            <tag> Array </tag>
             
         </tags>
         
@@ -1964,9 +2059,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -1991,11 +2086,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Easy </tag>
             
             <tag> Math </tag>
             
-            <tag> Easy </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -2023,9 +2118,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -2058,9 +2153,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2090,9 +2185,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -2118,9 +2213,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2145,9 +2240,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2173,9 +2268,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -2229,9 +2324,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Stack </tag>
             
@@ -2285,9 +2380,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -2311,9 +2406,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2342,11 +2437,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -2372,9 +2467,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2427,11 +2522,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
