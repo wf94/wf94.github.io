@@ -115,9 +115,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Backtracking </tag>
             
@@ -273,6 +273,67 @@
     </entry>
     
     <entry>
+      <title><![CDATA[438 Find All Anagrams in a String]]></title>
+      <url>http://wf94.github.io/2017/02/22/438-Find-All-Anagrams-in-a-String/</url>
+      <content type="html"><![CDATA[<p>Given a string <strong>s</strong> and a <strong>non-empty</strong> string <strong>p</strong>, find all the start indices of <strong>p</strong>‘s anagrams in <strong>s</strong>.</p>
+<p>Strings consists of lowercase English letters only and the length of both strings <strong>s</strong> and <strong>p</strong> will not be larger than 20,100.</p>
+<p>The order of output does not matter.</p>
+<p><strong>Example 1:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">s: &quot;cbaebabacd&quot; p: &quot;abc&quot;</div><div class="line"></div><div class="line">Output:</div><div class="line">[0, 6]</div><div class="line"></div><div class="line">Explanation:</div><div class="line">The substring with start index = 0 is &quot;cba&quot;, which is an anagram of &quot;abc&quot;.</div><div class="line">The substring with start index = 6 is &quot;bac&quot;, which is an anagram of &quot;abc&quot;.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">s: &quot;abab&quot; p: &quot;ab&quot;</div><div class="line"></div><div class="line">Output:</div><div class="line">[0, 1, 2]</div><div class="line"></div><div class="line">Explanation:</div><div class="line">The substring with start index = 0 is &quot;ab&quot;, which is an anagram of &quot;ab&quot;.</div><div class="line">The substring with start index = 1 is &quot;ba&quot;, which is an anagram of &quot;ab&quot;.</div><div class="line">The substring with start index = 2 is &quot;ab&quot;, which is an anagram of &quot;ab&quot;.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>思路很简单，利用两个哈希表/26元素的数组，记录下s, p字母的统计数目，从而可以得出结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findAnagrams</span><span class="params">(self, s, p)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :type p: str</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        res = []</div><div class="line">        pdict = &#123;&#125;</div><div class="line">        plen = len(p)</div><div class="line">        slen = len(s)</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(plen &lt;= slen):</div><div class="line">        </div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(plen):</div><div class="line">                <span class="keyword">if</span> (pdict.has_key(p[i])):</div><div class="line">                    pdict[p[i]] += <span class="number">1</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    pdict[p[i]] = <span class="number">1</span></div><div class="line">                    </div><div class="line">            <span class="comment">#print pdict</span></div><div class="line">            sdict = &#123;&#125;</div><div class="line">            </div><div class="line">            <span class="keyword">for</span> n <span class="keyword">in</span> range(plen):</div><div class="line">                <span class="keyword">if</span> (sdict.has_key(s[n])):</div><div class="line">                    sdict[s[n]] += <span class="number">1</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    sdict[s[n]] = <span class="number">1</span></div><div class="line">                    </div><div class="line">            <span class="keyword">print</span> sdict</div><div class="line">            </div><div class="line">            <span class="keyword">for</span> m <span class="keyword">in</span> range(slen-plen+<span class="number">1</span>):</div><div class="line">                flag = <span class="number">1</span></div><div class="line">                <span class="comment"># 注意！在这个地方，"==","!="都是可以判断两个dict是否相等的操作符</span></div><div class="line">                <span class="comment"># 如果遍历字典，反而会使时间复杂度大大提升，从而得到TLE，得不偿失。</span></div><div class="line">                <span class="keyword">if</span> (sdict != pdict):</div><div class="line">                    flag = <span class="number">0</span></div><div class="line">                <span class="keyword">if</span> (flag):</div><div class="line">                    res.append(m)</div><div class="line">                <span class="keyword">if</span>(m == slen-plen):</div><div class="line">                    <span class="keyword">break</span>      </div><div class="line">                <span class="keyword">if</span> (sdict.has_key(s[m]) <span class="keyword">and</span> sdict[s[m]] != <span class="number">1</span>):</div><div class="line">                    sdict[s[m]] -= <span class="number">1</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">del</span> sdict[s[m]]                </div><div class="line">                <span class="keyword">if</span> (sdict.has_key(s[m+plen])):</div><div class="line">                    sdict[s[m+plen]] += <span class="number">1</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    sdict[s[m+plen]] = <span class="number">1</span></div><div class="line">                    </div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[437 Path Sum III]]></title>
+      <url>http://wf94.github.io/2017/02/21/437-Path-Sum-III/</url>
+      <content type="html"><![CDATA[<p>You are given a binary tree in which each node contains an integer value.</p>
+<p>Find the number of paths that sum to a given value.</p>
+<p>The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).</p>
+<p>The tree has no more than 1,000 nodes and the values are in the range -1,000,000 to 1,000,000. </p>
+<p><strong>Example:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8</div><div class="line"></div><div class="line">      10</div><div class="line">     /  \</div><div class="line">    5   -3</div><div class="line">   / \    \</div><div class="line">  3   2   11</div><div class="line"> / \   \</div><div class="line">3  -2   1</div><div class="line"></div><div class="line">Return 3. The paths that sum to 8 are:</div><div class="line"></div><div class="line">1.  5 -&gt; 3</div><div class="line">2.  5 -&gt; 2 -&gt; 1</div><div class="line">3. -3 -&gt; 11</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>也还是利用深度优先遍历来进行操作。注意，所要求的和不一定需要从根开始。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pathSum</span><span class="params">(self, root, sum)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type root: TreeNode</div><div class="line">        :type sum: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        res = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> (root):</div><div class="line">            res += self.search(root, sum)</div><div class="line">            <span class="keyword">if</span> (root.left):</div><div class="line">                res += self.pathSum(root.left, sum)</div><div class="line">            <span class="keyword">if</span> (root.right):</div><div class="line">                res += self.pathSum(root.right, sum)</div><div class="line">        <span class="keyword">return</span> res</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, node, sum)</span>:</span></div><div class="line">        res = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> (node):</div><div class="line">            <span class="keyword">if</span> (sum == node.val):</div><div class="line">                res += <span class="number">1</span></div><div class="line">            <span class="keyword">if</span> (node.left):</div><div class="line">                res += self.search(node.left, sum-node.val)</div><div class="line">            <span class="keyword">if</span> (node.right):</div><div class="line">                res += self.search(node.right, sum-node.val)</div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
+<p>Reference: <a href="http://xiadong.info/2016/11/leetcode-437-path-sum-iii/" target="_blank" rel="external">http://xiadong.info/2016/11/leetcode-437-path-sum-iii/</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Tree </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[CNN与脑部肿瘤分割资料收集]]></title>
       <url>http://wf94.github.io/2017/02/20/CNN-Brain-Tumor-Segmentation/</url>
       <content type="html"><![CDATA[<p>斯坦福大学卷积神经网络教程：</p>
@@ -293,6 +354,83 @@
             
         </categories>
         
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[436 Find Right Interval]]></title>
+      <url>http://wf94.github.io/2017/02/20/436-Find-Right-Interval/</url>
+      <content type="html"><![CDATA[<p>Given a set of intervals, for each of the interval i, check if there exists an interval j whose start point is bigger than or equal to the end point of the interval i, which can be called that j is on the “right” of i. </p>
+<p>For any interval i, you need to store the minimum interval j’s index, which means that the interval j has the minimum start point to build the “right” relationship for interval i. If the interval j doesn’t exist, store -1 for the interval i. Finally, you need output the stored value of each interval as an array. </p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>You may assume the interval’s end point is always bigger than its start point.</li>
+<li>You may assume none of these intervals have the same start point.</li>
+</ol>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [ [1,2] ]</div><div class="line"></div><div class="line">Output: [-1]</div><div class="line"></div><div class="line">Explanation: There is only one interval in the collection, so it outputs -1.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Input: [ [3,4], [2,3], [1,2] ]</div><div class="line"></div><div class="line">Output: [-1, 0, 1]</div><div class="line"></div><div class="line">Explanation: There is no satisfied &quot;right&quot; interval for [3,4].</div><div class="line">For [2,3], the interval [3,4] has minimum-&quot;right&quot; start point;</div><div class="line">For [1,2], the interval [2,3] has minimum-&quot;right&quot; start point.</div></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [ [1,4], [2,3], [3,4] ]</div><div class="line"></div><div class="line">Output: [-1, 2, -1]</div><div class="line"></div><div class="line">Explanation: There is no satisfied &quot;right&quot; interval for [1,4] and [3,4].</div><div class="line">For [2,3], the interval [3,4] has minimum-&quot;right&quot; start point.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用哈希表存储临时的访问数据并不能防止TLE。这种方法不好使。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findRightInterval</span><span class="params">(self, intervals)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type intervals: List[Interval]</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        stats = &#123;&#125;</div><div class="line">        length = len(intervals)</div><div class="line">        ans = [<span class="number">-1</span>] * length</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">            cur = intervals[i].end</div><div class="line">            <span class="keyword">if</span> (stats.has_key(cur)):</div><div class="line">                ans[i] = stats[cur]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                target = float(<span class="string">'inf'</span>)</div><div class="line">                pos = <span class="number">-1</span></div><div class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range(length):</div><div class="line">                    <span class="keyword">if</span> (cur &lt;= intervals[j].start):</div><div class="line">                        <span class="keyword">if</span> (target &gt;= intervals[j].start):</div><div class="line">                            target = intervals[j].start</div><div class="line">                            pos = j</div><div class="line">                ans[i] = pos</div><div class="line">                stats[cur] = pos</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
+<p>还是利用二分法的查找来解决问题。思路其实很简单，把所有的intervals.start作为一个数组，intervals.end作为一个数组。对start数组排序，根据end数组来找和start数组里面最接近的数字。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for an interval.</span></div><div class="line"><span class="comment"># class Interval(object):</span></div><div class="line"><span class="comment">#     def __init__(self, s=0, e=0):</span></div><div class="line"><span class="comment">#         self.start = s</span></div><div class="line"><span class="comment">#         self.end = e</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findRightInterval</span><span class="params">(self, intervals)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type intervals: List[Interval]</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        stats = &#123;&#125;</div><div class="line">        find = &#123;&#125;</div><div class="line">        length = len(intervals)</div><div class="line">        ans = [<span class="number">-1</span>] * length</div><div class="line">        </div><div class="line">        starts = []</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">            find[intervals[i].start] = i</div><div class="line">            starts.append(intervals[i].start)</div><div class="line">        </div><div class="line">        starts.sort()</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">            cur = intervals[i].end</div><div class="line">            <span class="keyword">if</span> (stats.has_key(cur)):</div><div class="line">                ans[i] = stats[cur]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                low = <span class="number">0</span></div><div class="line">                high = length - <span class="number">1</span></div><div class="line">                mid = <span class="number">-1</span></div><div class="line">                useMid = <span class="keyword">False</span></div><div class="line">                <span class="keyword">if</span> (cur &lt;= starts[<span class="number">-1</span>]):</div><div class="line">                    <span class="keyword">while</span> (low + <span class="number">1</span> &lt; high):</div><div class="line">                        mid = ( low + high ) / <span class="number">2</span></div><div class="line">                        <span class="keyword">if</span> (starts[mid] &lt; cur):</div><div class="line">                            low = mid</div><div class="line">                        <span class="keyword">elif</span>(starts[mid] &gt; cur):</div><div class="line">                            high = mid</div><div class="line">                        <span class="keyword">else</span>:</div><div class="line">                            useMid = <span class="keyword">True</span></div><div class="line">                            <span class="keyword">break</span></div><div class="line">                    <span class="keyword">if</span>(useMid):</div><div class="line">                        stats[cur] = find[starts[mid]]</div><div class="line">                        ans[i] = find[starts[mid]]</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        lowcur = starts[low] - cur</div><div class="line">                        <span class="keyword">if</span> (lowcur &gt; <span class="number">0</span>):</div><div class="line">                            stats[cur] = find[starts[low]]</div><div class="line">                            ans[i] = find[starts[low]]</div><div class="line">                        <span class="keyword">else</span>:</div><div class="line">                            stats[cur] = find[starts[high]]</div><div class="line">                            ans[i] = find[starts[high]]</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Binary Search </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[435 Non-overlapping Intervals]]></title>
+      <url>http://wf94.github.io/2017/02/19/435-Non-overlapping-Intervals/</url>
+      <content type="html"><![CDATA[<p>Given a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping. </p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>You may assume the interval’s end point is always bigger than its start point.</li>
+<li>Intervals like [1,2] and [2,3] have borders “touching” but they don’t overlap each other.</li>
+</ol>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [ [1,2], [2,3], [3,4], [1,3] ]</div><div class="line"></div><div class="line">Output: 1</div><div class="line"></div><div class="line">Explanation: [1,3] can be removed and the rest of intervals are non-overlapping.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [ [1,2], [1,2], [1,2] ]</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation: You need to remove two [1,2] to make the rest of intervals non-overlapping.</div></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [ [1,2], [2,3] ]</div><div class="line"></div><div class="line">Output: 0</div><div class="line"></div><div class="line">Explanation: You don&apos;t need to remove any of the intervals since they&apos;re already non-overlapping.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>我们在使用C++ STL中的sort()函数时，如果vector中的元素是普通的int或者string，不需要额外撰写排序函数。sort()函数会自动将vector从小到大进行排列。如果vector里面的元素是自定义的struct/class，我们就需要重载排序函数。<br>利用贪心算法，将排序后的结果依次找寻局部最优即可。我们要注意在寻找的过程中，其中的一个边界条件。我们需要保证找到的元素，其范围是相对最小的。如[-100,-87], [-100, –32]……[-87, -20], [-86, -1], [-85, -72]……，很明显，当我们从[-100,-87]跳转到[-87, -20]时，我们取到的[-87, -20]是局部最优。但是当访问到[-85, -72]时，我们应该舍弃[-87, -20]，将最优元素计为[-85, -72]。因为其所涉及的范围比[-87, -20]小。</p>
+<p>因此有</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> ( (intervals[i+<span class="number">1</span>].start - tmpstart) + (intervals[i+<span class="number">1</span>].end - intervals[i+<span class="number">1</span>].start) &lt; region )</div></pre></td></tr></table></figure>
+<p>这个条件判断。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for an interval.</div><div class="line"> * struct Interval &#123;</div><div class="line"> *     int start;</div><div class="line"> *     int end;</div><div class="line"> *     Interval() : start(0), end(0) &#123;&#125;</div><div class="line"> *     Interval(int s, int e) : start(s), end(e) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">bool</span> <span class="title">less_start</span><span class="params">(<span class="keyword">const</span> Interval &amp;m1, <span class="keyword">const</span> Interval &amp;m2)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(m1.start != m2.start) <span class="keyword">return</span> m1.start &lt; m2.start;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> m1.end &lt; m2.end;</div><div class="line">&#125;</div><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">eraseOverlapIntervals</span><span class="params">(<span class="built_in">vector</span>&lt;Interval&gt;&amp; intervals)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> size = intervals.size();</div><div class="line">        <span class="keyword">int</span> tmpstart = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> tmpend = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> region = <span class="number">0</span>;</div><div class="line">        sort(intervals.begin(), intervals.end(), less_start);</div><div class="line">        <span class="keyword">if</span> (size &gt; <span class="number">0</span>)&#123;</div><div class="line">            tmpend = intervals[<span class="number">0</span>].end;</div><div class="line">            tmpstart = intervals[<span class="number">0</span>].start;</div><div class="line">            region = tmpend - tmpstart;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> </div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; intervals.size() - <span class="number">1</span>; i++)&#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (intervals[i].start == intervals[i+<span class="number">1</span>].start)</div><div class="line">                count++;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">if</span>(intervals[i+<span class="number">1</span>].start &lt; tmpend)&#123;</div><div class="line">                    <span class="keyword">if</span> ( (intervals[i+<span class="number">1</span>].start - tmpstart) + (intervals[i+<span class="number">1</span>].end - intervals[i+<span class="number">1</span>].start) &lt; region )&#123;</div><div class="line">                        tmpend = intervals[i+<span class="number">1</span>].end;</div><div class="line">                        tmpstart = intervals[i+<span class="number">1</span>].start;</div><div class="line">                        region = tmpend - tmpstart;</div><div class="line">                    &#125;</div><div class="line">                    count++;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span>&#123;</div><div class="line">                    tmpend = intervals[i+<span class="number">1</span>].end;</div><div class="line">                    tmpstart = intervals[i+<span class="number">1</span>].start;</div><div class="line">                    region = tmpend - tmpstart;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> count;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Greedy </tag>
+            
+        </tags>
         
     </entry>
     
@@ -449,9 +587,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -481,9 +619,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -570,9 +708,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -742,9 +880,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -902,9 +1040,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1005,9 +1143,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1108,9 +1246,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1142,9 +1280,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1195,11 +1333,11 @@
         
         <tags>
             
-            <tag> Array </tag>
+            <tag> Math </tag>
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
+            <tag> Array </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -1257,9 +1395,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1392,11 +1530,11 @@
         
         <tags>
             
+            <tag> Easy </tag>
+            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
-            
-            <tag> Easy </tag>
             
         </tags>
         
@@ -1448,11 +1586,11 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
+            <tag> Math </tag>
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1565,9 +1703,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1592,9 +1730,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1778,9 +1916,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1808,9 +1946,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1998,9 +2136,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Stack </tag>
             
@@ -2027,9 +2165,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Two Pointers </tag>
             
@@ -2059,9 +2197,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -2086,9 +2224,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> String </tag>
             
@@ -2153,9 +2291,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2213,9 +2351,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -2240,9 +2378,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2406,9 +2544,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2467,9 +2605,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2522,11 +2660,11 @@
         
         <tags>
             
+            <tag> Easy </tag>
+            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
-            
-            <tag> Easy </tag>
             
         </tags>
         
