@@ -115,9 +115,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -273,6 +273,69 @@
     </entry>
     
     <entry>
+      <title><![CDATA[442 Find All Duplicates in an Array]]></title>
+      <url>http://wf94.github.io/2017/02/23/442-Find-All-Duplicates-in-an-Array/</url>
+      <content type="html"><![CDATA[<p>Given an array of integers, 1 ≤ a[i] ≤ <em>n</em> (<em>n</em> = size of array), some elements appear <strong>twice</strong> and others appear <strong>once</strong>.</p>
+<p>Find all the elements that appear <strong>twice</strong> in this array.</p>
+<p>Could you do it without extra space and in O(<em>n</em>) runtime?</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[4,3,2,7,8,2,3,1]</div><div class="line"></div><div class="line">Output:</div><div class="line">[2,3]</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>Simple when using hashtable…..But not so easy when it comes to no extra space.</p>
+<p>A very useful hint: When using python+hashtable to do word count, using Collection() function comes quite handy. The function can directly return a hashtable(python dict) with word statistics.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDuplicates</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        resultdict = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums:</div><div class="line">            <span class="keyword">if</span> resultdict.has_key(i):</div><div class="line">                resultdict[i] += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                resultdict[i] = <span class="number">1</span></div><div class="line">        </div><div class="line">        ans = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> resultdict:</div><div class="line">            <span class="keyword">if</span> (resultdict[i] == <span class="number">2</span>):</div><div class="line">                ans.append(i)</div><div class="line">                </div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
+<p>Hint: Take advantage of condition “1 ≤ a[i] ≤ n”<br><a href="https://discuss.leetcode.com/topic/64979/python-o-n-time-o-1-space" target="_blank" rel="external">https://discuss.leetcode.com/topic/64979/python-o-n-time-o-1-space</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Array </tag>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[441 Arranging Coins]]></title>
+      <url>http://wf94.github.io/2017/02/23/441-Arranging-Coins/</url>
+      <content type="html"><![CDATA[<p>You have a total of <em>n</em> coins that you want to form in a staircase shape, where every <em>k</em>-th row must have exactly <em>k</em> coins.</p>
+<p>Given <em>n</em>, find the total number of <strong>full</strong> staircase rows that can be formed.</p>
+<p><em>n</em> is a non-negative integer and fits within the range of a 32-bit signed integer.</p>
+<p><strong>Example 1:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">n = 5</div><div class="line"></div><div class="line">The coins can form the following rows:</div><div class="line">¤</div><div class="line">¤ ¤</div><div class="line">¤ ¤</div><div class="line"></div><div class="line">Because the 3rd row is incomplete, we return 2.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">n = 8</div><div class="line"></div><div class="line">The coins can form the following rows:</div><div class="line">¤</div><div class="line">¤ ¤</div><div class="line">¤ ¤ ¤</div><div class="line">¤ ¤</div><div class="line"></div><div class="line">Because the 4th row is incomplete, we return 3.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>思路很简单，利用一个简单的while循环得到可以符合要求的行数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">arrangeCoins</span><span class="params">(self, n)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type n: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            i = <span class="number">0</span></div><div class="line">            count = <span class="number">0</span></div><div class="line">            <span class="keyword">while</span> (n &gt; <span class="number">0</span>):</div><div class="line">                i += <span class="number">1</span></div><div class="line">                count += <span class="number">1</span></div><div class="line">                <span class="keyword">if</span> (n-i &lt;= i):</div><div class="line">                    <span class="keyword">break</span></div><div class="line">                n -= i</div><div class="line">                </div><div class="line">            <span class="keyword">return</span> count</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Math </tag>
+            
+            <tag> Binary Search </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[438 Find All Anagrams in a String]]></title>
       <url>http://wf94.github.io/2017/02/22/438-Find-All-Anagrams-in-a-String/</url>
       <content type="html"><![CDATA[<p>Given a string <strong>s</strong> and a <strong>non-empty</strong> string <strong>p</strong>, find all the start indices of <strong>p</strong>‘s anagrams in <strong>s</strong>.</p>
@@ -294,9 +357,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -587,9 +650,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -619,9 +682,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -708,9 +771,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -880,9 +943,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1040,9 +1103,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1143,9 +1206,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1246,9 +1309,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1280,9 +1343,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1333,11 +1396,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Array </tag>
             
             <tag> Easy </tag>
             
-            <tag> Array </tag>
+            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -1395,9 +1458,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1530,11 +1593,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1586,11 +1649,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Hash Table </tag>
             
             <tag> Easy </tag>
             
-            <tag> Hash Table </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -1703,9 +1766,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1730,9 +1793,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1916,9 +1979,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1946,9 +2009,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2136,9 +2199,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Stack </tag>
             
@@ -2165,9 +2228,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -2197,9 +2260,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -2224,9 +2287,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> String </tag>
             
@@ -2291,9 +2354,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2351,9 +2414,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2378,9 +2441,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2544,9 +2607,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2605,9 +2668,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2660,11 +2723,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
