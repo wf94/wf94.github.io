@@ -4,36 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[445 Add Two Numbers II]]></title>
-      <url>http://wf94.github.io/2017/03/21/445-Add-Two-Numbers-II/</url>
-      <content type="html"><![CDATA[<p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
-<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
-<p><strong>Follow up:</strong><br> What if you cannot modify the input lists? In other words, reversing the lists is not allowed. </p>
-<p><strong>Example:</strong> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: (7 -&gt; 2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</div><div class="line">Output: 7 -&gt; 8 -&gt; 0 -&gt; 7</div></pre></td></tr></table></figure>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这道题目可以采用简单的链表操作来搞定。题目说要求不能反转链表，这样无形中就会增加我们算法的复杂度。</p>
-<p>我们采用竖式加法运算操作，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">  7 2 4 3</div><div class="line">+   5 6 4</div><div class="line">= 7 8 0 7</div></pre></td></tr></table></figure></p>
-<p>我们首先可以遍历一遍得到链表的长度。再进行O(n^2)的操作，多次遍历单链表，从个位开始，从后往前进行加法运算。注意进位即可。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for singly-linked list.</span></div><div class="line"><span class="comment"># class ListNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.next = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span><span class="params">(self, l1, l2)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type l1: ListNode</div><div class="line">        :type l2: ListNode</div><div class="line">        :rtype: ListNode</div><div class="line">        """</div><div class="line">        length1 = <span class="number">0</span></div><div class="line">        length2 = <span class="number">0</span></div><div class="line">        l1cur = l1</div><div class="line">        l2cur = l2</div><div class="line">        <span class="keyword">while</span>(l1cur.next):</div><div class="line">            length1 += <span class="number">1</span></div><div class="line">            l1cur = l1cur.next</div><div class="line">        <span class="keyword">while</span>(l2cur.next):</div><div class="line">            length2 += <span class="number">1</span></div><div class="line">            l2cur = l2cur.next</div><div class="line">        </div><div class="line">        res = []</div><div class="line">        carry = <span class="number">0</span></div><div class="line">        l1val = l1cur.val</div><div class="line">        l2val = l2cur.val</div><div class="line">        <span class="keyword">while</span>(length1 &gt;= <span class="number">0</span> <span class="keyword">or</span> length2 &gt;= <span class="number">0</span>):</div><div class="line">            tmpsum = l1val + l2val + carry</div><div class="line">            <span class="keyword">if</span> tmpsum &gt;= <span class="number">10</span>:</div><div class="line">                tmpsum = tmpsum - <span class="number">10</span></div><div class="line">                carry = <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                carry = <span class="number">0</span></div><div class="line">            cur = ListNode(tmpsum)</div><div class="line">            res.append(cur)</div><div class="line">            </div><div class="line">            l1cur = l1</div><div class="line">            l2cur = l2</div><div class="line">            </div><div class="line">            <span class="keyword">if</span> length1 &gt; <span class="number">0</span>:</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(length1<span class="number">-1</span>):</div><div class="line">                    l1cur = l1cur.next</div><div class="line">                l1val = l1cur.val</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                l1val = <span class="number">0</span></div><div class="line">            </div><div class="line">            <span class="keyword">if</span> length2 &gt; <span class="number">0</span>:</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(length2<span class="number">-1</span>):</div><div class="line">                    l2cur = l2cur.next</div><div class="line">                l2val = l2cur.val</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                l2val = <span class="number">0</span></div><div class="line">                </div><div class="line">            length1 -= <span class="number">1</span></div><div class="line">            length2 -= <span class="number">1</span></div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (carry):</div><div class="line">            cur = ListNode(carry)</div><div class="line">            res.append(cur)</div><div class="line">        </div><div class="line">        length = len(res)</div><div class="line">        <span class="keyword">if</span> (length == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">        <span class="keyword">elif</span> (length == <span class="number">1</span>):</div><div class="line">            <span class="keyword">return</span> res[<span class="number">0</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            head = res[<span class="number">-1</span>]</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(length<span class="number">-1</span>, <span class="number">0</span>, <span class="number">-1</span>):</div><div class="line">                res[i].next = res[i<span class="number">-1</span>]</div><div class="line">            <span class="keyword">return</span> head</div></pre></td></tr></table></figure>]]></content>
-      
-        <categories>
-            
-            <category> LeetCode </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Medium </tag>
-            
-            <tag> Linked List </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Climbing Stairs：分治法初探]]></title>
       <url>http://wf94.github.io/2017/03/09/Climbing-Stairs-Divide-and-Conquer/</url>
       <content type="html"><![CDATA[<p>在算法书里，我们总能看得到一道经典的题目。</p>
@@ -222,11 +192,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -303,6 +273,63 @@
     </entry>
     
     <entry>
+      <title><![CDATA[447 Number of Boomerangs]]></title>
+      <url>http://wf94.github.io/2017/02/25/447-Number-of-Boomerangs/</url>
+      <content type="html"><![CDATA[<p>Given <em>n</em> points in the plane that are all pairwise distinct, a “boomerang” is a tuple of points <code>(i, j, k)</code> such that the distance between <code>i</code> and <code>j</code> equals the distance between <code>i</code> and <code>k</code> (<strong>the order of the tuple matters</strong>).</p>
+<p>Find the number of boomerangs. You may assume that <em>n</em> will be at most <strong>500</strong> and coordinates of points are all in the range <strong>[-10000, 10000]</strong> (inclusive).</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[[0,0],[1,0],[2,0]]</div><div class="line"></div><div class="line">Output:</div><div class="line">2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">The two boomerangs are [[1,0],[0,0],[2,0]] and [[1,0],[2,0],[0,0]]</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>我们求解最简单的欧氏距离，进行n^2次的遍历，将各个点之间的距离存到哈希表当中。如果哈希表的距离统计值超过2，就需要进行计算，得出最终的结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numberOfBoomerangs</span><span class="params">(self, points)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type points: List[List[int]]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        length = len(points)</div><div class="line">        res = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">            distlist = []</div><div class="line">            stats = &#123;&#125;</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(length):</div><div class="line">                <span class="keyword">if</span> (i != j):</div><div class="line">                    dist = (points[i][<span class="number">0</span>] - points[j][<span class="number">0</span>]) * (points[i][<span class="number">0</span>] - points[j][<span class="number">0</span>]) + (points[i][<span class="number">1</span>] - points[j][<span class="number">1</span>]) * (points[i][<span class="number">1</span>] - points[j][<span class="number">1</span>])</div><div class="line">                    distlist.append(dist)</div><div class="line">            <span class="comment"># Program optimization: Do not use the 'count' function,</span></div><div class="line">            <span class="comment"># Using Hashtable is much better, since the cost for "count" function is o(n).</span></div><div class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> distlist:</div><div class="line">                <span class="keyword">if</span> k <span class="keyword">in</span> stats:</div><div class="line">                    stats[k] += <span class="number">1</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    stats[k] = <span class="number">1</span></div><div class="line">            <span class="comment"># Count the final number of boomerangs</span></div><div class="line">            <span class="comment"># The number forms an arithmetic sequence.</span></div><div class="line">            <span class="keyword">for</span> m <span class="keyword">in</span> stats.values():</div><div class="line">                <span class="keyword">if</span> (m == <span class="number">2</span>):</div><div class="line">                    res += m</div><div class="line">                <span class="keyword">elif</span> (m &gt; <span class="number">2</span>):</div><div class="line">                    res += (m * (m<span class="number">-1</span>))</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    res = res</div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[445 Add Two Numbers II]]></title>
+      <url>http://wf94.github.io/2017/02/24/445-Add-Two-Numbers-II/</url>
+      <content type="html"><![CDATA[<p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<p><strong>Follow up:</strong><br> What if you cannot modify the input lists? In other words, reversing the lists is not allowed. </p>
+<p><strong>Example:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: (7 -&gt; 2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</div><div class="line">Output: 7 -&gt; 8 -&gt; 0 -&gt; 7</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这道题目可以采用简单的链表操作来搞定。题目说要求不能反转链表，这样无形中就会增加我们算法的复杂度。</p>
+<p>我们采用竖式加法运算操作，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">  7 2 4 3</div><div class="line">+   5 6 4</div><div class="line">= 7 8 0 7</div></pre></td></tr></table></figure></p>
+<p>我们首先可以遍历一遍得到链表的长度。再进行O(n^2)的操作，多次遍历单链表，从个位开始，从后往前进行加法运算。注意进位即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for singly-linked list.</span></div><div class="line"><span class="comment"># class ListNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.next = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span><span class="params">(self, l1, l2)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type l1: ListNode</div><div class="line">        :type l2: ListNode</div><div class="line">        :rtype: ListNode</div><div class="line">        """</div><div class="line">        length1 = <span class="number">0</span></div><div class="line">        length2 = <span class="number">0</span></div><div class="line">        l1cur = l1</div><div class="line">        l2cur = l2</div><div class="line">        <span class="keyword">while</span>(l1cur.next):</div><div class="line">            length1 += <span class="number">1</span></div><div class="line">            l1cur = l1cur.next</div><div class="line">        <span class="keyword">while</span>(l2cur.next):</div><div class="line">            length2 += <span class="number">1</span></div><div class="line">            l2cur = l2cur.next</div><div class="line">        </div><div class="line">        res = []</div><div class="line">        carry = <span class="number">0</span></div><div class="line">        l1val = l1cur.val</div><div class="line">        l2val = l2cur.val</div><div class="line">        <span class="keyword">while</span>(length1 &gt;= <span class="number">0</span> <span class="keyword">or</span> length2 &gt;= <span class="number">0</span>):</div><div class="line">            tmpsum = l1val + l2val + carry</div><div class="line">            <span class="keyword">if</span> tmpsum &gt;= <span class="number">10</span>:</div><div class="line">                tmpsum = tmpsum - <span class="number">10</span></div><div class="line">                carry = <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                carry = <span class="number">0</span></div><div class="line">            cur = ListNode(tmpsum)</div><div class="line">            res.append(cur)</div><div class="line">            </div><div class="line">            l1cur = l1</div><div class="line">            l2cur = l2</div><div class="line">            </div><div class="line">            <span class="keyword">if</span> length1 &gt; <span class="number">0</span>:</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(length1<span class="number">-1</span>):</div><div class="line">                    l1cur = l1cur.next</div><div class="line">                l1val = l1cur.val</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                l1val = <span class="number">0</span></div><div class="line">            </div><div class="line">            <span class="keyword">if</span> length2 &gt; <span class="number">0</span>:</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(length2<span class="number">-1</span>):</div><div class="line">                    l2cur = l2cur.next</div><div class="line">                l2val = l2cur.val</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                l2val = <span class="number">0</span></div><div class="line">                </div><div class="line">            length1 -= <span class="number">1</span></div><div class="line">            length2 -= <span class="number">1</span></div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (carry):</div><div class="line">            cur = ListNode(carry)</div><div class="line">            res.append(cur)</div><div class="line">        </div><div class="line">        length = len(res)</div><div class="line">        <span class="keyword">if</span> (length == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">        <span class="keyword">elif</span> (length == <span class="number">1</span>):</div><div class="line">            <span class="keyword">return</span> res[<span class="number">0</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            head = res[<span class="number">-1</span>]</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(length<span class="number">-1</span>, <span class="number">0</span>, <span class="number">-1</span>):</div><div class="line">                res[i].next = res[i<span class="number">-1</span>]</div><div class="line">            <span class="keyword">return</span> head</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Linked List </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[442 Find All Duplicates in an Array]]></title>
       <url>http://wf94.github.io/2017/02/23/442-Find-All-Duplicates-in-an-Array/</url>
       <content type="html"><![CDATA[<p>Given an array of integers, 1 ≤ a[i] ≤ <em>n</em> (<em>n</em> = size of array), some elements appear <strong>twice</strong> and others appear <strong>once</strong>.</p>
@@ -355,9 +382,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -387,9 +414,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -614,9 +641,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -680,9 +707,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -712,9 +739,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -745,9 +772,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -801,9 +828,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -973,9 +1000,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1002,9 +1029,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1133,9 +1160,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1236,9 +1263,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1339,9 +1366,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1373,9 +1400,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1426,11 +1453,11 @@
         
         <tags>
             
-            <tag> Array </tag>
+            <tag> Math </tag>
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
+            <tag> Array </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -1558,9 +1585,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Binary Search </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -1623,11 +1650,11 @@
         
         <tags>
             
+            <tag> Easy </tag>
+            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
-            
-            <tag> Easy </tag>
             
         </tags>
         
@@ -1679,11 +1706,11 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
+            <tag> Math </tag>
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1796,9 +1823,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1823,9 +1850,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2009,9 +2036,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2039,9 +2066,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2258,9 +2285,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Two Pointers </tag>
             
@@ -2290,9 +2317,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -2317,11 +2344,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> Easy </tag>
             
             <tag> String </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -2384,9 +2411,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2471,9 +2498,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2637,9 +2664,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2668,11 +2695,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -2698,9 +2725,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2753,11 +2780,11 @@
         
         <tags>
             
+            <tag> Easy </tag>
+            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
-            
-            <tag> Easy </tag>
             
         </tags>
         
