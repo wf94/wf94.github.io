@@ -4,34 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[448 Find All Numbers Disappeared in an Array]]></title>
-      <url>http://wf94.github.io/2017/03/23/448-Find-All-Numbers-Disappeared-in-an-Array/</url>
-      <content type="html"><![CDATA[<p>Given an array of integers where 1 ≤ a[i] ≤ <em>n</em> (<em>n</em> = size of array), some elements appear twice and others appear once.</p>
-<p>Find all the elements of [1, <em>n</em>] inclusive that do not appear in this array.</p>
-<p>Could you do it without extra space and in O(<em>n</em>) runtime? You may assume the returned list does not count as extra space.</p>
-<p><strong>Example:</strong> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[4,3,2,7,8,2,3,1]</div><div class="line"></div><div class="line">Output:</div><div class="line">[5,6]</div></pre></td></tr></table></figure>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用Python的set来解决问题。<br>实际上可以利用标记的方法来解决：<br>步骤：<br>[4,3,2,2] -&gt; [4,3,2,-2]<br>[4,3,2,-2] -&gt; [4,3,-2,-2]<br>[4,3,-2,-2] -&gt; [4,-3,-2,-2]<br>此时标记完成，只有第一个元素没有被标记成为负数。<br>再找非负的元素，就是对应的没出现的元素了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDisappearedNumbers</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        numset = set(nums)</div><div class="line">        length = len(nums)</div><div class="line">        result = []</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,length+<span class="number">1</span>):</div><div class="line">            result.append(i)</div><div class="line">        </div><div class="line">        resultset = set(result)</div><div class="line">        final = resultset - numset</div><div class="line">        result = list(final)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> result</div></pre></td></tr></table></figure>]]></content>
-      
-        <categories>
-            
-            <category> LeetCode </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Easy </tag>
-            
-            <tag> Array </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Climbing Stairs：分治法初探]]></title>
       <url>http://wf94.github.io/2017/03/09/Climbing-Stairs-Divide-and-Conquer/</url>
       <content type="html"><![CDATA[<p>在算法书里，我们总能看得到一道经典的题目。</p>
@@ -220,11 +192,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -301,6 +273,34 @@
     </entry>
     
     <entry>
+      <title><![CDATA[448 Find All Numbers Disappeared in an Array]]></title>
+      <url>http://wf94.github.io/2017/02/26/448-Find-All-Numbers-Disappeared-in-an-Array/</url>
+      <content type="html"><![CDATA[<p>Given an array of integers where 1 ≤ a[i] ≤ <em>n</em> (<em>n</em> = size of array), some elements appear twice and others appear once.</p>
+<p>Find all the elements of [1, <em>n</em>] inclusive that do not appear in this array.</p>
+<p>Could you do it without extra space and in O(<em>n</em>) runtime? You may assume the returned list does not count as extra space.</p>
+<p><strong>Example:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[4,3,2,7,8,2,3,1]</div><div class="line"></div><div class="line">Output:</div><div class="line">[5,6]</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用Python的set来解决问题。<br>实际上可以利用标记的方法来解决：<br>步骤：<br>[4,3,2,2] -&gt; [4,3,2,-2]<br>[4,3,2,-2] -&gt; [4,3,-2,-2]<br>[4,3,-2,-2] -&gt; [4,-3,-2,-2]<br>此时标记完成，只有第一个元素没有被标记成为负数。<br>再找非负的元素，就是对应的没出现的元素了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDisappearedNumbers</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        numset = set(nums)</div><div class="line">        length = len(nums)</div><div class="line">        result = []</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,length+<span class="number">1</span>):</div><div class="line">            result.append(i)</div><div class="line">        </div><div class="line">        resultset = set(result)</div><div class="line">        final = resultset - numset</div><div class="line">        result = list(final)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> result</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Array </tag>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[447 Number of Boomerangs]]></title>
       <url>http://wf94.github.io/2017/02/25/447-Number-of-Boomerangs/</url>
       <content type="html"><![CDATA[<p>Given <em>n</em> points in the plane that are all pairwise distinct, a “boomerang” is a tuple of points <code>(i, j, k)</code> such that the distance between <code>i</code> and <code>j</code> equals the distance between <code>i</code> and <code>k</code> (<strong>the order of the tuple matters</strong>).</p>
@@ -319,9 +319,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -410,9 +410,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -442,9 +442,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -633,9 +633,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -669,9 +669,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -735,9 +735,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -767,9 +767,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -800,9 +800,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -856,9 +856,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -997,9 +997,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Bit Manipulation </tag>
-            
             <tag> Backtracking </tag>
+            
+            <tag> Bit Manipulation </tag>
             
         </tags>
         
@@ -1028,9 +1028,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1057,9 +1057,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1188,11 +1188,11 @@
         
         <tags>
             
+            <tag> Hash Table </tag>
+            
             <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
-            
-            <tag> Hash Table </tag>
             
             <tag> Binary Search </tag>
             
@@ -1227,9 +1227,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1291,9 +1291,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1394,9 +1394,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1428,9 +1428,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1481,11 +1481,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Array </tag>
             
             <tag> Easy </tag>
             
-            <tag> Array </tag>
+            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -1678,11 +1678,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
+            <tag> Array </tag>
             
             <tag> Hash Table </tag>
             
-            <tag> Array </tag>
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1734,11 +1734,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Hash Table </tag>
             
             <tag> Easy </tag>
             
-            <tag> Hash Table </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -1851,9 +1851,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1878,9 +1878,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2064,9 +2064,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2094,9 +2094,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2286,9 +2286,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Stack </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Stack </tag>
             
             <tag> Tree </tag>
             
@@ -2313,11 +2313,11 @@
         
         <tags>
             
+            <tag> Array </tag>
+            
             <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
-            
-            <tag> Array </tag>
             
         </tags>
         
@@ -2345,9 +2345,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -2372,11 +2372,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
             <tag> Easy </tag>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -2404,9 +2404,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2439,9 +2439,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2471,9 +2471,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2526,9 +2526,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2554,9 +2554,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2610,9 +2610,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Stack </tag>
             
@@ -2666,9 +2666,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2692,9 +2692,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2723,11 +2723,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2753,9 +2753,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2808,11 +2808,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
+            <tag> Array </tag>
             
             <tag> Hash Table </tag>
             
-            <tag> Array </tag>
+            <tag> Easy </tag>
             
         </tags>
         
