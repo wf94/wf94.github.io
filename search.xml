@@ -115,9 +115,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -203,6 +203,35 @@
     </entry>
     
     <entry>
+      <title><![CDATA[452 Minimum Number of Arrows to Burst Balloons]]></title>
+      <url>http://wf94.github.io/2017/03/01/452-Minimum-Number-of-Arrows-to-Burst-Balloons/</url>
+      <content type="html"><![CDATA[<p>There are a number of spherical balloons spread in two-dimensional space. For each balloon, provided input is the start and end coordinates of the horizontal diameter. Since it’s horizontal, y-coordinates don’t matter and hence the x-coordinates of start and end of the diameter suffice. Start is always smaller than end. There will be at most 104 balloons.</p>
+<p>An arrow can be shot up exactly vertically from different points along the x-axis. A balloon with xstart and xend bursts by an arrow shot at x if xstart ≤ x ≤ xend. There is no limit to the number of arrows that can be shot. An arrow once shot keeps travelling up infinitely. The problem is to find the minimum number of arrows that must be shot to burst all balloons. </p>
+<p><strong>Example:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[[10,16], [2,8], [1,6], [7,12]]</div><div class="line"></div><div class="line">Output:</div><div class="line">2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">One way is to shoot one arrow for example at x = 6 (bursting the balloons [2,8] and [1,6]) and another arrow at x = 11 (bursting the other two balloons).</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>将气球排序，维护一个指向当前气球最小结束值的指针。当一个气球的起始值大于该最小结束值，将该气球置为当前气球。然后将之前的气球戳爆！<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMinArrowShots</span><span class="params">(self, points)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type points: List[List[int]]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        points.sort()</div><div class="line">        low = <span class="number">0</span></div><div class="line">        high = <span class="number">0</span></div><div class="line">        count = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> (points):</div><div class="line">            low = points[<span class="number">0</span>][<span class="number">0</span>]</div><div class="line">            high = points[<span class="number">0</span>][<span class="number">1</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> point <span class="keyword">in</span> points:</div><div class="line">            <span class="keyword">if</span> (point[<span class="number">0</span>] &gt; high):</div><div class="line">                count += <span class="number">1</span></div><div class="line">                low = point[<span class="number">0</span>]</div><div class="line">                high = point[<span class="number">1</span>]</div><div class="line">            </div><div class="line">            <span class="keyword">elif</span> (point[<span class="number">1</span>] &lt; high <span class="keyword">and</span> point[<span class="number">0</span>] &gt; low):</div><div class="line">                high = point[<span class="number">1</span>]</div><div class="line">        <span class="keyword">return</span> count+<span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>参考资料和测试用例：</p>
+<p>[[3,9],[7,12],[3,8],[6,8],[9,10],[2,9],[0,9],[3,9],[0,6],[2,8]]<br>[[9,12],[1,10],[4,11],[8,12],[3,9],[6,9],[6,7]]<br><a href="https://discuss.leetcode.com/topic/72901/a-concise-template-for-overlapping-interval-problem" target="_blank" rel="external">https://discuss.leetcode.com/topic/72901/a-concise-template-for-overlapping-interval-problem</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Greedy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[451 Sort Characters By Frequency]]></title>
       <url>http://wf94.github.io/2017/02/28/451-Sort-Characters-By-Frequency/</url>
       <content type="html"><![CDATA[<p>Given a string, sort it in decreasing order based on the frequency of characters.</p>
@@ -212,7 +241,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">&quot;cccaaa&quot;</div><div class="line"></div><div class="line">Output:</div><div class="line">&quot;cccaaa&quot;</div><div class="line"></div><div class="line">Explanation:</div><div class="line">Both &apos;c&apos; and &apos;a&apos; appear three times, so &quot;aaaccc&quot; is also a valid answer.</div><div class="line">Note that &quot;cacaca&quot; is incorrect, as the same characters must be together.</div></pre></td></tr></table></figure>
 <p><strong>Example 3:</strong> </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">&quot;Aabb&quot;</div><div class="line"></div><div class="line">Output:</div><div class="line">&quot;bbAa&quot;</div><div class="line"></div><div class="line">Explanation:</div><div class="line">&quot;bbaA&quot; is also a valid answer, but &quot;Aabb&quot; is incorrect.</div><div class="line">Note that &apos;A&apos; and &apos;a&apos; are treated as two different characters.</div></pre></td></tr></table></figure>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>String +=的时间复杂度要远高于append<br>bucket sort?</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>思路其实比较明确，可以利用哈希表对字母出现的次数进行统计。然后对于统计的结果进行排序即可。</p>
+<p>也可以利用桶排序（基数排序）进行排序，效果同样不错。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">frequencySort</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :rtype: str</div><div class="line">        """</div><div class="line">        m = &#123;&#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</div><div class="line">            <span class="keyword">if</span> (m.has_key(i)):</div><div class="line">                m[i] += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                m[i] = <span class="number">1</span></div><div class="line">        </div><div class="line">        a = sorted(m, key=m.get, reverse = <span class="keyword">True</span>)</div><div class="line">        b = sorted(m.values(), reverse = <span class="keyword">True</span>)</div><div class="line">        </div><div class="line">        result = []</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i, enum <span class="keyword">in</span> enumerate(a):</div><div class="line">            count = b[i]</div><div class="line">            <span class="keyword">while</span>(count):</div><div class="line">                result.append(enum)</div><div class="line">                count -= <span class="number">1</span></div><div class="line">            </div><div class="line">        <span class="keyword">return</span> <span class="string">''</span>.join(result)</div></pre></td></tr></table></figure>]]></content>
       
         <categories>
@@ -225,6 +255,8 @@
         <tags>
             
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Heap </tag>
             
@@ -350,9 +382,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -377,9 +409,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -438,9 +470,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -468,9 +500,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -500,9 +532,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -793,9 +825,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -825,9 +857,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -914,9 +946,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1055,9 +1087,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Bit Manipulation </tag>
-            
             <tag> Backtracking </tag>
+            
+            <tag> Bit Manipulation </tag>
             
         </tags>
         
@@ -1086,9 +1118,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1246,9 +1278,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1349,9 +1381,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1452,9 +1484,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1486,9 +1518,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1539,11 +1571,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Array </tag>
             
             <tag> Easy </tag>
             
-            <tag> Array </tag>
+            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -1601,9 +1633,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1736,11 +1768,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1792,11 +1824,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Hash Table </tag>
             
             <tag> Easy </tag>
             
-            <tag> Hash Table </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -1909,9 +1941,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1936,9 +1968,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2122,9 +2154,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2152,9 +2184,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2213,9 +2245,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -2311,9 +2343,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -2342,9 +2374,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Stack </tag>
             
@@ -2371,9 +2403,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -2403,9 +2435,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -2430,9 +2462,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> String </tag>
             
@@ -2497,9 +2529,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2557,9 +2589,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2584,9 +2616,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2750,9 +2782,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2811,9 +2843,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2866,11 +2898,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
