@@ -117,9 +117,9 @@
             
             <tag> Array </tag>
             
-            <tag> Backtracking </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Backtracking </tag>
             
         </tags>
         
@@ -159,11 +159,11 @@
         
         <tags>
             
-            <tag> Backtracking </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Backtracking </tag>
             
         </tags>
         
@@ -192,11 +192,41 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[455 Assign Cookies]]></title>
+      <url>http://wf94.github.io/2017/03/04/455-Assign-Cookies/</url>
+      <content type="html"><![CDATA[<p>Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie. Each child i has a greed factor gi, which is the minimum size of a cookie that the child will be content with; and each cookie j has a size sj. If sj &gt;= gi, we can assign the cookie j to the child i, and the child i will be content. Your goal is to maximize the number of your content children and output the maximum number. </p>
+<p><strong>Note:</strong><br> You may assume the greed factor is always positive.<br> You cannot assign more than one cookie to one child. </p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Input: [1,2,3], [1,1]</div><div class="line"></div><div class="line">Output: 1</div><div class="line"></div><div class="line">Explanation: You have 3 children and 2 cookies. The greed factors of 3 children are 1, 2, 3. </div><div class="line">And even though you have 2 cookies, since their size is both 1, you could only make the child whose greed factor is 1 content.</div><div class="line">You need to output 1.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Input: [1,2], [1,2,3]</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation: You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2. </div><div class="line">You have 3 cookies and their sizes are big enough to gratify all of the children, </div><div class="line">You need to output 2.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>Failed by using O(n^2) method.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findContentChildren</span><span class="params">(self, g, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type g: List[int]</div><div class="line">        :type s: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        </div><div class="line">        <span class="string">"""</span></div><div class="line">        glen = len(g)</div><div class="line">        slen = len(s)</div><div class="line">        for i in range(glen):</div><div class="line">            pos = 0</div><div class="line">            choose = 0</div><div class="line">            for j in range(slen):</div><div class="line">                if(s[j] &lt; 0):</div><div class="line">                    continue</div><div class="line">                else:</div><div class="line">                    if(s[j] == g[i]):</div><div class="line">                        if (choose != 0):</div><div class="line">                            s[pos] = abs(s[pos])</div><div class="line">                        s[j] = -abs(s[j])</div><div class="line">                        break</div><div class="line">                    elif(s[j] &gt; g[i]):</div><div class="line">                        #Previously not chosen anythin'</div><div class="line">                        if (choose == 0):</div><div class="line">                            choose = s[j]</div><div class="line">                            pos = j</div><div class="line">                            s[j] = -abs(s[j])</div><div class="line">                        else:</div><div class="line">                            #Previously chose sth</div><div class="line">                            if(choose &gt; s[j]):</div><div class="line">                                #If the cookie is smaller than</div><div class="line">                                #the previously chosen one</div><div class="line">                                #Update the cookie</div><div class="line">                                s[pos] = abs(s[pos])</div><div class="line">                                choose = s[j]</div><div class="line">                                pos = j</div><div class="line">                                s[j] = -abs(s[j])</div><div class="line">        count = 0</div><div class="line">        for j in s:</div><div class="line">            if (j &lt; 0):</div><div class="line">                count = count + 1</div><div class="line">        return count</div><div class="line">        """</div><div class="line">        </div><div class="line">        g.sort()</div><div class="line">        s.sort()</div><div class="line">        glen = len(g)</div><div class="line">        res = <span class="number">0</span></div><div class="line">        i = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> s:</div><div class="line">            <span class="keyword">if</span> (i == glen):</div><div class="line">                <span class="keyword">break</span></div><div class="line">            <span class="keyword">if</span> (k &gt;= g[i]):</div><div class="line">                res = res + <span class="number">1</span></div><div class="line">                i = i + <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Greedy </tag>
             
         </tags>
         
@@ -498,9 +528,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -818,9 +848,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -949,9 +979,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -1206,9 +1236,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1378,9 +1408,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -1762,9 +1792,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Binary Search </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Binary Search </tag>
             
         </tags>
         
@@ -2187,9 +2217,9 @@
         
         <tags>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -2304,9 +2334,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -2402,9 +2432,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -2523,9 +2553,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2732,9 +2762,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -2872,11 +2902,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
