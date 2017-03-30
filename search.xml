@@ -87,6 +87,38 @@
     </entry>
     
     <entry>
+      <title><![CDATA[462 Minimum Moves to Equal Array Elements II]]></title>
+      <url>http://wf94.github.io/2017/03/06/462-Minimum-Moves-to-Equal-Array-Elements-II/</url>
+      <content type="html"><![CDATA[<p>Given a <strong>non-empty</strong> integer array, find the minimum number of moves required to make all array elements equal, where a move is incrementing a selected element by 1 or decrementing a selected element by 1.</p>
+<p>You may assume the array’s length is at most 10,000.</p>
+<p><strong>Example:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[1,2,3]</div><div class="line"></div><div class="line">Output:</div><div class="line">2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">Only two moves are needed (remember each move increments or decrements one element):</div><div class="line"></div><div class="line">[1,2,3]  =&gt;  [2,2,3]  =&gt;  [2,2,2]</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>Note that the explanation below is a leetcode discussion solution, my solution is actually figured out by finding out specific pattern in the question.</p>
+<p>Imagine the nums are sorted, and the final value is k, we start find k from the first element.</p>
+<p>If we increase k, the elements &lt;= k will need move one step more, and the elements &gt; k will need to move one step less.</p>
+<p>If there are more elements &gt; k than elements &lt;= k, we should increase k to minimize the moves.</p>
+<p>So we just increase k, until k reach the median of of the nums array. By then, the number of elements &lt;= k equals to that of elements &gt; k. (There is a slight different when the number of array is odd, but it’s similar).</p>
+<p>If we keep increasing k after k reach the median of the array, more numbers &gt;k than &lt;= k, and more moves needed, so we should stop.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minMoves2</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        nums.sort()</div><div class="line">        length = len(nums)</div><div class="line">        res  = <span class="number">0</span></div><div class="line">        mid = length / <span class="number">2</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums:</div><div class="line">            res += abs(nums[mid] - i)</div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Math </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[216 Combination Sum III]]></title>
       <url>http://wf94.github.io/2017/03/06/216-Combination-Sum-III/</url>
       <content type="html"><![CDATA[<p>Find all possible combinations of <strong>k</strong> numbers that add up to a number <strong>n</strong>, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.</p>
@@ -115,9 +147,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -192,11 +224,71 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[461 Hamming Distance]]></title>
+      <url>http://wf94.github.io/2017/03/05/461-Hamming-Distance/</url>
+      <content type="html"><![CDATA[<p>The <a href="https://en.wikipedia.org/wiki/Hamming_distance" target="_blank" rel="external">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.</p>
+<p>Given two integers <code>x</code> and <code>y</code>, calculate the Hamming distance.</p>
+<p><strong>Note:</strong><br> 0 ≤ <code>x</code>, <code>y</code> &lt; 231. </p>
+<p><strong>Example:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input: x = 1, y = 4</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">1   (0 0 0 1)</div><div class="line">4   (0 1 0 0)</div><div class="line">       ↑   ↑</div><div class="line"></div><div class="line">The above arrows point to positions where the corresponding bits are different.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这道题是非常简单的。把两个数按位异或，统计结果中bit当中1的个数即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hammingDistance</span><span class="params">(self, x, y)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type x: int</div><div class="line">        :type y: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        result = x^y</div><div class="line">        i = <span class="number">0</span></div><div class="line">        <span class="keyword">while</span>(result):</div><div class="line">            <span class="keyword">if</span> (result % <span class="number">2</span> == <span class="number">1</span>):</div><div class="line">                i = i + <span class="number">1</span></div><div class="line">            result = result / <span class="number">2</span></div><div class="line">        <span class="keyword">return</span> i</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Bit Manipulation </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[459 Repeated Substring Pattern]]></title>
+      <url>http://wf94.github.io/2017/03/05/459-Repeated-Substring-Pattern/</url>
+      <content type="html"><![CDATA[<p>Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.  You may assume the given string consists of lowercase English letters only and its length  will not exceed 10000.  </p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: &quot;abab&quot;</div><div class="line"></div><div class="line">Output: True</div><div class="line"></div><div class="line">Explanation: It&apos;s the substring &quot;ab&quot; twice.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: &quot;aba&quot;</div><div class="line"></div><div class="line">Output: False</div></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: &quot;abcabcabcabc&quot;</div><div class="line"></div><div class="line">Output: True</div><div class="line"></div><div class="line">Explanation: It&apos;s the substring &quot;abc&quot; four times. (And the substring &quot;abcabc&quot; twice.)</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>需要注意，不能利用string里面元素出现的个数来进行判断。比如说对于“abba”这样的情况，统计元素出现个数是不恰当的。</p>
+<p>还是采用最直接的方法，首先判断子数组的长度能不能被整体数组的长度整除；接下来判断这个子数组是否符合题意，由此得到结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">repeatedSubstringPattern</span><span class="params">(self, str)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type str: str</div><div class="line">        :rtype: bool</div><div class="line">        """</div><div class="line">        length = len(str)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,length+<span class="number">1</span>):</div><div class="line">            <span class="keyword">if</span> (length % i == <span class="number">0</span>):</div><div class="line">                iter = length / i</div><div class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,iter):</div><div class="line">                    <span class="keyword">if</span> (str[<span class="number">0</span>:i] != str[(i*j):(i*(j+<span class="number">1</span>))]):</div><div class="line">                        <span class="keyword">break</span></div><div class="line">                    <span class="keyword">if</span> (j == iter<span class="number">-1</span>):</div><div class="line">                        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -255,9 +347,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Binary Search </tag>
             
@@ -283,9 +375,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -343,9 +435,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Heap </tag>
             
@@ -471,9 +563,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -498,9 +590,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -559,9 +651,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -589,9 +681,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -621,9 +713,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -848,9 +940,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -914,9 +1006,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -946,9 +1038,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -979,9 +1071,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -1035,9 +1127,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1207,9 +1299,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1236,9 +1328,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1367,9 +1459,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1470,9 +1562,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1573,9 +1665,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1607,9 +1699,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1660,11 +1752,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Array </tag>
             
             <tag> Easy </tag>
             
-            <tag> Array </tag>
+            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -1722,9 +1814,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1792,9 +1884,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Binary Search </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Binary Search </tag>
             
         </tags>
         
@@ -1857,11 +1949,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1913,11 +2005,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Hash Table </tag>
             
             <tag> Easy </tag>
             
-            <tag> Hash Table </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -2030,9 +2122,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2057,9 +2149,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2243,9 +2335,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2273,9 +2365,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2463,9 +2555,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Stack </tag>
             
@@ -2492,9 +2584,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -2524,9 +2616,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -2551,11 +2643,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
             
             <tag> String </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2618,9 +2710,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2678,9 +2770,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2705,9 +2797,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2871,9 +2963,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2902,11 +2994,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2932,9 +3024,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2987,11 +3079,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
