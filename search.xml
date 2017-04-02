@@ -33,6 +33,43 @@
     </entry>
     
     <entry>
+      <title><![CDATA[477 Total Hamming Distance]]></title>
+      <url>http://wf94.github.io/2017/03/09/477-Total-Hamming-Distance/</url>
+      <content type="html"><![CDATA[<p>The <a href="https://en.wikipedia.org/wiki/Hamming_distance" target="_blank" rel="external">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.</p>
+<p>Now your job is to find the total Hamming distance between all pairs of the given numbers. </p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Input: 4, 14, 2</div><div class="line"></div><div class="line">Output: 6</div><div class="line"></div><div class="line">Explanation: In binary representation, the 4 is 0100, 14 is 1110, and 2 is 0010 (just</div><div class="line">showing the four bits relevant in this case). So the answer will be:</div><div class="line">HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>Elements of the given array are in the range of <code>0</code> to <code>10^9</code> </li>
+<li>Length of the array will not exceed <code>10^4</code>. </li>
+</ol>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>经过一番思考之后，可以发现如下规律。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">0100</div><div class="line">1110</div><div class="line">0010</div><div class="line">0010</div></pre></td></tr></table></figure>
+<p>竖着看，每一列都是一个bit的汉明距离，和1的个数有关。</p>
+<p>如果没有1，这四个数在这一位的汉明距离就是0。</p>
+<p>如果有一个1，汉明距离就是3，2个1，汉明距离就是4，3个1，汉明距离还是3，全是1，汉明距离就是0</p>
+<p>可以总结，每一位的汉明距离就是（1的个数）×（总数-1的个数）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">totalHammingDistance</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        stats = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">36</span>):</div><div class="line">            stats.append(<span class="number">0</span>)</div><div class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> nums:</div><div class="line">            count = <span class="number">0</span></div><div class="line">            <span class="keyword">while</span> k:</div><div class="line">                <span class="keyword">if</span> (k &amp; <span class="number">1</span>):</div><div class="line">                    stats[count] += <span class="number">1</span></div><div class="line">                k = k &gt;&gt; <span class="number">1</span></div><div class="line">                count += <span class="number">1</span></div><div class="line">        ans = <span class="number">0</span></div><div class="line">        length = len(nums)</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> stats:</div><div class="line">            ans += j * (length - j)</div><div class="line">            </div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Bit Manipulation </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[241 Different Ways to Add Parentheses：分治法初探]]></title>
       <url>http://wf94.github.io/2017/03/09/241-Different-Ways-to-Add-Parentheses/</url>
       <content type="html"><![CDATA[<p>Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are <code>+</code>, <code>-</code> and <code>*</code>.</p>
@@ -81,6 +118,39 @@
             <tag> Medium </tag>
             
             <tag> Divide and Conquer </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[476 Number Complement]]></title>
+      <url>http://wf94.github.io/2017/03/08/476-Number-Complement/</url>
+      <content type="html"><![CDATA[<p>Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.</p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The given integer is guaranteed to fit within the range of a 32-bit signed integer.</li>
+<li>You could assume no leading zero bit in the integer’s binary representation.</li>
+</ol>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: 5</div><div class="line">Output: 2</div><div class="line">Explanation: The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: 1</div><div class="line">Output: 0</div><div class="line">Explanation: The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>题目要求我们找到一个数的补码，我们首先要知道这个数是几位的二进制数；接下来要给这个二进制数加上一个掩码（Mask）以保证得到的二进制数在给定的位数范围内。一个数的补码就是这个数的取反+1，因此很容易得到结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> math</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findComplement</span><span class="params">(self, num)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type num: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            digit = int(math.log(num,<span class="number">2</span>)) + <span class="number">1</span></div><div class="line">            mask = <span class="number">2</span> ** digit - <span class="number">1</span></div><div class="line">            comp = (-num<span class="number">-1</span>) &amp; mask</div><div class="line">            <span class="keyword">return</span> comp</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Bit Manipulation </tag>
             
         </tags>
         
@@ -148,9 +218,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -180,9 +250,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -217,9 +287,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -294,11 +364,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -356,9 +426,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -417,9 +487,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Binary Search </tag>
             
@@ -445,9 +515,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -505,9 +575,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Heap </tag>
             
@@ -633,9 +703,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -660,9 +730,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -721,9 +791,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -751,9 +821,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -783,9 +853,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -974,9 +1044,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -1010,9 +1080,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1076,9 +1146,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1108,9 +1178,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1141,9 +1211,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -1197,9 +1267,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1369,9 +1439,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1398,9 +1468,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1529,9 +1599,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1568,9 +1638,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1632,9 +1702,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1735,9 +1805,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1769,9 +1839,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1822,11 +1892,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Array </tag>
             
             <tag> Easy </tag>
             
-            <tag> Array </tag>
+            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -1884,9 +1954,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1954,9 +2024,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Binary Search </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Binary Search </tag>
             
         </tags>
         
@@ -2019,11 +2089,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2075,11 +2145,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Hash Table </tag>
             
             <tag> Easy </tag>
             
-            <tag> Hash Table </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -2192,9 +2262,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2219,9 +2289,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2405,9 +2475,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2435,9 +2505,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2625,9 +2695,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Stack </tag>
             
@@ -2654,9 +2724,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -2686,9 +2756,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -2713,11 +2783,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Easy </tag>
             
             <tag> Math </tag>
             
-            <tag> Easy </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -2745,9 +2815,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -2780,9 +2850,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2812,9 +2882,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -2840,9 +2910,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2867,9 +2937,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2895,9 +2965,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -2951,9 +3021,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Stack </tag>
             
@@ -3007,9 +3077,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3033,9 +3103,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -3064,11 +3134,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -3094,9 +3164,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -3149,11 +3219,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
