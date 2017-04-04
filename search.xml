@@ -4,6 +4,78 @@
   
     
     <entry>
+      <title><![CDATA[494 Target Sum]]></title>
+      <url>http://wf94.github.io/2017/03/15/494-Target-Sum/</url>
+      <content type="html"><![CDATA[<p>You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols <code>+</code> and <code>-</code>. For each integer, you should choose one from <code>+</code> and <code>-</code> as its new symbol. </p>
+<p>Find out how many ways to assign symbols to make sum of integers equal to target S.   </p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Input: nums is [1, 1, 1, 1, 1], S is 3. </div><div class="line">Output: 5</div><div class="line">Explanation: </div><div class="line"></div><div class="line">-1+1+1+1+1 = 3</div><div class="line">+1-1+1+1+1 = 3</div><div class="line">+1+1-1+1+1 = 3</div><div class="line">+1+1+1-1+1 = 3</div><div class="line">+1+1+1+1-1 = 3</div><div class="line"></div><div class="line">There are 5 ways to assign symbols to make the sum of nums be target 3.</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The length of the given array is positive and will not exceed 20. </li>
+<li>The sum of elements in the given array will not exceed 1000.</li>
+<li>Your output answer is guaranteed to be fitted in a 32-bit integer.</li>
+</ol>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用动态规划解决问题。</p>
+<p>分析例子：有5个数，转化成前四个数与第五个数之和为3；则转化成前三个数与第四个数之和为2或者4；则转化为前两个数与第三个数之和为1,3,3或5。</p>
+<p>我们此时可以考虑用哈希表存储结果。直到数组遍历完全，问题可以得到解决。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span>    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTargetSumWays</span><span class="params">(self, nums, S)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type S: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        stats = &#123;&#125;</div><div class="line">        <span class="keyword">if</span>(len(nums)):</div><div class="line">            <span class="keyword">if</span> (len(nums) == <span class="number">1</span>):</div><div class="line">                <span class="keyword">if</span> (nums[<span class="number">0</span>] == S <span class="keyword">or</span> nums[<span class="number">0</span>] == -S):</div><div class="line">                    <span class="keyword">if</span> (nums[<span class="number">0</span>]):</div><div class="line">                        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        <span class="keyword">return</span> <span class="number">2</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">return</span> <span class="number">0</span></div><div class="line"></div><div class="line">            <span class="keyword">elif</span> (len(nums) &gt; <span class="number">1</span>):</div><div class="line">                <span class="keyword">if</span> (nums[<span class="number">0</span>]):</div><div class="line">                    stats[S-nums[<span class="number">0</span>]] = <span class="number">1</span></div><div class="line">                    stats[S+nums[<span class="number">0</span>]] = <span class="number">1</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    stats[S] = <span class="number">2</span></div><div class="line">                tmp = &#123;&#125;</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> nums[<span class="number">1</span>:]:</div><div class="line">                    <span class="keyword">for</span> j <span class="keyword">in</span> stats.keys():</div><div class="line">                        <span class="keyword">if</span> (tmp.has_key(j-i)):</div><div class="line">                            tmp[j-i] += stats[j]</div><div class="line">                        <span class="keyword">else</span>:</div><div class="line">                            tmp[j-i] = stats[j]</div><div class="line">                        </div><div class="line">                        <span class="keyword">if</span> (tmp.has_key(j+i)):</div><div class="line">                            tmp[j+i] += stats[j]</div><div class="line">                        <span class="keyword">else</span>:</div><div class="line">                            tmp[j+i] = stats[j]</div><div class="line">                    stats = tmp</div><div class="line">                    tmp = &#123;&#125;</div><div class="line">                <span class="keyword">if</span> (stats.has_key(<span class="number">0</span>)):</div><div class="line">                    <span class="keyword">return</span> stats[<span class="number">0</span>]</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<p>一开始我还是想用常规方式解决问题。</p>
+<p>先求和，如果需要改变数的符号，就是要减去这个数两次。如果可以找到所有元素之和，与待求元素之差的话，应该可以解决问题。</p>
+<p>实际上，如果遇到带0的元素，就会有困难，可能会陷入死循环当中。</p>
+<p>而且，还会出现重复累加的情况，选取的应为组合数；重复累加就会变成排列数，最后的结果总是会大一些。</p>
+<p>在做题的时候，我还不会利用DFS解决组合数的问题。这也是利用常规方法解决问题失败的原因之一。</p>
+<p>测试用例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[9,7,0,3,9,8,6,5,7,6]</div><div class="line">2</div></pre></td></tr></table></figure>
+<p>参考资料：</p>
+<p><a href="http://blog.csdn.net/woshioosm/article/details/7438834" target="_blank" rel="external">http://blog.csdn.net/woshioosm/article/details/7438834</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> DFS </tag>
+            
+            <tag> Dynamic Programming </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[492 Construct the Rectangle]]></title>
+      <url>http://wf94.github.io/2017/03/14/492-Construct-the-Rectangle/</url>
+      <content type="html"><![CDATA[<p>For a web developer, it is very important to know how to design a web page’s size. So, given a specific rectangular web page’s area, your job by now is to design a rectangular web page, whose length L and width W satisfy the following requirements:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1. The area of the rectangular web page you designed must equal to the given target area.</div><div class="line"></div><div class="line">2. The width W should not be larger than the length L, which means L &gt;= W.</div><div class="line"></div><div class="line">3. The difference between length L and width W should be as small as possible.</div></pre></td></tr></table></figure>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: 4</div><div class="line">Output: [2, 2]</div><div class="line">Explanation: The target area is 4, and all the possible ways to construct it are [1,4], [2,2], [4,1]. </div><div class="line">But according to requirement 2, [1,4] is illegal; according to requirement 3,  [4,1] is not optimal compared to [2,2]. So the length L is 2, and the width W is 2.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>我们需要构建一个最小面积的矩形。周长一定，矩形越接近正方形，面积越大。构建一个符合题意的矩形就可以了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> math</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">constructRectangle</span><span class="params">(self, area)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type area: int</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        width = int(math.sqrt(area))</div><div class="line">        length = <span class="number">0</span></div><div class="line">        ans = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(width, <span class="number">0</span>, <span class="number">-1</span>):</div><div class="line">            <span class="keyword">if</span> (area % i == <span class="number">0</span>):</div><div class="line">                length = area / i</div><div class="line">                width = i</div><div class="line">                <span class="keyword">break</span></div><div class="line">            </div><div class="line">        ans.append(length)</div><div class="line">        ans.append(width)</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[491 Increasing Subsequences]]></title>
       <url>http://wf94.github.io/2017/03/13/491-Increasing-Subsequences/</url>
       <content type="html"><![CDATA[<p>Given an integer array, your task is to find all the different possible increasing subsequences of the given array, and the length of an increasing subsequence should be at least 2 . </p>
@@ -388,9 +460,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -502,11 +574,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -1218,9 +1290,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1349,9 +1421,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -1606,9 +1678,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2162,9 +2234,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Binary Search </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -2704,9 +2776,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -2802,9 +2874,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -2923,9 +2995,9 @@
             
             <tag> Easy </tag>
             
-            <tag> String </tag>
-            
             <tag> Math </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -2992,9 +3064,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Dynamic Programming </tag>
-            
             <tag> Divide and Conquer </tag>
+            
+            <tag> Dynamic Programming </tag>
             
         </tags>
         
@@ -3272,11 +3344,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
