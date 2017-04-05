@@ -4,6 +4,40 @@
   
     
     <entry>
+      <title><![CDATA[495 Teemo Attacking]]></title>
+      <url>http://wf94.github.io/2017/03/16/495-Teemo-Attacking/</url>
+      <content type="html"><![CDATA[<p>In LLP world, there is a hero called Teemo and his attacking can make his enemy Ashe be in poisoned condition. Now, given the Teemo’s attacking <strong>ascending</strong> time series towards Ashe and the poisoning time duration per Teemo’s attacking, you need to output the total time that Ashe is in poisoned condition. </p>
+<p>You may assume that Teemo attacks at the very beginning of a specific time point, and makes Ashe be in poisoned condition immediately.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [1,4], 2</div><div class="line">Output: 4</div><div class="line">Explanation: At time point 1, Teemo starts attacking Ashe and makes Ashe be poisoned immediately. </div><div class="line">This poisoned status will last 2 seconds until the end of time point 2. </div><div class="line">And at time point 4, Teemo attacks Ashe again, and causes Ashe to be in poisoned status for another 2 seconds. </div><div class="line">So you finally need to output 4.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Input: [1,2], 2</div><div class="line">Output: 3</div><div class="line">Explanation: At time point 1, Teemo starts attacking Ashe and makes Ashe be poisoned. </div><div class="line">This poisoned status will last 2 seconds until the end of time point 2. </div><div class="line">However, at the beginning of time point 2, Teemo attacks Ashe again who is already in poisoned status. </div><div class="line">Since the poisoned status won&apos;t add up together, though the second poisoning attack will still work at time point 2, it will stop at the end of time point 3. </div><div class="line">So you finally need to output 3.</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>You may assume the length of given time series array won’t exceed 10000.</li>
+<li>You may assume the numbers in the Teemo’s attacking time series and his poisoning time duration per attacking are non-negative integers, which won’t exceed 10,000,000.</li>
+</ol>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>我们可以利用额外的数组空间来储存冷却时间；当然也可以将冷却时间存在一个单独的int变量里面。用额外的数组存储的话相对比较简单，我们只需要记住时间序列之间的差值，并逐一对比即可。如果要用单个变量存储，需要每次都比较差值与duration的关系，即倒数2-5行所做的工作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findPoisonedDuration</span><span class="params">(self, timeSeries, duration)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type timeSeries: List[int]</div><div class="line">        :type duration: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        times = []</div><div class="line">        length = len(timeSeries)</div><div class="line">        <span class="keyword">if</span> (length):</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(length<span class="number">-1</span>):</div><div class="line">                times.append(timeSeries[i+<span class="number">1</span>] - timeSeries[i])</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        ans = <span class="number">0</span></div><div class="line"></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> times:</div><div class="line">            <span class="keyword">if</span> (i &gt;= duration):</div><div class="line">                ans += duration</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                ans += i</div><div class="line">        <span class="keyword">return</span> ans + duration</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Array </tag>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[494 Target Sum]]></title>
       <url>http://wf94.github.io/2017/03/15/494-Target-Sum/</url>
       <content type="html"><![CDATA[<p>You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols <code>+</code> and <code>-</code>. For each integer, you should choose one from <code>+</code> and <code>-</code> as its new symbol. </p>
@@ -42,9 +76,9 @@
             
             <tag> Medium </tag>
             
-            <tag> DFS </tag>
-            
             <tag> Dynamic Programming </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -2234,9 +2268,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Binary Search </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Binary Search </tag>
             
         </tags>
         
@@ -3064,9 +3098,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Divide and Conquer </tag>
-            
             <tag> Dynamic Programming </tag>
+            
+            <tag> Divide and Conquer </tag>
             
         </tags>
         
