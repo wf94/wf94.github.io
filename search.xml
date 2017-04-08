@@ -4,6 +4,34 @@
   
     
     <entry>
+      <title><![CDATA[498 Diagonal Traverse]]></title>
+      <url>http://wf94.github.io/2017/03/18/498-Diagonal-Travers/</url>
+      <content type="html"><![CDATA[<p>Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in the below image.  </p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">[</div><div class="line"> [ 1, 2, 3 ],</div><div class="line"> [ 4, 5, 6 ],</div><div class="line"> [ 7, 8, 9 ]</div><div class="line">]</div><div class="line">Output:  [1,2,4,7,5,3,6,8,9]</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The total number of elements of the given matrix will not exceed 10,000.</li>
+</ol>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>直接按照题目给的顺序来进行访问，时间复杂度是O(n)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDiagonalOrder</span><span class="params">(self, matrix)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type matrix: List[List[int]]</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        x = <span class="number">0</span></div><div class="line">        y = <span class="number">1</span></div><div class="line">        res = []</div><div class="line">        vertical = len(matrix)</div><div class="line">        horizontal = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> (vertical):</div><div class="line">            horizontal = len(matrix[<span class="number">0</span>])</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (horizontal &gt; <span class="number">1</span> <span class="keyword">and</span> vertical &gt; <span class="number">1</span>):</div><div class="line">            res.append(matrix[<span class="number">0</span>][<span class="number">0</span>])</div><div class="line">            forward = <span class="keyword">False</span></div><div class="line">            downward = <span class="keyword">True</span></div><div class="line">            upward = <span class="keyword">False</span></div><div class="line">            count = <span class="number">0</span></div><div class="line">            <span class="keyword">while</span>( x &lt; vertical - <span class="number">1</span> <span class="keyword">or</span> y &lt; horizontal - <span class="number">1</span> ):</div><div class="line">                res.append(matrix[x][y])</div><div class="line">                </div><div class="line">                <span class="keyword">if</span> (forward):</div><div class="line">                    <span class="keyword">if</span> ( x &lt; vertical<span class="number">-1</span> <span class="keyword">and</span> y == <span class="number">0</span> ):</div><div class="line">                        x += <span class="number">1</span></div><div class="line">                        upward = <span class="keyword">True</span></div><div class="line">                        forward = <span class="keyword">False</span></div><div class="line">                    <span class="keyword">elif</span> (x &lt; vertical<span class="number">-1</span> <span class="keyword">and</span> y == horizontal - <span class="number">1</span>):</div><div class="line">                        x += <span class="number">1</span></div><div class="line">                        downward = <span class="keyword">True</span></div><div class="line">                        forward = <span class="keyword">False</span></div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        <span class="keyword">if</span> (x == <span class="number">0</span>):</div><div class="line">                            y += <span class="number">1</span></div><div class="line">                            downward = <span class="keyword">True</span></div><div class="line">                            forward = <span class="keyword">False</span></div><div class="line">                        <span class="keyword">elif</span> (x == vertical <span class="number">-1</span>):</div><div class="line">                            y += <span class="number">1</span></div><div class="line">                            upward = <span class="keyword">True</span></div><div class="line">                            forward = <span class="keyword">False</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">if</span> (upward):</div><div class="line">                        x -= <span class="number">1</span></div><div class="line">                        y += <span class="number">1</span></div><div class="line">                        <span class="keyword">if</span> (x == <span class="number">0</span> <span class="keyword">or</span> y == horizontal - <span class="number">1</span>):</div><div class="line">                            upward = <span class="keyword">False</span></div><div class="line">                            forward = <span class="keyword">True</span></div><div class="line">                    </div><div class="line">                    <span class="keyword">if</span> (downward):</div><div class="line">                        x += <span class="number">1</span></div><div class="line">                        y -= <span class="number">1</span></div><div class="line">                        <span class="keyword">if</span> (x == vertical - <span class="number">1</span> <span class="keyword">or</span> y == <span class="number">0</span>):</div><div class="line">                            downward = <span class="keyword">False</span></div><div class="line">                            forward = <span class="keyword">True</span></div><div class="line">            </div><div class="line">            <span class="keyword">if</span> (x == vertical - <span class="number">1</span> <span class="keyword">and</span> y == horizontal - <span class="number">1</span>):</div><div class="line">                res.append(matrix[x][y])</div><div class="line">        </div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">if</span> (horizontal == <span class="number">1</span>):</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> matrix:</div><div class="line">                    res.append(i[<span class="number">0</span>])</div><div class="line">            <span class="keyword">elif</span>(vertical == <span class="number">1</span>):</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> matrix[<span class="number">0</span>]:</div><div class="line">                    res.append(i)</div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[496 Next Greater Element I]]></title>
       <url>http://wf94.github.io/2017/03/17/496-Next-Greater-Element-I/</url>
       <content type="html"><![CDATA[<p>You are given two arrays <strong>(without duplicates)</strong> <code>nums1</code> and <code>nums2</code> where <code>nums1</code>’s elements are subset of <code>nums2</code>. Find all the next greater numbers for <code>nums1</code>‘s elements in the corresponding places of <code>nums2</code>.  </p>
@@ -63,9 +91,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -205,9 +233,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -496,9 +524,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -528,9 +556,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -565,9 +593,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Backtracking </tag>
             
@@ -642,11 +670,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -704,9 +732,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -765,9 +793,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Binary Search </tag>
             
@@ -793,9 +821,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -853,9 +881,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Heap </tag>
             
@@ -981,9 +1009,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1008,9 +1036,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1069,9 +1097,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1099,9 +1127,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -1131,9 +1159,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1322,9 +1350,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1358,9 +1386,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1424,9 +1452,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1456,9 +1484,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1489,9 +1517,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -1545,9 +1573,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1717,9 +1745,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1746,9 +1774,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1877,9 +1905,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1916,9 +1944,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1980,9 +2008,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2083,9 +2111,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -2117,9 +2145,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -2170,11 +2198,11 @@
         
         <tags>
             
-            <tag> Array </tag>
+            <tag> Math </tag>
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
+            <tag> Array </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -2232,9 +2260,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2302,9 +2330,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Binary Search </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -2367,11 +2395,11 @@
         
         <tags>
             
+            <tag> Easy </tag>
+            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
-            
-            <tag> Easy </tag>
             
         </tags>
         
@@ -2423,11 +2451,11 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
+            <tag> Math </tag>
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -2540,9 +2568,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2567,9 +2595,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2666,9 +2694,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Stack </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -2753,9 +2781,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2783,9 +2811,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2973,13 +3001,13 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
+            <tag> Hash Table </tag>
             
             <tag> Stack </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -3002,9 +3030,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Two Pointers </tag>
             
@@ -3034,9 +3062,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -3061,11 +3089,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
+            <tag> String </tag>
             
             <tag> Math </tag>
             
-            <tag> String </tag>
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3093,9 +3121,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3128,9 +3156,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -3160,9 +3188,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3188,9 +3216,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -3215,9 +3243,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -3243,9 +3271,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3299,9 +3327,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Stack </tag>
             
@@ -3355,9 +3383,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3381,9 +3409,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3412,11 +3440,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -3442,9 +3470,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3497,11 +3525,11 @@
         
         <tags>
             
+            <tag> Easy </tag>
+            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
-            
-            <tag> Easy </tag>
             
         </tags>
         
