@@ -4,6 +4,76 @@
   
     
     <entry>
+      <title><![CDATA[501 Find Mode in Binary Search Tree]]></title>
+      <url>http://wf94.github.io/2017/03/20/501-Find-Mode-in-Binary-Search-Tree/</url>
+      <content type="html"><![CDATA[<p>Given a binary search tree (BST) with duplicates, find all the <a href="https://en.wikipedia.org/wiki/Mode_(statistics" target="_blank" rel="external">mode(s)</a>) (the most frequently occurred element) in the given BST.</p>
+<p>Assume a BST is defined as follows: </p>
+<ul>
+<li>The left subtree of a node contains only nodes with keys <strong>less than or equal to</strong> the node’s key.</li>
+<li>The right subtree of a node contains only nodes with keys <strong>greater than or equal to</strong> the node’s key.</li>
+<li>Both the left and right subtrees must also be binary search trees.</li>
+</ul>
+<p>For example:<br> Given BST <code>[1,null,2,2]</code>,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line"> \</div><div class="line">  2</div><div class="line"> /</div><div class="line">2</div></pre></td></tr></table></figure>
+<p>return <code>[2]</code>. </p>
+<p><strong>Note:</strong> If a tree has more than one mode, you can return them in any order. </p>
+<p><strong>Follow up:</strong> Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does not count). </p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>如果利用额外的存储空间，只需要遍历二叉搜索树即可；利用哈希表对字符出现的个数进行统计。</p>
+<p>如果严格利用O(1)的存储空间，需要遍历两次二叉树；第一次找到众数(mode)的数字，第二次找到符合众数个数的字符。而且如果采用非递归的方法会更佳。这里可以利用[<strong>Morris Traversal</strong>][<a href="http://www.cnblogs.com/AnnieKim/archive/2013/06/15/MorrisTraversal.html]的方法来实现。" target="_blank" rel="external">http://www.cnblogs.com/AnnieKim/archive/2013/06/15/MorrisTraversal.html]的方法来实现。</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMode</span><span class="params">(self, root)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type root: TreeNode</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        result = []</div><div class="line">        count = &#123;&#125;</div><div class="line">        <span class="keyword">if</span> (root):</div><div class="line">            self.helper(root, count)</div><div class="line">            maxval = max(count.values())</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            maxval = <span class="number">0</span></div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> count:</div><div class="line">            <span class="keyword">if</span> count[i] == maxval:</div><div class="line">                result.append(i)</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, count)</span>:</span></div><div class="line">        <span class="keyword">if</span> count.has_key(root.val):</div><div class="line">            count[root.val] += <span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            count[root.val] = <span class="number">1</span></div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (root.left):</div><div class="line">            self.helper(root.left, count)</div><div class="line">        <span class="keyword">if</span> (root.right):</div><div class="line">            self.helper(root.right, count)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> count</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+            <tag> Tree </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[500 Keyboard Row]]></title>
+      <url>http://wf94.github.io/2017/03/19/500-Keyboard-Row/</url>
+      <content type="html"><![CDATA[<p>Given a List of words, return the words that can be typed using letters of <strong>alphabet</strong> on only one row’s of American keyboard like the image below. </p>
+<p><img src="https://leetcode.com/static/images/problemset/keyboard.png" alt="American keyboard"> </p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: [&quot;Hello&quot;, &quot;Alaska&quot;, &quot;Dad&quot;, &quot;Peace&quot;]</div><div class="line">Output: [&quot;Alaska&quot;, &quot;Dad&quot;]</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><p>You may use one character in the keyboard more than once.</p>
+</li>
+<li><p>You may assume the input string will only contain letters of alphabet.</p>
+</li>
+</ol>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>想办法利用简单的数组存储，模仿哈希表，判断一个单词是不是一行键盘就能打出来的【符合题意】。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findWords</span><span class="params">(self, words)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type words: List[str]</div><div class="line">        :rtype: List[str]</div><div class="line">        """</div><div class="line">        ans = []</div><div class="line">        row = [<span class="string">"QWERTYUIOPqwertyuiop"</span>, <span class="string">"ASDFGHJKLasdfghjkl"</span>, <span class="string">"ZXCVBNMzxcvbnm"</span>]</div><div class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">            append = <span class="keyword">True</span></div><div class="line">            <span class="keyword">if</span> (word[<span class="number">0</span>] <span class="keyword">in</span> row[<span class="number">0</span>]):</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> word:</div><div class="line">                    <span class="keyword">if</span> (i <span class="keyword">not</span> <span class="keyword">in</span> row[<span class="number">0</span>]):</div><div class="line">                        append = <span class="keyword">False</span></div><div class="line">                        <span class="keyword">break</span></div><div class="line">                </div><div class="line">            <span class="keyword">elif</span> (word[<span class="number">0</span>] <span class="keyword">in</span> row[<span class="number">1</span>]):</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> word:</div><div class="line">                    <span class="keyword">if</span> (i <span class="keyword">not</span> <span class="keyword">in</span> row[<span class="number">1</span>]):</div><div class="line">                        append = <span class="keyword">False</span></div><div class="line">                        <span class="keyword">break</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> word:</div><div class="line">                    <span class="keyword">if</span> (i <span class="keyword">not</span> <span class="keyword">in</span> row[<span class="number">2</span>]):</div><div class="line">                        append = <span class="keyword">False</span></div><div class="line">                        <span class="keyword">break</span></div><div class="line">            <span class="keyword">if</span> (append):</div><div class="line">                ans.append(word)</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[498 Diagonal Traverse]]></title>
       <url>http://wf94.github.io/2017/03/18/498-Diagonal-Travers/</url>
       <content type="html"><![CDATA[<p>Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in the below image.  </p>
@@ -556,9 +626,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -670,11 +740,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1386,9 +1456,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1517,9 +1587,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -1774,9 +1844,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2330,9 +2400,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Binary Search </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Binary Search </tag>
             
         </tags>
         
@@ -2872,9 +2942,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -2970,9 +3040,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -3091,9 +3161,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -3440,11 +3510,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
