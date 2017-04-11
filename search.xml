@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title><![CDATA[503 Next Greater ElementII]]></title>
+      <url>http://wf94.github.io/2017/03/21/503-Next-Greater-ElementII/</url>
+      <content type="html"><![CDATA[<p>Given a circular array (the next element of the last element is the first element of the array), print the Next Greater Number for every element. The Next Greater Number of a number x is the first greater number to its traversing-order next in the array, which means you could search circularly to find its next greater number. If it doesn’t exist, output -1 for this number. </p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: [1,2,1]</div><div class="line">Output: [2,-1,2]</div><div class="line">Explanation: The first 1&apos;s next greater number is 2; </div><div class="line">The number 2 can&apos;t find next greater number; </div><div class="line">The second 1&apos;s next greater number needs to search circularly, which is also 2.</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong> The length of given array won’t exceed 10000. </p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>最开始以为O(n^2)的方法是可以使用的，但是不巧，这个答案是超时的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nextGreaterElements</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        res = []</div><div class="line">        <span class="keyword">for</span> i, cur <span class="keyword">in</span> enumerate(nums):</div><div class="line">            hasFound = <span class="keyword">False</span></div><div class="line">            <span class="keyword">for</span> j, big <span class="keyword">in</span> enumerate(nums[i:]):</div><div class="line">                <span class="keyword">if</span> (cur &lt; big):</div><div class="line">                    res.append(big)</div><div class="line">                    hasFound = <span class="keyword">True</span></div><div class="line">                    <span class="keyword">break</span></div><div class="line">            <span class="keyword">if</span> (hasFound):</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            <span class="keyword">for</span> j, big <span class="keyword">in</span> enumerate(nums[:i]):</div><div class="line">                <span class="keyword">if</span> (cur &lt; big):</div><div class="line">                    res.append(big)</div><div class="line">                    hasFound = <span class="keyword">True</span></div><div class="line">                    <span class="keyword">break</span></div><div class="line">            <span class="keyword">if</span> (hasFound):</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                res.append(<span class="number">-1</span>)</div><div class="line">            </div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
+<p>接下来试一下stack的方法。基本的思路就是将所有的元素按照一定规律入栈和出栈，参见496题的基本方法。</p>
+<p>首先要确定，这是一个循环的list，所以做两次O(n)的循环比较妥当。这样list尾部的元素还有机会和list头部的元素来进行比较。</p>
+<p>其次，stack里面存放的应该是nums里面的元素index，每一个元素都需要入一次栈，和之后的元素进行比较。要注意的是，如果栈里面存有元素，那说明栈里面的元素后一个应当是大于前一个的。所以在出栈的时候，需要利用循环来判断最新访问的元素nums[index]是否大于栈里面的所有元素。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nextGreaterElements</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        length = len(nums)</div><div class="line">        res = []</div><div class="line">        stack = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</div><div class="line">            res.append(<span class="number">-1</span>)</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span> * length):</div><div class="line">            index = i % length</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (stack):</div><div class="line">                <span class="keyword">while</span> (nums[stack[<span class="number">-1</span>]] &lt; nums[index]):</div><div class="line">                    res[stack[<span class="number">-1</span>]] = nums[index]</div><div class="line">                    stack.pop()</div><div class="line">                    <span class="keyword">if</span> (<span class="keyword">not</span> stack):</div><div class="line">                        <span class="keyword">break</span></div><div class="line">            <span class="keyword">if</span> (i &lt; length):</div><div class="line">                stack.append(i)</div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Stack </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[501 Find Mode in Binary Search Tree]]></title>
       <url>http://wf94.github.io/2017/03/20/501-Find-Mode-in-Binary-Search-Tree/</url>
       <content type="html"><![CDATA[<p>Given a binary search tree (BST) with duplicates, find all the <a href="https://en.wikipedia.org/wiki/Mode_(statistics" target="_blank" rel="external">mode(s)</a>) (the most frequently occurred element) in the given BST.</p>
@@ -19,7 +50,7 @@
 <p><strong>Note:</strong> If a tree has more than one mode, you can return them in any order. </p>
 <p><strong>Follow up:</strong> Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does not count). </p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>如果利用额外的存储空间，只需要遍历二叉搜索树即可；利用哈希表对字符出现的个数进行统计。</p>
-<p>如果严格利用O(1)的存储空间，需要遍历两次二叉树；第一次找到众数(mode)的数字，第二次找到符合众数个数的字符。而且如果采用非递归的方法会更佳。这里可以利用[<strong>Morris Traversal</strong>][<a href="http://www.cnblogs.com/AnnieKim/archive/2013/06/15/MorrisTraversal.html]的方法来实现。" target="_blank" rel="external">http://www.cnblogs.com/AnnieKim/archive/2013/06/15/MorrisTraversal.html]的方法来实现。</a></p>
+<p>如果严格利用O(1)的存储空间，需要遍历两次二叉树；第一次找到众数(mode)的数字，第二次找到符合众数个数的字符。而且如果采用非递归的方法会更佳。这里可以利用[Morris Traversal][<a href="http://www.cnblogs.com/AnnieKim/archive/2013/06/15/MorrisTraversal.html]的方法来实现。" target="_blank" rel="external">http://www.cnblogs.com/AnnieKim/archive/2013/06/15/MorrisTraversal.html]的方法来实现。</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMode</span><span class="params">(self, root)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type root: TreeNode</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        result = []</div><div class="line">        count = &#123;&#125;</div><div class="line">        <span class="keyword">if</span> (root):</div><div class="line">            self.helper(root, count)</div><div class="line">            maxval = max(count.values())</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            maxval = <span class="number">0</span></div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> count:</div><div class="line">            <span class="keyword">if</span> count[i] == maxval:</div><div class="line">                result.append(i)</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, count)</span>:</span></div><div class="line">        <span class="keyword">if</span> count.has_key(root.val):</div><div class="line">            count[root.val] += <span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            count[root.val] = <span class="number">1</span></div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (root.left):</div><div class="line">            self.helper(root.left, count)</div><div class="line">        <span class="keyword">if</span> (root.right):</div><div class="line">            self.helper(root.right, count)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> count</div></pre></td></tr></table></figure>]]></content>
       
         <categories>
@@ -115,7 +146,9 @@
 <li>All elements in <code>nums1</code> and <code>nums2</code> are unique.</li>
 <li>The length of both <code>nums1</code> and <code>nums2</code> would not exceed 1000.</li>
 </ol>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用栈的方法，可以满足题意。<br>由于没有重复，可以用map来一一对应。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用栈的方法，可以满足题意。</p>
+<p>因为如果一个数组的元素是递减的，这些递减的元素都不可能互为“Next Greater Element”。直到有一个递增的元素，才能满足题意。我们拿到这个递增的元素，不断地和栈顶的元素进行比较，直到该元素比栈顶元素小为止。出栈的这些元素的“Next Greater Element”，就是这个递增的元素的值。</p>
+<p>由于没有重复，可以用map来一一对应。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nextGreaterElement</span><span class="params">(self, findNums, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type findNums: List[int]</div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        resultmap = &#123;&#125;</div><div class="line">        tmpelem = [<span class="number">-1</span>]</div><div class="line">        <span class="keyword">while</span> (nums):</div><div class="line">            tmp = nums.pop()</div><div class="line">            <span class="keyword">if</span> (nums):</div><div class="line">                <span class="keyword">if</span> (nums[<span class="number">-1</span>] &lt; tmp):</div><div class="line">                    tmpelem.append(tmp)</div><div class="line">            </div><div class="line">            resultmap[tmp] = <span class="number">-1</span></div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> tmpelem:</div><div class="line">                <span class="keyword">if</span> (tmp &lt; i):</div><div class="line">                    resultmap[tmp] = i</div><div class="line">        </div><div class="line">        result = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> findNums:</div><div class="line">            result.append(resultmap[i])</div><div class="line">            </div><div class="line">        <span class="keyword">return</span> result</div></pre></td></tr></table></figure>]]></content>
       
         <categories>
@@ -161,9 +194,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -626,9 +659,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -663,9 +696,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -740,11 +773,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -802,9 +835,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -863,9 +896,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Binary Search </tag>
             
@@ -891,9 +924,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -951,9 +984,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Heap </tag>
             
@@ -1167,9 +1200,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1197,9 +1230,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -1420,9 +1453,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -1456,9 +1489,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1522,9 +1555,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1587,9 +1620,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -1815,9 +1848,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1844,9 +1877,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2014,9 +2047,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Two Pointers </tag>
             
@@ -2078,9 +2111,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2268,11 +2301,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Array </tag>
             
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -2330,9 +2363,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2400,9 +2433,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Binary Search </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Binary Search </tag>
             
         </tags>
         
@@ -2521,11 +2554,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Hash Table </tag>
             
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2665,9 +2698,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2942,9 +2975,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -3040,9 +3073,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -3071,9 +3104,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Stack </tag>
             
@@ -3132,9 +3165,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -3159,11 +3192,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Easy </tag>
             
             <tag> String </tag>
             
-            <tag> Easy </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -3191,9 +3224,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3258,9 +3291,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3286,9 +3319,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3341,9 +3374,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3397,9 +3430,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Stack </tag>
             
@@ -3453,9 +3486,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3479,9 +3512,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -3510,11 +3543,11 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
             
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -3540,9 +3573,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
