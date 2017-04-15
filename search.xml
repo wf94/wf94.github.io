@@ -30,6 +30,38 @@
     </entry>
     
     <entry>
+      <title><![CDATA[508 Most Frequent Subtree Sum]]></title>
+      <url>http://wf94.github.io/2017/03/24/508-Most-Frequent-Subtree-Sum/</url>
+      <content type="html"><![CDATA[<p>Given the root of a tree, you are asked to find the most frequent subtree sum. The subtree sum of a node is defined as the sum of all the node values formed by the subtree rooted at that node (including the node itself). So what is the most frequent subtree sum value? If there is a tie, return all the values with the highest frequency in any order. </p>
+<p><strong>Examples 1</strong><br> Input: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">  5</div><div class="line"> /  \</div><div class="line">2   -3</div></pre></td></tr></table></figure>
+<p><strong>Examples 2</strong><br> Input: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">  5</div><div class="line"> /  \</div><div class="line">2   -5</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong> You may assume the sum of values in any subtree is in the range of 32-bit signed integer. </p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>最下方的sum函数的作用就是递归地求出该节点下子树的和。居然在这个地方卡了很久【捂脸】</p>
+<p>接下来，我们从根节点开始进行递归，求出每一个节点的子树和。我们把每一个节点的和它的子树和当作一个键值对，放进哈希表当中，从而可以统计出题意所需的众数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findFrequentTreeSum</span><span class="params">(self, root)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type root: TreeNode</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> (root):</div><div class="line">            sums = []</div><div class="line">            self.helper(root, sums)</div><div class="line">            count = &#123;&#125;</div><div class="line">            <span class="keyword">for</span> s <span class="keyword">in</span> sums:</div><div class="line">                <span class="keyword">if</span> count.has_key(s):</div><div class="line">                    count[s] += <span class="number">1</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    count[s] = <span class="number">1</span></div><div class="line">            </div><div class="line">            maximum = max(count.values())</div><div class="line">            </div><div class="line">            ans = []</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> count:</div><div class="line">                <span class="keyword">if</span> (count[i] == maximum):</div><div class="line">                    ans.append(i)</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> ans</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> []</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, sums)</span>:</span></div><div class="line">        sums.append(self.sumtree(root))</div><div class="line">        <span class="keyword">if</span> (root.left):</div><div class="line">            self.helper(root.left, sums)</div><div class="line">        <span class="keyword">if</span> (root.right):</div><div class="line">            self.helper(root.right, sums)</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumtree</span><span class="params">(self, root)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> self.sumtree(root.right) + self.sumtree(root.left) + root.val</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
+            
+            <tag> Tree </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[506 Relative Ranks]]></title>
       <url>http://wf94.github.io/2017/03/23/506-Relative-Ranks/</url>
       <content type="html"><![CDATA[<p>Given scores of <strong>N</strong> athletes, find their relative ranks and the people with the top three highest scores, who will be awarded medals: “Gold Medal”, “Silver Medal” and “Bronze Medal”.</p>
@@ -743,9 +775,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -782,9 +814,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Backtracking </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Backtracking </tag>
             
         </tags>
         
@@ -857,11 +889,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -1573,9 +1605,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1704,9 +1736,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -1961,9 +1993,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2094,9 +2126,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Two Pointers </tag>
             
             <tag> Binary Search </tag>
             
@@ -2517,9 +2549,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Binary Search </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -2584,9 +2616,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Hash Table </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -2881,9 +2913,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Stack </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -3192,9 +3224,9 @@
             
             <tag> Hash Table </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Stack </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -3219,9 +3251,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -3276,9 +3308,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Math </tag>
+            
+            <tag> String </tag>
             
             <tag> Easy </tag>
             
@@ -3627,11 +3659,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -3714,9 +3746,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Hash Table </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
