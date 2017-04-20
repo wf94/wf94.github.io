@@ -30,6 +30,36 @@
     </entry>
     
     <entry>
+      <title><![CDATA[002 Add Two Numbers]]></title>
+      <url>http://wf94.github.io/2017/03/29/002-Add-Two-Numbers/</url>
+      <content type="html"><![CDATA[<p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<p><strong>Input:</strong> (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br><strong>Output:</strong> 7 -&gt; 0 -&gt; 8</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这道题不需要非常复杂的思考，但是需要判断多个边界条件。尤其是加到最后，只剩一个链表可以操作，应该如何处理。可以看看后面参考资料给出的代码，简洁明了，不知道比我高到哪儿去了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</div><div class="line">        ListNode root = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</div><div class="line">        ListNode cur = root;</div><div class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</div><div class="line">        ListNode remain = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</div><div class="line">            <span class="keyword">int</span> tmp = <span class="number">0</span>;</div><div class="line">          	<span class="comment">//需要注意前一个数的进位</span></div><div class="line">            <span class="keyword">if</span>(remain == <span class="keyword">null</span>) tmp = l1.val + l2.val + carry;</div><div class="line">            <span class="keyword">else</span> tmp = remain.val + carry;</div><div class="line">            <span class="keyword">if</span>(tmp &gt;= <span class="number">10</span>)&#123;</div><div class="line">                tmp -= <span class="number">10</span>;</div><div class="line">                carry = <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> carry = <span class="number">0</span>;</div><div class="line">            cur.val = tmp;</div><div class="line">            ListNode next_node = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</div><div class="line">          	<span class="comment">//如果被加数和加数都存在，直接将两个链表的数相加</span></div><div class="line">            <span class="keyword">if</span>(remain == <span class="keyword">null</span>)&#123;</div><div class="line">                <span class="keyword">if</span>(l1.next != <span class="keyword">null</span> &amp;&amp; l2.next != <span class="keyword">null</span>)&#123;</div><div class="line">                    l1 = l1.next;</div><div class="line">                    l2 = l2.next;</div><div class="line">                    cur.next = next_node;</div><div class="line">                    cur = cur.next;</div><div class="line">                &#125;</div><div class="line">              	<span class="comment">//走到了某一个链表的尾部</span></div><div class="line">                <span class="keyword">else</span>&#123;</div><div class="line">                    <span class="keyword">if</span>(l1.next == <span class="keyword">null</span> &amp;&amp; l2.next == <span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(l1.next == <span class="keyword">null</span> &amp;&amp; l2.next != <span class="keyword">null</span>) &#123;</div><div class="line">                        remain = l2.next;</div><div class="line">                        cur.next = next_node;</div><div class="line">                        cur = cur.next;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(l1.next != <span class="keyword">null</span> &amp;&amp; l2.next == <span class="keyword">null</span>) &#123;</div><div class="line">                        remain = l1.next;</div><div class="line">                        cur.next = next_node;</div><div class="line">                        cur = cur.next;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//把链表的剩下部分加上</span></div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">if</span>(remain.next != <span class="keyword">null</span>) &#123;</div><div class="line">                    remain = remain.next;</div><div class="line">                    cur.next = next_node;</div><div class="line">                    cur = cur.next;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//加到最后仍然有进位，把这个数给加上</span></div><div class="line">        <span class="keyword">if</span>(carry == <span class="number">1</span>)&#123;</div><div class="line">            ListNode next_node = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</div><div class="line">            cur.next = next_node;</div><div class="line">            cur = cur.next;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考资料：<a href="https://discuss.leetcode.com/topic/39130/4ms-11lines-java-solution" target="_blank" rel="external">https://discuss.leetcode.com/topic/39130/4ms-11lines-java-solution</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Linked List </tag>
+            
+            <tag> Math </tag>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[526 Beautiful Arrangement]]></title>
       <url>http://wf94.github.io/2017/03/28/526-Beautiful-Arrangement/</url>
       <content type="html"><![CDATA[<p>Suppose you have <strong>N</strong> integers from 1 to N. We define a beautiful arrangement as an array that is constructed by these <strong>N</strong> numbers successfully if one of the following is true for the ith position (1 ≤ i ≤ N) in this array: </p>
@@ -129,9 +159,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
             <tag> LeetCode </tag>
             
@@ -164,9 +194,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -918,9 +948,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -999,9 +1029,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
             <tag> Backtracking </tag>
             
@@ -1032,11 +1062,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -1183,9 +1213,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1428,9 +1458,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1489,9 +1519,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -1748,9 +1778,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1814,9 +1844,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1879,9 +1909,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2107,9 +2137,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2136,9 +2166,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2370,9 +2400,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2560,11 +2590,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> Array </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -2652,9 +2682,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -2692,9 +2722,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Binary Search </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Binary Search </tag>
             
         </tags>
         
@@ -2813,11 +2843,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> Hash Table </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -2841,9 +2871,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2957,9 +2987,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2987,9 +3017,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3023,9 +3053,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3056,9 +3086,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Stack </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -3085,9 +3115,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -3234,9 +3264,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -3332,9 +3362,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -3367,9 +3397,9 @@
             
             <tag> Hash Table </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Stack </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -3424,9 +3454,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -3451,11 +3481,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -3662,9 +3692,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3718,9 +3748,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -3771,9 +3801,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3802,11 +3832,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -3832,9 +3862,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3861,9 +3891,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
