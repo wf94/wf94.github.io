@@ -30,6 +30,34 @@
     </entry>
     
     <entry>
+      <title><![CDATA[048 Rotate Image]]></title>
+      <url>http://wf94.github.io/2017/04/01/048-Rotate-Image/</url>
+      <content type="html"><![CDATA[<p>You are given an <em>n</em> x <em>n</em> 2D matrix representing an image.</p>
+<p>Rotate the image by 90 degrees (clockwise).</p>
+<p>Follow up:<br> Could you do this in-place?</p>
+<a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>如果新开一个n*n的数组来存旋转后的结果，需要的空间就很多了。</p>
+<p>因此题目要求我们in-place来进行操作。思路实际上很简单，依次交换左上角，右上角，右下角，左下角的像素点就可以实现旋转了。这道题目CC150这本书的第一章就出现了，也可以以此为参考。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = matrix.size();</div><div class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> end = n - <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = n; j &gt; <span class="number">1</span>; j = j<span class="number">-2</span>)&#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; end - start; i++)&#123;</div><div class="line">                <span class="comment">//Upper-Right to TMP</span></div><div class="line">                <span class="keyword">int</span> tmp = matrix[start+i][end];</div><div class="line">                <span class="comment">//Upper-Left to Upper-Right</span></div><div class="line">                matrix[start+i][end] = matrix[start][start+i];</div><div class="line">                <span class="comment">//Down-Left to Upper-Left</span></div><div class="line">                matrix[start][start+i] = matrix[end-i][start];</div><div class="line">                <span class="comment">//Down-Right to Down-Left</span></div><div class="line">                matrix[end-i][start] = matrix[end][end-i];</div><div class="line">                <span class="comment">//TMP to Down-Left</span></div><div class="line">                matrix[end][end-i] = tmp;</div><div class="line">            &#125;</div><div class="line">            start++;</div><div class="line">            end--;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Array </tag>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[046 Permutations]]></title>
       <url>http://wf94.github.io/2017/03/31/046-Permutations/</url>
       <content type="html"><![CDATA[<p>Given a collection of <strong>distinct</strong> numbers, return all possible permutations. </p>
@@ -106,11 +134,11 @@
         
         <tags>
             
+            <tag> Medium </tag>
+            
             <tag> Math </tag>
             
             <tag> Linked List </tag>
-            
-            <tag> Medium </tag>
             
         </tags>
         
@@ -216,9 +244,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
             <tag> LeetCode </tag>
             
@@ -251,9 +279,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -1005,9 +1033,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1086,9 +1114,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> String </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -1119,11 +1147,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
             <tag> Medium </tag>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -1515,9 +1543,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -1835,9 +1863,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -1966,9 +1994,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2223,9 +2251,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2395,9 +2423,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -3074,9 +3102,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> String </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3204,9 +3232,9 @@
         
         <tags>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -3321,9 +3349,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -3419,9 +3447,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -3540,9 +3568,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -3749,9 +3777,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -3889,11 +3917,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
             <tag> Medium </tag>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -3948,9 +3976,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> String </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
