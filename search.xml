@@ -30,6 +30,32 @@
     </entry>
     
     <entry>
+      <title><![CDATA[059 Spiral Matrix II]]></title>
+      <url>http://wf94.github.io/2017/04/02/059-Spiral-Matrix-II/</url>
+      <content type="html"><![CDATA[<p>Given an integer <em>n</em>, generate a square matrix filled with elements from 1 to <em>n</em>2 in spiral order.</p>
+<p>For example,<br> Given <em>n</em> = <code>3</code>, </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line"> [ 1, 2, 3 ],</div><div class="line"> [ 8, 9, 4 ],</div><div class="line"> [ 7, 6, 5 ]</div><div class="line">]</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这道题其实没有什么算法上的技术含量。题目需要我们按照蛇形的路线生成一个数组，我们其实可以按照题目的要求，碰到不合适的路径不走即可。比较考验编程能力的就是在边界条件和实现的过程中的技巧。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[][] generateMatrix(<span class="keyword">int</span> n) &#123;</div><div class="line">        <span class="comment">// A very good way to assign dynamic-length array</span></div><div class="line">        <span class="keyword">int</span>[][] ans = <span class="keyword">new</span> <span class="keyword">int</span>[n][];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</div><div class="line">            ans[i] = <span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</div><div class="line">                ans[i][j] = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> x = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> y = <span class="number">0</span>;</div><div class="line">        <span class="keyword">boolean</span> right = <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">boolean</span> down = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">boolean</span> up = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">boolean</span> left = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> count = <span class="number">1</span>; count &lt;= n * n; count++)&#123;</div><div class="line">            ans[x][y] = count;</div><div class="line"></div><div class="line">            <span class="keyword">boolean</span> rightblock = y + <span class="number">1</span> &gt;= n || ans[x][y+<span class="number">1</span>] &gt; <span class="number">0</span>;</div><div class="line">            <span class="keyword">boolean</span> leftblock = y - <span class="number">1</span> &lt; <span class="number">0</span> || ans[x][y-<span class="number">1</span>] &gt; <span class="number">0</span>;</div><div class="line">            <span class="keyword">boolean</span> upblock = x - <span class="number">1</span> &lt; <span class="number">0</span> || ans[x-<span class="number">1</span>][y] &gt; <span class="number">0</span>;</div><div class="line">            <span class="keyword">boolean</span> downblock = x + <span class="number">1</span> &gt;= n || ans[x+<span class="number">1</span>][y] &gt; <span class="number">0</span>;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>(rightblock &amp;&amp; leftblock &amp;&amp; upblock)&#123;</div><div class="line">                right = up = left = <span class="keyword">false</span>;</div><div class="line">                down = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(rightblock &amp;&amp; leftblock &amp;&amp; downblock)&#123;</div><div class="line">                right = down = left = <span class="keyword">false</span>;</div><div class="line">                up = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(rightblock &amp;&amp; downblock &amp;&amp; upblock)&#123;</div><div class="line">                right = down = up = <span class="keyword">false</span>;</div><div class="line">                left = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(leftblock &amp;&amp; downblock &amp;&amp; upblock)&#123;</div><div class="line">                left = down = up = <span class="keyword">false</span>;</div><div class="line">                right = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>(left)&#123;</div><div class="line">                y--;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(right)&#123;</div><div class="line">                y++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(down)&#123;</div><div class="line">                x++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(up)&#123;</div><div class="line">                x--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Array </tag>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[048 Rotate Image]]></title>
       <url>http://wf94.github.io/2017/04/01/048-Rotate-Image/</url>
       <content type="html"><![CDATA[<p>You are given an <em>n</em> x <em>n</em> 2D matrix representing an image.</p>
@@ -134,11 +160,11 @@
         
         <tags>
             
-            <tag> Medium </tag>
+            <tag> Linked List </tag>
             
             <tag> Math </tag>
             
-            <tag> Linked List </tag>
+            <tag> Medium </tag>
             
         </tags>
         
@@ -244,9 +270,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
             <tag> LeetCode </tag>
             
@@ -279,9 +305,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -615,9 +641,9 @@
             
             <tag> Medium </tag>
             
-            <tag> DFS </tag>
-            
             <tag> Dynamic Programming </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -1033,9 +1059,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1114,9 +1140,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
             <tag> Backtracking </tag>
             
@@ -1147,11 +1173,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -1543,9 +1569,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1863,9 +1889,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1994,9 +2020,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2251,9 +2277,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3102,9 +3128,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3171,9 +3197,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Stack </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Stack </tag>
             
         </tags>
         
@@ -3349,9 +3375,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -3447,9 +3473,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -3482,9 +3508,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Stack </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Stack </tag>
             
         </tags>
         
@@ -3568,9 +3594,9 @@
             
             <tag> Easy </tag>
             
-            <tag> String </tag>
-            
             <tag> Math </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3777,9 +3803,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3917,11 +3943,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -3976,9 +4002,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
