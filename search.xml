@@ -30,6 +30,42 @@
     </entry>
     
     <entry>
+      <title><![CDATA[075 Sort Colors]]></title>
+      <url>http://wf94.github.io/2017/04/07/075-Sort-Colors/</url>
+      <content type="html"><![CDATA[<p>Given an array with <em>n</em> objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue. </p>
+<p>Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively. </p>
+<p><strong>Note:</strong><br> You are not suppose to use the library’s sort function for this problem. </p>
+<p><strong>Follow up:</strong><br> A rather straight forward solution is a two-pass algorithm using counting sort.<br> First, iterate the array counting number of 0’s, 1’s, and 2’s, then overwrite array with total number of 0’s, then 1’s and followed by 2’s.</p>
+<p>Could you come up with an one-pass algorithm using only constant space?</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>最直白的方法就是利用一趟快速排序的方法，把0，1，2三个数分开。利用到了头尾两个指针。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> head = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(nums[head] == <span class="number">0</span>) head++;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = head; i &lt; nums.size(); i++)&#123;</div><div class="line">            <span class="keyword">int</span> tmp = <span class="number">0</span>;</div><div class="line">            <span class="keyword">if</span>(nums[i] == <span class="number">0</span>)&#123;</div><div class="line">                tmp = nums[head];</div><div class="line">                nums[head] = nums[i];</div><div class="line">                nums[i] = tmp;</div><div class="line">                <span class="keyword">while</span>(nums[head] == <span class="number">0</span>) head++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> tail = nums.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(nums[tail] == <span class="number">2</span>) tail--;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = head; i &lt;= tail; i++)&#123;</div><div class="line">            <span class="keyword">int</span> tmp = <span class="number">0</span>;</div><div class="line">            <span class="keyword">if</span>(nums[i] == <span class="number">2</span>)&#123;</div><div class="line">                tmp = nums[tail];</div><div class="line">                nums[tail] = nums[i];</div><div class="line">                nums[i] = tmp;</div><div class="line">                <span class="keyword">while</span>(nums[tail] == <span class="number">2</span>) tail--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>如果不考虑空间的开销，在题目的提示当中使用的counting sort的方法也是非常好的。数一下0、1、2的个数，然后更新一下原来的数组就可以了。</p>
+<p>下面这个方法就厉害了，利用一趟排序、O(1)的空间复杂度就可以完成。<code>We keep a loop invariant that [0,i) [i, j) [j, k) are 0s, 1s and 2s sorted in place for [0,k).</code></p>
+<p><a href="https://discuss.leetcode.com/topic/26181/ac-python-in-place-one-pass-solution-o-n-time-o-1-space-no-swap-no-count" target="_blank" rel="external">https://discuss.leetcode.com/topic/26181/ac-python-in-place-one-pass-solution-o-n-time-o-1-space-no-swap-no-count</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Array </tag>
+            
+            <tag> Two Pointers </tag>
+            
+            <tag> Sort </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[074 Search a 2D Matrix]]></title>
       <url>http://wf94.github.io/2017/04/06/074-Search-a-2D-Matrix/</url>
       <content type="html"><![CDATA[<p>Write an efficient algorithm that searches for a value in an <em>m</em> x <em>n</em> matrix. This matrix has the following properties:</p>
@@ -283,9 +319,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
@@ -1358,9 +1394,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1976,9 +2012,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2570,9 +2606,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -2916,9 +2952,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -3105,9 +3141,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3287,9 +3323,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3349,9 +3385,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -3717,9 +3753,9 @@
             
             <tag> Math </tag>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3747,9 +3783,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3814,9 +3850,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3897,9 +3933,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3953,9 +3989,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Stack </tag>
             
@@ -3982,9 +4018,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4009,9 +4045,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> String </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
