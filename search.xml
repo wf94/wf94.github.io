@@ -4,6 +4,40 @@
   
     
     <entry>
+      <title><![CDATA[162 Find Peak Element]]></title>
+      <url>http://wf94.github.io/2017/04/19/162-Find-Peak-Element/</url>
+      <content type="html"><![CDATA[<p>A peak element is an element that is greater than its neighbors.</p>
+<p>Given an input array where <code>num[i] ≠ num[i+1]</code>, find a peak element and return its index.</p>
+<p>The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.</p>
+<p>You may imagine that <code>num[-1] = num[n] = -∞</code>.</p>
+<p>For example, in array <code>[1, 2, 3, 1]</code>, 3 is a peak element and your function should return the index number 2.</p>
+<p>Note:</p>
+<p>Your solution should be in logarithmic complexity.</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>我们可以利用二分法来解决。</p>
+<p>如果头尾元素是peak，返回之；不是则取头尾元素的中间值，判断其是否为peak；如果不为peak，看哪个元素大于它。从而缩小查找范围。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findPeakElement</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(nums.size() == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">int</span> low = <span class="number">0</span>;</div><div class="line">            <span class="keyword">int</span> high = nums.size() - <span class="number">1</span>;</div><div class="line">            <span class="keyword">int</span> mid = (low + high) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span>(nums[low] &gt; nums[low+<span class="number">1</span>]) <span class="keyword">return</span> low;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[high] &gt; nums[high<span class="number">-1</span>]) <span class="keyword">return</span> high;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">if</span> (mid != low &amp;&amp; mid != high)&#123;</div><div class="line">                    <span class="keyword">while</span>(low &lt; high)&#123;</div><div class="line">                        mid = (low + high) / <span class="number">2</span>;</div><div class="line">                        <span class="keyword">if</span>(nums[mid] &gt; nums[mid+<span class="number">1</span>] &amp;&amp; nums[mid] &gt; nums[mid<span class="number">-1</span>])&#123;</div><div class="line">                            <span class="keyword">return</span> mid;</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">else</span>&#123;</div><div class="line">                            <span class="keyword">if</span>(nums[mid] &lt; nums[mid<span class="number">-1</span>])&#123;</div><div class="line">                                high = mid;</div><div class="line">                            &#125;</div><div class="line">                            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; nums[mid+<span class="number">1</span>])&#123;</div><div class="line">                                low = mid;</div><div class="line">                            &#125;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">return</span> mid;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Array </tag>
+            
+            <tag> Binary Search </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[153 Find Minimum in Rotated Sorted Array]]></title>
       <url>http://wf94.github.io/2017/04/18/153-Find-Minimum-in-Rotated-Sorted-Array/</url>
       <content type="html"><![CDATA[<p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.</p>
@@ -677,11 +711,11 @@
         
         <tags>
             
-            <tag> Medium </tag>
+            <tag> Linked List </tag>
             
             <tag> Math </tag>
             
-            <tag> Linked List </tag>
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1253,9 +1287,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1576,9 +1610,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1657,9 +1691,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
             <tag> Backtracking </tag>
             
@@ -1690,11 +1724,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -2029,9 +2063,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2086,9 +2120,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2406,9 +2440,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2504,9 +2538,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2537,9 +2571,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -2794,9 +2828,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2925,9 +2959,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Two Pointers </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Hash Table </tag>
             
@@ -2966,9 +3000,9 @@
             
             <tag> String </tag>
             
-            <tag> Easy </tag>
-            
             <tag> Two Pointers </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3220,9 +3254,9 @@
             
             <tag> Math </tag>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -3310,11 +3344,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
+            <tag> Linked List </tag>
             
             <tag> Two Pointers </tag>
             
-            <tag> Linked List </tag>
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3415,9 +3449,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Hash Table </tag>
             
@@ -3499,9 +3533,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3588,9 +3622,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3645,9 +3679,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3681,9 +3715,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3743,11 +3777,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
+            <tag> Linked List </tag>
             
             <tag> Two Pointers </tag>
             
-            <tag> Linked List </tag>
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3801,9 +3835,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3831,9 +3865,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4050,11 +4084,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Two Pointers </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4109,9 +4143,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Math </tag>
+            
+            <tag> String </tag>
             
             <tag> Easy </tag>
             
@@ -4176,9 +4210,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -4263,9 +4297,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4320,9 +4354,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -4376,11 +4410,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
+            <tag> Linked List </tag>
             
             <tag> Two Pointers </tag>
             
-            <tag> Linked List </tag>
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4460,11 +4494,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -4519,9 +4553,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -4545,9 +4579,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Hash Table </tag>
             
