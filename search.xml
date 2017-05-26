@@ -4,6 +4,74 @@
   
     
     <entry>
+      <title><![CDATA[287 Find the Duplicate Number]]></title>
+      <url>http://wf94.github.io/2017/04/29/287-Find-the-Duplicate-Number/</url>
+      <content type="html"><![CDATA[<p>Given an array <em>nums</em> containing <em>n</em> + 1 integers where each integer is between 1 and <em>n</em> (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one. </p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>You <strong>must not</strong> modify the array (assume the array is read only).</li>
+<li>You must use only constant, <em>O</em>(1) extra space.</li>
+<li>Your runtime complexity should be less than <code>O(n2)</code>.</li>
+<li>There is only one duplicate number in the array, but it could be repeated more than once.</li>
+</ol>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>明确题意，数组里的数是在1~(length-1)之间。而且重复次数可以是多次。 所以会有[1, 2, 4, 5, 7, 7, 7, 7, 8, 9]这种情况出现。最直接的方法就是用O(nlogn)的复杂度，对原数组进行排序，然后挨个比较一下就可以知道到底哪个数属于重复的了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">class Solution(object):</div><div class="line">    def findDuplicate(self, nums):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        length = len(nums)</div><div class="line">        number = 0</div><div class="line">        nums.sort()</div><div class="line">        print nums</div><div class="line">        for i, num in enumerate(nums):</div><div class="line">            if (i &lt; length - 1):</div><div class="line">                if (nums[i] == nums[i+1]):</div><div class="line">                    number = nums[i]</div><div class="line">                    break</div><div class="line">        return number</div></pre></td></tr></table></figure>
+<p>可以用快慢指针： </p>
+<p>图解 <a href="https://discuss.leetcode.com/topic/25685/java-o-n-time-and-o-1-space-solution-similar-to-find-loop-in-linkedlist" target="_blank" rel="external">https://discuss.leetcode.com/topic/25685/java-o-n-time-and-o-1-space-solution-similar-to-find-loop-in-linkedlist</a> </p>
+<p>还可以用二分法搜索：非常巧妙而常用的方法【之前出现过】 </p>
+<p>统计小于二分搜索到元素的数字的个数。如果这样的个数多于该数字，那肯定是有重复的元素的。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Array </tag>
+            
+            <tag> Two Pointers </tag>
+            
+            <tag> Binary Search </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[279 Perfect Squares]]></title>
+      <url>http://wf94.github.io/2017/04/28/279-Perfect-Squares/</url>
+      <content type="html"><![CDATA[<p>Given a positive integer <em>n</em>, find the least number of perfect square numbers (for example, <code>1, 4, 9, 16, ...</code>) which sum to <em>n</em>.</p>
+<p>For example, given <em>n</em> = <code>12</code>, return <code>3</code> because <code>12 = 4 + 4 + 4</code>; given <em>n</em> = <code>13</code>, return <code>2</code>because <code>13 = 4 + 9</code>.</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这是一道非常典型的动态规划题目。</p>
+<p>当前如果为元素n，需要找到这个元素n的平方根，然后依次减去平方根的数目，找到前1,4,9,16个元素的Perfect Squares数目。构成一个DP。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public class Solution &#123;</div><div class="line">    public int numSquares(int n) &#123;</div><div class="line">        List&lt;Integer&gt; dp = new ArrayList&lt;Integer&gt;();</div><div class="line">        dp.add(0);</div><div class="line">        dp.add(1);</div><div class="line">        for(int i = 2; i &lt;= n; i++)&#123;</div><div class="line">            int max_root = (int) Math.floor(Math.sqrt((double) i));</div><div class="line">            int min_square = Integer.MAX_VALUE;</div><div class="line">            for(int j = 1; j &lt;= max_root; j++)&#123;</div><div class="line">                int tmp = dp.get(i - j * j) + 1;</div><div class="line">                if(tmp &lt; min_square) min_square = tmp;</div><div class="line">            &#125;</div><div class="line">            dp.add(min_square);</div><div class="line">        &#125;</div><div class="line">        return dp.get(dp.size()-1);</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Math </tag>
+            
+            <tag> Medium </tag>
+            
+            <tag> Dynamic Programming </tag>
+            
+            <tag> BFS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[275 H-Index II]]></title>
       <url>http://wf94.github.io/2017/04/27/275-H-Index-II/</url>
       <content type="html"><![CDATA[<p><strong>Follow up</strong> for <a href="https://leetcode.com/problems/h-index/" target="_blank" rel="external">H-Index</a>: What if the <code>citations</code> array is sorted in ascending order? Could you optimize your algorithm?</p>
@@ -84,9 +152,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -115,9 +183,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -211,9 +279,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -958,9 +1026,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Linked List </tag>
             
@@ -1068,9 +1136,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
             <tag> LeetCode </tag>
             
@@ -1103,9 +1171,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -1857,9 +1925,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1971,11 +2039,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -2122,9 +2190,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2428,9 +2496,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -2687,9 +2755,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2753,9 +2821,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2818,9 +2886,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -3046,9 +3114,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3075,9 +3143,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3212,9 +3280,9 @@
             
             <tag> Two Pointers </tag>
             
-            <tag> Binary Search </tag>
-            
             <tag> Sort </tag>
+            
+            <tag> Binary Search </tag>
             
         </tags>
         
@@ -3309,9 +3377,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3499,11 +3567,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> Array </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -3752,11 +3820,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> Hash Table </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -3896,9 +3964,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4173,9 +4241,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -4271,9 +4339,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -4363,9 +4431,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -4390,11 +4458,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -4710,9 +4778,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4741,11 +4809,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -4771,9 +4839,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
