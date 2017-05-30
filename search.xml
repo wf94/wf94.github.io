@@ -32,6 +32,36 @@
     </entry>
     
     <entry>
+      <title><![CDATA[319 Bulb Switcher]]></title>
+      <url>http://wf94.github.io/2017/05/02/319-Bulb-Switcher/</url>
+      <content type="html"><![CDATA[<p>There are <em>n</em> bulbs that are initially off. You first turn on all the bulbs. Then, you turn off every second bulb. On the third round, you toggle every third bulb (turning on if it’s off or turning off if it’s on). For the <em>i</em>th round, you toggle every <em>i</em> bulb. For the <em>n</em>th round, you only toggle the last bulb. Find how many bulbs are on after <em>n</em> rounds. </p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Given n = 3. </div><div class="line"></div><div class="line">At first, the three bulbs are [off, off, off].</div><div class="line">After first round, the three bulbs are [on, on, on].</div><div class="line">After second round, the three bulbs are [on, off, on].</div><div class="line">After third round, the three bulbs are [on, off, off]. </div><div class="line"></div><div class="line">So you should return 1, because there is only one bulb is on.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先来看一个很傻的超时方法(用不用哈希表都超时)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bulbSwitch</span><span class="params">(self, n)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type n: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        bulbmap = &#123;&#125;</div><div class="line">        length = n</div><div class="line">        <span class="keyword">while</span>(n &gt; <span class="number">1</span>):</div><div class="line">            i = <span class="number">1</span></div><div class="line">            <span class="keyword">while</span>(n * i &lt;= length):</div><div class="line">                index = n * i</div><div class="line">                <span class="keyword">if</span> (bulbmap.has_key(index)):</div><div class="line">                    bulbmap[index] = <span class="keyword">not</span> bulbmap[index]</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    bulbmap[index] = <span class="keyword">False</span></div><div class="line">                i += <span class="number">1</span></div><div class="line">            n -= <span class="number">1</span></div><div class="line"></div><div class="line">        count = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> bulbmap.values():</div><div class="line">            count += i</div><div class="line"></div><div class="line">        <span class="keyword">return</span> count + <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>其实，如果一个数是完全平方数，他会被自己本身trigger，还会被自己的完全平方数trigger。所以那个数对应的那盏灯还是会亮；如果一个数不是完全平方数，它会被自己trigger，还会被自己分解出来的乘积trigger，所以对应的灯会灭。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bulbSwitch</span><span class="params">(self, n)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type n: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">return</span> int(math.sqrt(n))</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Math </tag>
+            
+            <tag> Medium </tag>
+            
+            <tag> Brainteaser </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[300 Longest Increasing Subsequence]]></title>
       <url>http://wf94.github.io/2017/05/01/300-Longest-Increasing-Subsequence/</url>
       <content type="html"><![CDATA[<p>Given an unsorted array of integers, find the length of longest increasing subsequence. </p>
@@ -94,9 +124,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -223,9 +253,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Sort </tag>
             
@@ -282,9 +312,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -319,9 +349,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Binary Search </tag>
-            
             <tag> Divide and Conquer </tag>
+            
+            <tag> Binary Search </tag>
             
         </tags>
         
@@ -378,9 +408,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -441,9 +471,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Binary Search </tag>
             
@@ -471,9 +501,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Binary Search </tag>
             
@@ -692,9 +722,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Backtracking </tag>
             
@@ -760,9 +790,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Two Pointers </tag>
             
@@ -796,9 +826,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Backtracking </tag>
             
@@ -859,9 +889,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Two Pointers </tag>
             
@@ -896,9 +926,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Binary Search </tag>
             
@@ -927,9 +957,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1012,9 +1042,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1040,9 +1070,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1095,9 +1125,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1235,9 +1265,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
             <tag> LeetCode </tag>
             
@@ -1270,9 +1300,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -1300,9 +1330,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Tree </tag>
             
@@ -1559,9 +1589,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2061,9 +2091,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Backtracking </tag>
             
@@ -2261,9 +2291,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Binary Search </tag>
             
@@ -2289,9 +2319,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2349,9 +2379,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Heap </tag>
             
@@ -2565,9 +2595,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2595,9 +2625,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -2920,9 +2950,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3213,9 +3243,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3476,9 +3506,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3666,11 +3696,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> Array </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -3728,9 +3758,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -3758,9 +3788,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -3919,11 +3949,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> Hash Table </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -3947,9 +3977,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4063,9 +4093,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4129,9 +4159,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4191,9 +4221,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4340,9 +4370,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -4438,9 +4468,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -4469,9 +4499,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Stack </tag>
             
@@ -4530,9 +4560,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -4557,9 +4587,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> String </tag>
             
@@ -4684,9 +4714,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -4824,9 +4854,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4877,9 +4907,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4938,9 +4968,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
