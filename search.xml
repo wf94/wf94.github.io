@@ -4,6 +4,34 @@
   
     
     <entry>
+      <title><![CDATA[328 Odd Even Linked List]]></title>
+      <url>http://wf94.github.io/2017/05/03/328-Odd-Even-Linked-List/</url>
+      <content type="html"><![CDATA[<p>Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.</p>
+<p>You should try to do it in place. The program should run in O(1) space complexity and O(nodes) time complexity.</p>
+<p><strong>Example:</strong><br>Given <code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</code>,<br>return <code>1-&gt;3-&gt;5-&gt;2-&gt;4-&gt;NULL</code>.</p>
+<p><strong>Note:</strong><br>The relative order inside both the even and odd groups should remain as it was in the input.<br>The first node is considered odd, the second node even and so on …</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>简单的链表操作。将原有链表按照奇数和偶数的位置来进行重新排列。</p>
+<p>需要注意边界条件，如链表尾部是空该怎么办。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for singly-linked list.</span></div><div class="line"><span class="comment"># class ListNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.next = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">oddEvenList</span><span class="params">(self, head)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type head: ListNode</div><div class="line">        :rtype: ListNode</div><div class="line">        """</div><div class="line">        first_even = <span class="keyword">None</span></div><div class="line">        <span class="keyword">if</span> (head):</div><div class="line">            first_even = head.next</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> first_even</div><div class="line"></div><div class="line">        cur = head</div><div class="line">        odd = <span class="keyword">True</span></div><div class="line">        <span class="keyword">while</span> (cur):</div><div class="line">            original_next = cur.next</div><div class="line">            <span class="keyword">if</span> (original_next):</div><div class="line">                <span class="keyword">if</span> (original_next.next):</div><div class="line">                    cur.next = original_next.next</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">if</span> (odd):</div><div class="line">                        cur.next = first_even</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        cur.next = <span class="keyword">None</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">if</span> (odd):</div><div class="line">                    cur.next = first_even</div><div class="line"></div><div class="line">            cur = original_next</div><div class="line">            odd = <span class="keyword">not</span> odd</div><div class="line"></div><div class="line">        <span class="keyword">return</span> head</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[313 Super Ugly Number]]></title>
       <url>http://wf94.github.io/2017/05/02/313-Super-Ugly-Number/</url>
       <content type="html"><![CDATA[<p>Write a program to find the nth super ugly number. </p>
@@ -408,9 +436,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -437,9 +465,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Stack </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Stack </tag>
             
             <tag> Design </tag>
             
@@ -1265,9 +1293,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
             <tag> LeetCode </tag>
             
@@ -1300,9 +1328,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -1363,9 +1391,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1491,9 +1519,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -1731,9 +1759,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2022,9 +2050,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -2507,9 +2535,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2534,9 +2562,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -2657,9 +2685,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -2982,9 +3010,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -3071,9 +3099,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -3403,9 +3431,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Two Pointers </tag>
             
@@ -3444,9 +3472,9 @@
             
             <tag> Easy </tag>
             
-            <tag> String </tag>
-            
             <tag> Two Pointers </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3609,9 +3637,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -3643,9 +3671,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -3698,9 +3726,9 @@
             
             <tag> Math </tag>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -3893,11 +3921,11 @@
         
         <tags>
             
+            <tag> Easy </tag>
+            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
-            
-            <tag> Easy </tag>
             
         </tags>
         
@@ -3951,9 +3979,9 @@
             
             <tag> Math </tag>
             
-            <tag> Hash Table </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -4066,9 +4094,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -4192,9 +4220,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Stack </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Stack </tag>
             
         </tags>
         
@@ -4253,9 +4281,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Two Pointers </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -4279,9 +4307,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -4309,9 +4337,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -4370,9 +4398,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -4468,9 +4496,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -4503,9 +4531,9 @@
             
             <tag> Hash Table </tag>
             
-            <tag> Stack </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Stack </tag>
             
         </tags>
         
@@ -4528,9 +4556,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4654,9 +4682,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -4741,9 +4769,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -5023,11 +5051,11 @@
         
         <tags>
             
+            <tag> Easy </tag>
+            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
-            
-            <tag> Easy </tag>
             
         </tags>
         
