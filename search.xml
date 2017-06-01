@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title><![CDATA[找个实习：聊聊心路历程]]></title>
+      <url>http://wf94.github.io/2017/05/24/Seeking-Internship-I/</url>
+      <content type="html"><![CDATA[<p>今年春天的时候，我一直在寻找令自己满意的实习机会：一方面是想在找实习的过程中查漏补缺，提高自己；另一方面是给自己漫长的暑假，找一件有意义的事情来干。当然还有导火索——身边的同学不知道为啥，突然就一个个地接到了BAT各家公司的电话和通知，自己不禁也想试一试；其实找实习，很大程度上也是一种从众心理。</p>
+<p>不过话说回来，实习确实是有那么一些用处的，有了这份经历，各方面的能力总会在不经意间得到提高。这和自己闷头苦学相比孰优孰劣，却也不是那么容易分得清——实习还有额外的一笔工资，也许性价比会稍微高一些吧。</p>
+<p>找实习的战线总是会拉得很长：从二月份投简历开始，到五月份收到录用通知结束。这确实是一个折磨人的过程。三月初投完简历，是一次密集的面试和笔试轰炸。三月底四月初几乎天天有笔试或者面试。如果处理的不好，确实会令人感觉疲于奔命。</p>
+<p>找实习期间，我的心态波动很大。面试没有通过，会低落一会儿；面试通过了，会高兴一会儿；面试完了，需要缓一下。面试和笔试花费的时间，就更不用说了：稍长一些的话，半天时间就没了。我想，要是找实习的这个学期课程负担很重，学业势必会受到一定程度的影响。（幸好我上学期就一门课，而且略水）</p>
+<p>列一下我投的各种公司的情况吧。</p>
+<h4 id="简历被拒"><a href="#简历被拒" class="headerlink" title="简历被拒"></a>简历被拒</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">今日头条	FreeWheel	美团点评(北邮人论坛投递-后台开发)</div><div class="line"></div><div class="line">网易有道	亚马逊Kindle	腾讯(北邮人论坛投递-数据挖掘)</div><div class="line"></div><div class="line">蘑菇街		Face++		Hulu</div></pre></td></tr></table></figure>
+<h4 id="笔试跪"><a href="#笔试跪" class="headerlink" title="笔试跪"></a>笔试跪</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">完美世界	美团点评(校招-大数据开发)	搜狐</div><div class="line"></div><div class="line">CVTE(幸好跪了)	京东(快递给我一个京东公仔以示安慰)</div></pre></td></tr></table></figure>
+<h4 id="拒掉面试"><a href="#拒掉面试" class="headerlink" title="拒掉面试"></a>拒掉面试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">平安证券</div><div class="line"></div><div class="line">招商银行信用卡中心</div></pre></td></tr></table></figure>
+<h4 id="一面跪"><a href="#一面跪" class="headerlink" title="一面跪"></a>一面跪</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">腾讯(校招-腾讯游戏后台开发)</div></pre></td></tr></table></figure>
+<h4 id="二面跪"><a href="#二面跪" class="headerlink" title="二面跪"></a>二面跪</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">YY语音 (Bigo TV-后台开发)</div><div class="line"></div><div class="line">百度 (平台开发)</div></pre></td></tr></table></figure>
+<h4 id="Offer"><a href="#Offer" class="headerlink" title="Offer"></a>Offer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">网易游戏(广州)</div><div class="line"></div><div class="line">微软(苏州)</div></pre></td></tr></table></figure>
+<h4 id="状态未知"><a href="#状态未知" class="headerlink" title="状态未知"></a>状态未知</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Morgan Stanley(IT Summer Internship)</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[328 Odd Even Linked List]]></title>
       <url>http://wf94.github.io/2017/05/03/328-Odd-Even-Linked-List/</url>
       <content type="html"><![CDATA[<p>Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.</p>
@@ -152,9 +178,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -281,9 +307,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Sort </tag>
             
@@ -340,9 +366,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -465,9 +491,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Stack </tag>
+            
+            <tag> Tree </tag>
             
             <tag> Design </tag>
             
@@ -499,9 +525,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Binary Search </tag>
             
@@ -529,9 +555,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Binary Search </tag>
             
@@ -750,9 +776,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -818,9 +844,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Two Pointers </tag>
             
@@ -854,9 +880,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -917,9 +943,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Two Pointers </tag>
             
@@ -954,9 +980,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Binary Search </tag>
             
@@ -985,9 +1011,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1070,9 +1096,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1098,9 +1124,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1153,9 +1179,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1358,9 +1384,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Tree </tag>
             
@@ -1391,9 +1417,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1519,9 +1545,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1617,9 +1643,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1759,9 +1785,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2050,9 +2076,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2119,9 +2145,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -2319,9 +2345,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Binary Search </tag>
             
@@ -2347,9 +2373,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2407,9 +2433,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Heap </tag>
             
@@ -2535,9 +2561,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2562,9 +2588,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2623,9 +2649,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2653,9 +2679,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -2685,9 +2711,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2978,9 +3004,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -3010,9 +3036,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3099,9 +3125,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3271,9 +3297,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -3431,9 +3457,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -3472,9 +3498,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -3534,9 +3560,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -3637,9 +3663,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3671,9 +3697,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3724,11 +3750,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Array </tag>
             
             <tag> Easy </tag>
             
-            <tag> Array </tag>
+            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -3786,9 +3812,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3816,9 +3842,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Linked List </tag>
             
             <tag> Two Pointers </tag>
             
@@ -3921,11 +3947,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3977,11 +4003,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> Hash Table </tag>
             
             <tag> Easy </tag>
             
-            <tag> Hash Table </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -4005,9 +4031,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -4094,9 +4120,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4121,9 +4147,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -4187,9 +4213,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -4220,9 +4246,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Tree </tag>
-            
             <tag> Stack </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -4249,9 +4275,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Linked List </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4281,9 +4307,9 @@
         
         <tags>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -4307,9 +4333,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4337,9 +4363,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4527,13 +4553,13 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
             
-            <tag> Tree </tag>
+            <tag> Medium </tag>
             
             <tag> Stack </tag>
+            
+            <tag> Tree </tag>
             
         </tags>
         
@@ -4556,9 +4582,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4588,9 +4614,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> Binary Search </tag>
             
@@ -4615,9 +4641,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
             <tag> String </tag>
             
@@ -4682,9 +4708,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -4742,9 +4768,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -4769,9 +4795,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4882,9 +4908,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Linked List </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4935,9 +4961,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -4996,9 +5022,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -5051,11 +5077,11 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Array </tag>
             
             <tag> Hash Table </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
