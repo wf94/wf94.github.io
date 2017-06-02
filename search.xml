@@ -6,18 +6,36 @@
     <entry>
       <title><![CDATA[找个实习：面经-II]]></title>
       <url>http://wf94.github.io/2017/05/26/Seeking-Internship-III/</url>
-      <content type="html"><![CDATA[<p>还有三家公司的面经，有幸拿到了后两家的offer~</p>
-<h4 id="摩根士丹利"><a href="#摩根士丹利" class="headerlink" title="摩根士丹利"></a>摩根士丹利</h4><p>摩根士丹利技术部<br>自我介绍</p>
+      <content type="html"><![CDATA[<p>还有三家公司的面经，有幸拿到了后两家的offer。</p>
+<h4 id="摩根士丹利"><a href="#摩根士丹利" class="headerlink" title="摩根士丹利"></a>摩根士丹利</h4><p>我投递的是摩根士丹利的Technology Summer Analyst实习。不得不说，大摩对实习的处理效率还是……很慢的。投出简历之后近两个月，大摩才给我回复一封邮件，隔几天就给我安排了全英文的电话面试。</p>
+<p>电话打来，一听就知道是一个中国人，顿时感觉放松了一些。面试分为两个部分，快问快答和情景问题。在这之前，面试官也同样是要求我做一个自我介绍，接着还问我为何要选择大摩。我就按照套路介绍了自己做过的项目，然后使劲夸了一通大摩。可惜后一个问题面试官一直在说我信号不好，感觉错过了唯一的拍马屁机会。</p>
+<p>Here are the specific questions for each section.</p>
 <ol>
-<li>Quick questions<br>Compile Language/Interpertive Language: Pros and cons<br>What is stackoverflow<br>What is memory leak<br>What is stack and queue<br>What is design pattern<br>What is the difference between UDP and TCP<br>What is difference between process and threads<br>What is database index<br>What is database transaction<br>How to do SQL injection</li>
-<li>Story time<br>Three kinds of coins, only know the weights and values, how to estimate the total value?<br>Sampling<br>Cannot divide evenly, how to estimate?</li>
-<li>原来IT部门真是帮人打杂的啊</li>
+<li><p>Quick questions</p>
+<p>Compile Language/Interpertive Language: Pros and cons; What is stackoverflow(I said it was a famous website and he laughed); What is memory leak; Explain the difference between stack and queue(I stucked and almost gave the revesed answer); What is design pattern(failed to answer….); What is the difference between UDP and TCP(TCP is ‘secure’ not ‘safe’ lol); What is difference between process and threads; What is database index(not so sure about my answer); What is database transaction(atomic); How to do SQL injection.</p>
+</li>
+<li><p>Question with scenario</p>
+<p>Given three kinds of coins with different weight(e.g, 25 cents, 50 cents, 1 dollar), we only know the value of a single coin. We can weight any amount of coins with a weighting scale. How to <strong>estimate</strong> the total value of all the coins?</p>
+<p>I didn’t gave the correct answer. He gave a final hint and said I can use the method of <em>sampling</em> to do that. That is pick a even portion of the coins, e.g. 1/10, and weight and count this small portion of the coin.</p>
+<p>The interviewer then raised another question, if the coin cannot be divided evenly, how to estimate? I simply propose a solution to weight a small portion of coin and calculate how much the portion take in the total weight of the coin.</p>
+</li>
 </ol>
-<h4 id="微软苏州"><a href="#微软苏州" class="headerlink" title="微软苏州"></a>微软苏州</h4><p>微软面试总结<br>一面<br>上来先介绍项目，我就把我两段实习经历，语音识别和Proxy Lab介绍了，没有对项目的内容进行提问。<br>接下来需要白板写代码。问题是，给定一个二叉树，找出两个节点，使得它们是二叉树当中</p>
-<h4 id="网易游戏"><a href="#网易游戏" class="headerlink" title="网易游戏"></a>网易游戏</h4><p>网易游戏一面二面<br>一面<br>C++ STL vector deque list<br>Deepcopy 和 copy 的区别<br>什么是多态？如果要你给老人家描述，怎么描述？<br>快排详细描述？<br>什么情况下链表的表现要比线性表要好？<br>一个链表判断有没有环？<br>游戏测试，炉石卡牌，炉石的边界测试。</p>
-<p>二面<br>写出HCTS Management Tools的详细结构，实现功能。<br>一个图，有纵坐标为req/sec ，横坐标为req，有一个系统，前端、web、数据库。测试表现分别不同，求问能够从图中得到什么。</p>
-<p>一个时间表<br>事件 开始时间 结束时间<br>a1     t10              t11<br>a2     t20              t21<br>…..<br>an     tn0              tn1</p>
-<p>问如何安排才能使得每天的事件数最大。<br>利用图，类似拓扑排序的方法，每个事件都有出度入度，进行操作。</p>
+<h4 id="微软苏州"><a href="#微软苏州" class="headerlink" title="微软苏州"></a>微软苏州</h4><p>微软苏州是用Skype For Business进行视频面试的【Skype For Business并不好用啊……】</p>
+<p>面试之前，HR就承诺每个人都会有至少两轮的面试。但我并没有想到面试是上来直接白板写代码【捂脸】</p>
+<p>第一轮面试，上来先做自我介绍，然后话不多说，直接进入了白板写代码环节【猝不及防】。给定一个二叉树，找出两个节点，使得它们是二叉树当中距离最短的两个节点。我在思考过程中提供了一些思路，然而想了半天都没有最终<a href="http://www.geeksforgeeks.org/diameter-of-a-binary-tree/" target="_blank" rel="external">解决</a>。面试官决定降低难度，将题目改成让我求给定二叉树的深度。我提供了DFS的解决方案，当然也可以利用BFS来<a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/#/description" target="_blank" rel="external">解决</a>。向面试官提问之后，一面就这样尴尬地结束了。</p>
+<p>第二轮面试，上来也是一段简短的自我介绍，由于比较紧张，居然忘了Sun的那款Unix系统叫啥名字了(Solaris)，非常尴尬。接下来仍然是白板写代码环节。还是问的二叉树，不过换成了平衡二叉树。题目也比较简单【可能是看我前一题答得不好吧】。给定一个二叉树，如何判断这个二叉树是平衡二叉树？很容易想到用对这个二叉树进行中序遍历，看遍历的结果是否有序即可。代码实现起来也不是很难，在虚拟白板上敲出来之后，面试官给了我一个提问的机会。二面就这样结束了。</p>
+<p>二面结束之后我以为GG了，就打电话和同学吐槽。然而20分钟后，三面的电话突然打来了。再次启动视频界面，从面试官的谈吐中，感受到这次面试我的是个大boss。大boss先说二三面时间间隔太长，向我表示歉意【不长不长我和同学吐槽来着我还没反应过来呢】。接下来给我描述了一个情景问题。在图形化界面中，我们需要使用右键菜单。由于屏幕的大小一定，我们需要保证右键菜单不越过屏幕。现在给定鼠标的当前坐标，求生成的右键菜单矩形对角线点的坐标。这一题只要考虑到边界条件就不难。Boss让我先考虑清楚再码代码，这确实是一个应该养成的好习惯。最后顺利完成代码，从头到尾给Boss解释了一遍，他表示很满意。三面就愉快地结束了。</p>
+<h4 id="网易游戏"><a href="#网易游戏" class="headerlink" title="网易游戏"></a>网易游戏</h4><p>网易游戏的面试是现场面试，由于面试的人数比较多，安排了两轮面试，一面和二面分别在两天进行——我也惨兮兮跑了两天珠江新城。面试的地点应该就是员工工作的地点，进门查的超级严格，不刷身份证还进不去。这顿时让人感觉高端了起来。</p>
+<p>上楼坐定，喝了会儿水，一面就开始了。上来首先还是自我介绍啦，面试官也对项目当中感兴趣的问题聊了一下。两位面试官一男一女，很快就把话题打开了，接下来的面试，感觉气氛轻松了许多。</p>
+<p>在聊游戏之前，面试官也提了几个快问快答的问题：分别解释C++的STL库vector、deque和list；解释C++/Python中deepcopy 和 copy 的区别（第三次了）；什么是多态？如果要你给爷爷描述多态，你会怎么描述；解释快速排序的算法（第二次了）；如何用栈来表示队列；链表和线性表有什么区别？什么情况下链表的表现要比线性表要好；如何判断一个链表有没有环？</p>
+<p>接下来聊了聊游戏。问我喜欢什么游戏【我首先说我没玩过阴阳师（笑）】，我就说了一下炉石。面试官也提问了炉石卡牌和相应的边界测试方法。当然我还提到了GTA系列【哈哈哈从小玩到大的GTA！！！】，面试官就问了我为啥喜欢，又和面试官开心地夸了一大通GTA。</p>
+<p>一面结束之前还问了一道智力题！有一只猴子在离终点50步的地方。猴子每走一步需要吃掉一根香蕉，不吃香蕉猴子就走不动！现在有100根香蕉，猴子要怎样走才能把香蕉尽可能带到终点？【好难】</p>
+<p>当天晚上二面的电话通知就来了。第二天去到了同样的地方，开始了第二轮面试。</p>
+<p>在自我介绍结束之后，面试官对我之前写的一个测试管理系统比较感兴趣，就让我写出这个管理系统的详细结构，并说明它实现了什么功能。</p>
+<p>接下来问的问题我就听不懂了。给定一个图表，纵坐标为requests/sec(每秒钟请求数) ，横坐标为req(请求数)。有一个系统，分别有前端、后端和数据库部分。图上有不同的曲线，这表明经过测试，系统的表现有所不同。请问我们能够从图中得到什么样的信息。【一脸懵逼】经过提示之后，我还是没有答出来。</p>
+<p>我感觉……面试官很无奈，就又提了一个问题。给出一张一天当中的时间安排表如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">事件    开始时间     结束时间</div><div class="line">a1      t10         t11</div><div class="line">a2      t20         t21</div><div class="line">...     ...         ...</div><div class="line">an      tn0         tn1</div></pre></td></tr></table></figure>
+<p>我们需要选择执行其中的若干个时间，问如何选择才能使得当天选择出来的事件数最大。【做过尝试依旧没有答出来】其实可以构造一个有向图，将每个事件看成图中的一个节点。将开始时间和结束时间看作节点的出度和入度，利用类似拓扑排序的方法进行操作。</p>
 ]]></content>
       
         <categories>
@@ -208,9 +226,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Dynamic Programming </tag>
-            
             <tag> Binary Search </tag>
+            
+            <tag> Dynamic Programming </tag>
             
         </tags>
         
@@ -472,9 +490,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Divide and Conquer </tag>
-            
             <tag> Binary Search </tag>
+            
+            <tag> Divide and Conquer </tag>
             
         </tags>
         
@@ -500,9 +518,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Divide and Conquer </tag>
-            
             <tag> Heap </tag>
+            
+            <tag> Divide and Conquer </tag>
             
         </tags>
         
