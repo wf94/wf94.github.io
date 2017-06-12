@@ -41,21 +41,7 @@
     <entry>
       <title><![CDATA[找个实习：面经-II]]></title>
       <url>http://wf94.github.io/2017/05/26/Seeking-Internship-III/</url>
-      <content type="html"><![CDATA[<p>还有三家公司的面经，有幸拿到了后两家的offer。</p>
-<h4 id="摩根士丹利"><a href="#摩根士丹利" class="headerlink" title="摩根士丹利"></a>摩根士丹利</h4><p>我投递的是摩根士丹利的Technology Summer Analyst实习。不得不说，大摩对实习的处理效率还是……很慢的。投出简历之后近两个月，大摩才给我回复一封邮件，隔几天就给我安排了全英文的电话面试。</p>
-<p>电话打来，一听就知道是一个中国人，顿时感觉放松了一些。面试分为两个部分，快问快答和情景问题。在这之前，面试官也同样是要求我做一个自我介绍，接着还问我为何要选择大摩。我就按照套路介绍了自己做过的项目，然后使劲夸了一通大摩。可惜后一个问题面试官一直在说我信号不好，感觉错过了唯一的拍马屁机会。</p>
-<p>Here are the specific questions for each section.</p>
-<ol>
-<li><p>Quick questions</p>
-<p>Compile Language/Interpertive Language: Pros and cons; What is stackoverflow(I said it was a famous website and he laughed); What is memory leak; Explain the difference between stack and queue(I stucked and almost gave the revesed answer); What is design pattern(failed to answer….); What is the difference between UDP and TCP(TCP is ‘secure’ not ‘safe’ lol); What is difference between process and threads; What is database index(not so sure about my answer); What is database transaction(atomic); How to do SQL injection.</p>
-</li>
-<li><p>Question with scenario</p>
-<p>Given three kinds of coins with different weight(e.g, 25 cents, 50 cents, 1 dollar), we only know the value of a single coin. We can weight any amount of coins with a weighting scale. How to <strong>estimate</strong> the total value of all the coins?</p>
-<p>I didn’t gave the correct answer. He gave a final hint and said I can use the method of <em>sampling</em> to do that. That is pick a even portion of the coins, e.g. 1/10, and weight and count this small portion of the coin.</p>
-<p>The interviewer then raised another question, if the coin cannot be divided evenly, how to estimate? I simply propose a solution to weight a small portion of coin and calculate how much the portion take in the total weight of the coin.</p>
-</li>
-</ol>
-<h4 id="微软苏州"><a href="#微软苏州" class="headerlink" title="微软苏州"></a>微软苏州</h4><p>微软苏州是用Skype For Business进行视频面试的【Skype For Business并不好用啊……】</p>
+      <content type="html"><![CDATA[<h4 id="微软苏州"><a href="#微软苏州" class="headerlink" title="微软苏州"></a>微软苏州</h4><p>微软苏州是用Skype For Business进行视频面试的【Skype For Business并不好用啊……】</p>
 <p>面试之前，HR就承诺每个人都会有至少两轮的面试。但我并没有想到面试是上来直接白板写代码【捂脸】</p>
 <p>第一轮面试，上来先做自我介绍，然后话不多说，直接进入了白板写代码环节【猝不及防】。给定一个二叉树，找出两个节点，使得它们是二叉树当中距离最短的两个节点。我在思考过程中提供了一些思路，然而想了半天都没有最终<a href="http://www.geeksforgeeks.org/diameter-of-a-binary-tree/" target="_blank" rel="external">解决</a>。面试官决定降低难度，将题目改成让我求给定二叉树的深度。我提供了DFS的解决方案，当然也可以利用BFS来<a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/#/description" target="_blank" rel="external">解决</a>。向面试官提问之后，一面就这样尴尬地结束了。</p>
 <p>第二轮面试，上来也是一段简短的自我介绍，由于比较紧张，居然忘了Sun的那款Unix系统叫啥名字了(Solaris)，非常尴尬。接下来仍然是白板写代码环节。还是问的二叉树，不过换成了平衡二叉树。题目也比较简单【可能是看我前一题答得不好吧】。给定一个二叉树，如何判断这个二叉树是平衡二叉树？很容易想到用对这个二叉树进行中序遍历，看遍历的结果是否有序即可。代码实现起来也不是很难，在虚拟白板上敲出来之后，面试官给了我一个提问的机会。二面就这样结束了。</p>
@@ -71,6 +57,33 @@
 <p>我感觉……面试官很无奈，就又提了一个问题。给出一张一天当中的时间安排表如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">事件    开始时间     结束时间</div><div class="line">a1      t10         t11</div><div class="line">a2      t20         t21</div><div class="line">...     ...         ...</div><div class="line">an      tn0         tn1</div></pre></td></tr></table></figure>
 <p>我们需要选择执行其中的若干个时间，问如何选择才能使得当天选择出来的事件数最大。【做过尝试依旧没有答出来】其实可以构造一个有向图，将每个事件看成图中的一个节点。将开始时间和结束时间看作节点的出度和入度，利用类似拓扑排序的方法进行操作。</p>
+<h4 id="摩根士丹利"><a href="#摩根士丹利" class="headerlink" title="摩根士丹利"></a>摩根士丹利</h4><p>我投递的是摩根士丹利的Technology Summer Analyst实习。不得不说，大摩对实习的处理效率还是……很慢的。投出简历之后近两个月，大摩才给我回复一封邮件，隔几天就给我安排了全英文的电话面试。</p>
+<p>电话打来，一听就知道是一个中国人，顿时感觉放松了一些。面试分为两个部分，快问快答和情景问题。在这之前，面试官也同样是要求我做一个自我介绍，接着还问我为何要选择大摩。我就按照套路介绍了自己做过的项目，然后使劲夸了一通大摩。可惜后一个问题面试官一直在说我信号不好，感觉错过了唯一的拍马屁机会。</p>
+<p>Here are the specific questions for each section.</p>
+<ol>
+<li><p>Quick questions</p>
+<p>Compile Language/Interpertive Language: Pros and cons; What is stackoverflow(I said it was a famous website and he laughed); What is memory leak; Explain the difference between stack and queue(I stucked and almost gave the revesed answer); What is design pattern(failed to answer….); What is the difference between UDP and TCP(TCP is ‘secure’ not ‘safe’ lol); What is difference between process and threads; What is database index(not so sure about my answer); What is database transaction(atomic); How to do SQL injection.</p>
+</li>
+<li><p>Question with scenario</p>
+<p>Given three kinds of coins with different weight(e.g, 25 cents, 50 cents, 1 dollar), we only know the value of a single coin. We can weight any amount of coins with a weighting scale. How to <strong>estimate</strong> the total value of all the coins?</p>
+<p>I didn’t gave the correct answer. He gave a final hint and said I can use the method of <em>sampling</em> to do that. That is pick a even portion of the coins, e.g. 1/10, and weight and count this small portion of the coin.</p>
+<p>The interviewer then raised another question, if the coin cannot be divided evenly, how to estimate? I simply propose a solution to weight a small portion of coin and calculate how much the portion take in the total weight of the coin.</p>
+</li>
+</ol>
+<p>没想到的是，大摩很快给我发来了终面通知，我就远赴上海（包机票和一晚住宿哈哈哈）参加了人生第一次全英文Onsite面试。</p>
+<p>大摩的办公地点在浦东嘉里城12楼，从办公室往下望，美景一览无余。和我同一批面试的一共四人。HR姐姐在简单自我介绍，夸了夸大摩之后，让我们互相认识一下。同行的有密歇根大学的EE、波士顿大学的CS，还有一位是华东师范大学的——都是顶厉害顶厉害的人物了。</p>
+<p>上来先是笔试题，限时35分钟，编程题很简单。给定一个单词和一个字典，需要求出这个单词的anagram。用哈希表就可以轻松解决了。但接下来的Bonus就有些难了：给定一组单词和一个字典，需要求出这一组所有单词的anagram。我在笔试期间并没有想出来。除了编程题，大摩还要我评价自己各项技术的掌握程度，并打出相应的分数。当然还有一些关于上海的私人问题，在此按下不表。</p>
+<p>一面的面试官先给我复盘了一下笔试题，让我解释一下我写的python代码。我还和他说明了Bonus题目没办法用一般的方法做。面试官就慢慢引导我，问我能不能把字典查找的复杂度降下来，我说可以构造一棵字典树，并诚实地交代我一时半会儿实现不了，需要慢慢推导。然而面试官觉得字典树O(logn)的复杂度还是太高了，让我再想想能不能用哈希表来做。经过面试官的提示，我试着把字典里所有单词的统计结果(哈希表)作为新的哈希表的key，原单词顺序存储的list作为哈希表的value，面试官表示结果尚可。</p>
+<p>接下来，面试官就问了一道和网易游戏一模一样的题。给出一个事件表，需要我求出这个事件表中最大的线程数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">线程    开始时间     结束时间</div><div class="line">A1      8:00        10:00</div><div class="line">A2      8:15        9:45</div><div class="line">A3      9:50        10:40 </div><div class="line">A4      10:15       11:00</div></pre></td></tr></table></figure>
+<p>我一开始说，找到一个最小开始时间，每找到一个这样的最小开始时间，就获取其结束时间；根据其结束时间，找到下一个最接近的开始时间。如果找到了尽头，而事件表中还有未找过的线程，就重新在事件表中寻找。面试官和我确认了多次，表示这个思路尚可，但并不好，因为要遍历很多次事件表。</p>
+<p>面试官引导我，直接把所有的开始时间和结束时间全部排序，问这样能不能解决。（亦即将所有的时间视为图中结点，进行拓扑排序-不这样理解也行）我想到的是将同一事件相对应的时间进行配对，通过全局变量的方式将最大线程数记录下来。当然，这也可以用栈的方法来实现，可是内存开销会比前一种方法大。</p>
+<p>接下来问了个Linux的基础问题，寻找端口号的，用<code>ps -ef | grep &#39;xxx&#39;</code>就可以了。</p>
+<p>最后让我用C++设计贪吃蛇的各种类，我表示并不是很擅长。简单地说了一下贪吃蛇行走的方法，面试官还引导我说出贪吃蛇在内存中是如何存储的，面试时间就到了（主要还是因为自己在时间表那一题花了比较久的时间）。</p>
+<p>休息15分钟之后，二面开始了。面试官一上来问了House Robber II的LeetCode原题——虽然我做过，然而只想得起无环的解法，就先和面试官说了无环的动态规划解法。面试官就问我有环怎么办，我就说，把两个list连起来……然而面试官并不认同。最后面试官实在看不下去，就告诉我从无环到有环只用判断两种情况，一个是去掉首项，剩下所有元素的无环解；一个是去掉末项，剩下其它元素的无环解。把这两个解取最大值就是所求的了。我连连表示赞同。</p>
+<p>面试官让我实现一下，我就用python写了。然而面试官表示很惊奇……原来他是让我实现House Robber的无环版本而不是有环版本。我表示是自己的失误——面试官又提示说，无环到有环就一步，实现了无环，调个函数就是有环。</p>
+<p>接下来面试官问我会不会jQuery，会不会数据库，问了我两道jQuery的题（完全不会，啥也记不得了），还问了一个数据库题，在一堆数据里面统计重复数据出现的次数（表示不会）。面试官说没关系，就进入到最后的部分了。</p>
+<p>给定一个BST，可以改变树的性质，问给定两个节点，如何找到其最小公共父节点？（后来没时间了，面试官就提示根据BST的性质来想）</p>
 ]]></content>
       
         <categories>
@@ -171,9 +184,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -197,9 +210,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Heap </tag>
             
@@ -227,9 +240,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Brainteaser </tag>
             
@@ -300,9 +313,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -364,9 +377,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -429,9 +442,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Sort </tag>
             
@@ -457,9 +470,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -647,9 +660,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Binary Search </tag>
             
@@ -677,9 +690,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Binary Search </tag>
             
@@ -898,9 +911,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -966,9 +979,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1002,9 +1015,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -1065,9 +1078,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1102,9 +1115,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Binary Search </tag>
             
@@ -1133,9 +1146,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1218,9 +1231,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1246,9 +1259,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1301,9 +1314,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1331,11 +1344,11 @@
         
         <tags>
             
-            <tag> Medium </tag>
+            <tag> Linked List </tag>
             
             <tag> Math </tag>
             
-            <tag> Linked List </tag>
+            <tag> Medium </tag>
             
         </tags>
         
@@ -1506,9 +1519,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Tree </tag>
             
@@ -1765,9 +1778,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2230,9 +2243,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2267,9 +2280,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -2311,9 +2324,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
             <tag> Backtracking </tag>
             
@@ -2344,11 +2357,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -2406,9 +2419,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -2467,9 +2480,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Binary Search </tag>
             
@@ -2555,9 +2568,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Heap </tag>
             
@@ -2740,9 +2753,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2771,9 +2784,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3024,9 +3037,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3060,9 +3073,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3191,9 +3204,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -3448,9 +3461,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3618,9 +3631,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Two Pointers </tag>
             
@@ -3934,9 +3947,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Array </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -4299,9 +4312,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -4675,9 +4688,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Stack </tag>
             
@@ -4763,11 +4776,11 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
             
             <tag> Math </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -4795,9 +4808,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -4862,9 +4875,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -4890,9 +4903,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -4945,9 +4958,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -4974,9 +4987,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -5001,9 +5014,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Stack </tag>
             
@@ -5057,9 +5070,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -5114,11 +5127,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -5173,9 +5186,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
