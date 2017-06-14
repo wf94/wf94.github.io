@@ -4,41 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[331 Verify Preorder Serialization of a Binary Tree]]></title>
-      <url>http://wf94.github.io/2017/06/11/331-Verify-Preorder-Serialization-of-a-Binary-Tree/</url>
-      <content type="html"><![CDATA[<p>One way to serialize a binary tree is to use pre-order traversal. When we encounter a non-null node, we record the node’s value. If it is a null node, we record using a sentinel value such as <code>#</code>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">     _9_</div><div class="line">    /   \</div><div class="line">   3     2</div><div class="line">  / \   / \</div><div class="line"> 4   1  #  6</div><div class="line">/ \ / \   / \</div><div class="line"># # # #   # #</div></pre></td></tr></table></figure>
-<p>For example, the above binary tree can be serialized to the string <code>&quot;9,3,4,#,#,1,#,#,2,#,6,#,#&quot;</code>, where <code>#</code> represents a null node. </p>
-<p>Given a string of comma separated values, verify whether it is a correct preorder traversal serialization of a binary tree. Find an algorithm without reconstructing the tree.</p>
-<p>Each comma separated value in the string must be either an integer or a character <code>&#39;#&#39;</code> representing <code>null</code> pointer.</p>
-<p>You may assume that the input format is always valid, for example it could never contain two consecutive commas such as <code>&quot;1,,3&quot;</code>.</p>
-<p><strong>Example 1:</strong><br><code>&quot;9,3,4,#,#,1,#,#,2,#,6,#,#&quot;</code><br> Return <code>true</code></p>
-<p><strong>Example 2:</strong><br><code>&quot;1,#&quot;</code><br> Return <code>false</code></p>
-<p><strong>Example 3:</strong><br><code>&quot;9,#,#,1&quot;</code></p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>如果我们利用栈的方法来解决，我们可以从左到右对字符串进行扫描。如果我们看到一个数字，将其入栈；如果看到#号，检查栈顶是否也为#号，如果是，一直做pop操作直到栈顶不是#号，如果不是，则将#号入栈。扫描完后检查栈的大小为1且栈顶为#即可。</p>
-<p>我们还可以用图的出度入度来解决。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class Solution &#123;</div><div class="line">    public boolean isValidSerialization(String preorder) &#123;</div><div class="line">        String[] array = preorder.split(&quot;,&quot;);</div><div class="line">        //The in-degree of root is 0, out-degree is 2. Compansation.</div><div class="line">        int count = -1;</div><div class="line">        for(int i = 0; i &lt; array.length; i++)&#123;</div><div class="line">            count++;</div><div class="line">            if (count &gt; 0) return false;</div><div class="line">            //Positive for in-degree, negative for out-degree.</div><div class="line">            //Normal node: in-degree:1, out-degree:2</div><div class="line">            if (!array[i].equals(&quot;#&quot;)) count=count-2;</div><div class="line">        &#125;</div><div class="line">        return count==0;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>参考资料：<a href="https://discuss.leetcode.com/topic/35977/simple-python-solution-using-stack-with-explanation" target="_blank" rel="external">https://discuss.leetcode.com/topic/35977/simple-python-solution-using-stack-with-explanation</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> LeetCode </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Medium </tag>
-            
-            <tag> Stack </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[找个实习：面经-II]]></title>
       <url>http://wf94.github.io/2017/05/26/Seeking-Internship-III/</url>
       <content type="html"><![CDATA[<h4 id="微软苏州"><a href="#微软苏州" class="headerlink" title="微软苏州"></a>微软苏州</h4><p>微软苏州是用Skype For Business进行视频面试的【Skype For Business并不好用啊……】</p>
@@ -161,6 +126,73 @@
             
         </categories>
         
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[334 Increasing Triplet Subsequence]]></title>
+      <url>http://wf94.github.io/2017/05/05/334-Increasing-Triplet-Subsequence/</url>
+      <content type="html"><![CDATA[<p>Given an unsorted array return whether an increasing subsequence of length 3 exists or not in the array. </p>
+<p>Formally the function should:</p>
+<blockquote>
+<p>Return true if there exists <em>i, j, k </em><br> such that <em>arr[i]</em> &lt; <em>arr[j]</em> &lt; <em>arr[k]</em> given 0 ≤ <em>i</em> &lt; <em>j</em> &lt; <em>k</em> ≤ <em>n</em>-1  else return false. </p>
+</blockquote>
+<p>Your algorithm should run in O(<em>n</em>) time complexity and O(<em>1</em>) space complexity. </p>
+<p><strong>Examples:</strong><br> Given <code>[1, 2, 3, 4, 5]</code>,<br> return <code>true</code>. </p>
+<p>Given <code>[5, 4, 3, 2, 1]</code>,<br> return <code>false</code>. </p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先寻找一个前后递增的关系，即找到序列中，后一个数比前一个数大的情况。如果没有则返回<code>False</code>。这是在第一个while循环里面进行的。</p>
+<p>接下来我们寻找第三个数，如果找到的第三个数比前两个数都要大，返回<code>True</code>。</p>
+<p>我们把前面找到的两个数分别维护起来，分别为<code>low</code>和<code>mid</code>。如果找到的数如果比<code>mid</code>小，却<code>low</code>大，将<code>mid</code>的值置换为该数；</p>
+<p>如果找到的数比<code>low</code>小，可以暂存起来，放进<code>low_tmp</code>中，看此数之后还有没有比它大的数。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">increasingTriplet</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.size() &lt;= <span class="number">2</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">int</span> i = <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(nums[i] - nums[i<span class="number">-1</span>] &lt;= <span class="number">0</span>)&#123;</div><div class="line">                i++;</div><div class="line">                <span class="keyword">if</span> (i == nums.size())&#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">int</span> low = nums[i<span class="number">-1</span>];</div><div class="line">            <span class="keyword">int</span> mid = nums[i];</div><div class="line">            <span class="keyword">int</span> low_tmp = nums[i<span class="number">-1</span>];</div><div class="line">            <span class="keyword">while</span>(i &lt; nums.size() - <span class="number">1</span>)&#123;</div><div class="line">                i++;</div><div class="line">                <span class="keyword">if</span>(nums[i] &lt;= low_tmp)&#123;</div><div class="line">                    low_tmp = nums[i];</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(nums[i] &lt;= mid &amp;&amp; nums[i] &gt; low_tmp)&#123;</div><div class="line">                    mid = nums[i];</div><div class="line">                    low = low_tmp;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(nums[i] &gt; mid)&#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[331 Verify Preorder Serialization of a Binary Tree]]></title>
+      <url>http://wf94.github.io/2017/05/04/331-Verify-Preorder-Serialization-of-a-Binary-Tree/</url>
+      <content type="html"><![CDATA[<p>One way to serialize a binary tree is to use pre-order traversal. When we encounter a non-null node, we record the node’s value. If it is a null node, we record using a sentinel value such as <code>#</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">     _9_</div><div class="line">    /   \</div><div class="line">   3     2</div><div class="line">  / \   / \</div><div class="line"> 4   1  #  6</div><div class="line">/ \ / \   / \</div><div class="line"># # # #   # #</div></pre></td></tr></table></figure>
+<p>For example, the above binary tree can be serialized to the string <code>&quot;9,3,4,#,#,1,#,#,2,#,6,#,#&quot;</code>, where <code>#</code> represents a null node. </p>
+<p>Given a string of comma separated values, verify whether it is a correct preorder traversal serialization of a binary tree. Find an algorithm without reconstructing the tree.</p>
+<p>Each comma separated value in the string must be either an integer or a character <code>&#39;#&#39;</code> representing <code>null</code> pointer.</p>
+<p>You may assume that the input format is always valid, for example it could never contain two consecutive commas such as <code>&quot;1,,3&quot;</code>.</p>
+<p><strong>Example 1:</strong><br><code>&quot;9,3,4,#,#,1,#,#,2,#,6,#,#&quot;</code><br> Return <code>true</code></p>
+<p><strong>Example 2:</strong><br><code>&quot;1,#&quot;</code><br> Return <code>false</code></p>
+<p><strong>Example 3:</strong><br><code>&quot;9,#,#,1&quot;</code></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>如果我们利用栈的方法来解决，我们可以从左到右对字符串进行扫描。如果我们看到一个数字，将其入栈；如果看到#号，检查栈顶是否也为#号，如果是，一直做pop操作直到栈顶不是#号，如果不是，则将#号入栈。扫描完后检查栈的大小为1且栈顶为#即可。</p>
+<p>我们还可以用图的出度入度来解决。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class Solution &#123;</div><div class="line">    public boolean isValidSerialization(String preorder) &#123;</div><div class="line">        String[] array = preorder.split(&quot;,&quot;);</div><div class="line">        //The in-degree of root is 0, out-degree is 2. Compansation.</div><div class="line">        int count = -1;</div><div class="line">        for(int i = 0; i &lt; array.length; i++)&#123;</div><div class="line">            count++;</div><div class="line">            if (count &gt; 0) return false;</div><div class="line">            //Positive for in-degree, negative for out-degree.</div><div class="line">            //Normal node: in-degree:1, out-degree:2</div><div class="line">            if (!array[i].equals(&quot;#&quot;)) count=count-2;</div><div class="line">        &#125;</div><div class="line">        return count==0;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考资料：<a href="https://discuss.leetcode.com/topic/35977/simple-python-solution-using-stack-with-explanation" target="_blank" rel="external">https://discuss.leetcode.com/topic/35977/simple-python-solution-using-stack-with-explanation</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Stack </tag>
+            
+        </tags>
         
     </entry>
     
@@ -313,9 +345,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -442,9 +474,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Sort </tag>
             
@@ -501,9 +533,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -597,9 +629,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -660,9 +692,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Binary Search </tag>
             
@@ -690,9 +722,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Binary Search </tag>
             
@@ -911,9 +943,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Backtracking </tag>
             
@@ -979,9 +1011,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1015,9 +1047,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Backtracking </tag>
             
@@ -1078,9 +1110,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1115,9 +1147,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Binary Search </tag>
             
@@ -1146,9 +1178,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1231,9 +1263,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1259,9 +1291,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -1314,9 +1346,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Two Pointers </tag>
             
@@ -1454,9 +1486,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
             <tag> LeetCode </tag>
             
@@ -1489,9 +1521,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -1519,9 +1551,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Tree </tag>
             
@@ -1778,9 +1810,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2280,9 +2312,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
             <tag> Backtracking </tag>
             
@@ -2480,9 +2512,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Binary Search </tag>
             
@@ -2508,9 +2540,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2568,9 +2600,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Heap </tag>
             
@@ -2784,9 +2816,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -2814,9 +2846,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -3139,9 +3171,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3432,9 +3464,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3598,9 +3630,9 @@
             
             <tag> Two Pointers </tag>
             
-            <tag> Binary Search </tag>
-            
             <tag> Sort </tag>
+            
+            <tag> Binary Search </tag>
             
         </tags>
         
@@ -3695,9 +3727,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3885,11 +3917,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> Array </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -3947,9 +3979,9 @@
         
         <tags>
             
-            <tag> Array </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Array </tag>
             
         </tags>
         
@@ -3977,9 +4009,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4138,11 +4170,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> Hash Table </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -4166,9 +4198,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4282,9 +4314,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4348,9 +4380,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4410,9 +4442,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4559,9 +4591,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -4657,9 +4689,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -4688,9 +4720,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
             <tag> Stack </tag>
             
@@ -4749,9 +4781,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -4776,9 +4808,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> String </tag>
             
@@ -4903,9 +4935,9 @@
         
         <tags>
             
-            <tag> Hash Table </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Hash Table </tag>
             
         </tags>
         
@@ -5043,9 +5075,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -5096,9 +5128,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -5157,9 +5189,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
