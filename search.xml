@@ -130,6 +130,37 @@
     </entry>
     
     <entry>
+      <title><![CDATA[377 Combination Sum IV]]></title>
+      <url>http://wf94.github.io/2017/05/10/377-Combination-Sum-IV/</url>
+      <content type="html"><![CDATA[<p>Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">nums = [1, 2, 3]</div><div class="line">target = 4</div><div class="line"></div><div class="line">The possible combination ways are:</div><div class="line">(1, 1, 1, 1)</div><div class="line">(1, 1, 2)</div><div class="line">(1, 2, 1)</div><div class="line">(1, 3)</div><div class="line">(2, 1, 1)</div><div class="line">(2, 2)</div><div class="line">(3, 1)</div><div class="line"></div><div class="line">Note that different sequences are counted as different combinations.</div><div class="line"></div><div class="line">Therefore the output is 7.</div></pre></td></tr></table></figure>
+<p><strong>Follow up:</strong><br>What if negative numbers are allowed in the given array?<br>How does it change the problem?<br>What limitation we need to add to the question to allow negative numbers?</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>一开始直接尝试利用暴力解法，直接利用回溯的方法来穷举。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combinationSum4</span><span class="params">(self, nums, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type target: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">return</span> self.backtrack(nums, target, <span class="number">0</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(self, nums, target, addup)</span>:</span></div><div class="line">        ans = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> (addup == target):</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> (addup &lt; target):</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> nums:</div><div class="line">                ans += self.backtrack(nums, target, addup + i)</div><div class="line">            <span class="keyword">return</span> ans</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<p>可是用脚趾头想都是超时的。</p>
+<p>在动态规划的第一步，我们是可以加入额外的空间对中间变量进行存储的。</p>
+<p>递归调用的时候会调用很多次backtrack(n)。其中很多次，n都是重复的。在这里我们将中间变量存储为键值对。这样就可以减少复杂度了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combinationSum4</span><span class="params">(self, nums, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type target: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        self.resultmap = &#123;&#125;</div><div class="line"></div><div class="line">        ans = self.backtrack(nums, target)</div><div class="line">        <span class="keyword">return</span> ans</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(self, nums, target)</span>:</span></div><div class="line">        ans = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> (target == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> (target &gt; <span class="number">0</span>):</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> nums:</div><div class="line">                <span class="keyword">if</span> (self.resultmap.has_key(target - i)):</div><div class="line">                    ans += self.resultmap[target - i]</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    current = self.backtrack(nums, target - i)</div><div class="line">                    <span class="keyword">if</span> (target - i &gt; <span class="number">0</span>):</div><div class="line">                        self.resultmap[target - i] = current</div><div class="line">                    ans += current</div><div class="line">            <span class="keyword">return</span> ans</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Dynamic Programming </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[376 Wiggle Subsequence]]></title>
       <url>http://wf94.github.io/2017/05/09/376-Wiggle-Subsequence/</url>
       <content type="html"><![CDATA[<p>A sequence of numbers is called a <strong>wiggle sequence</strong> if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with fewer than two elements is trivially a wiggle sequence.</p>
@@ -318,9 +349,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -344,9 +375,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Heap </tag>
             
@@ -374,9 +405,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Brainteaser </tag>
             
@@ -511,9 +542,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -604,9 +635,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -635,9 +666,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -1478,11 +1509,11 @@
         
         <tags>
             
-            <tag> Medium </tag>
+            <tag> Linked List </tag>
             
             <tag> Math </tag>
             
-            <tag> Linked List </tag>
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2377,9 +2408,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2458,9 +2489,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
             <tag> Backtracking </tag>
             
@@ -2491,11 +2522,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -2642,9 +2673,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -2887,9 +2918,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -2948,9 +2979,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -3207,9 +3238,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3273,9 +3304,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3338,9 +3369,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -3566,9 +3597,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -3595,9 +3626,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -3829,9 +3860,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4019,11 +4050,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> Array </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
             <tag> Bit Manipulation </tag>
             
@@ -4111,9 +4142,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4272,11 +4303,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> Hash Table </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -4300,9 +4331,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4416,9 +4447,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4446,9 +4477,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -4482,9 +4513,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -4544,9 +4575,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4883,9 +4914,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Binary Search </tag>
             
@@ -4910,11 +4941,11 @@
         
         <tags>
             
+            <tag> Math </tag>
+            
             <tag> String </tag>
             
             <tag> Easy </tag>
-            
-            <tag> Math </tag>
             
         </tags>
         
@@ -5121,9 +5152,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -5177,9 +5208,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Easy </tag>
             
             <tag> Two Pointers </tag>
             
@@ -5230,9 +5261,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -5261,11 +5292,11 @@
         
         <tags>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
             <tag> Medium </tag>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
         </tags>
         
@@ -5291,9 +5322,9 @@
         
         <tags>
             
-            <tag> Easy </tag>
-            
             <tag> Math </tag>
+            
+            <tag> Easy </tag>
             
         </tags>
         
@@ -5320,9 +5351,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
