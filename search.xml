@@ -130,6 +130,30 @@
     </entry>
     
     <entry>
+      <title><![CDATA[387 First Unique Character in a String]]></title>
+      <url>http://wf94.github.io/2017/05/13/387-First-Unique-Character-in-a-String/</url>
+      <content type="html"><![CDATA[<p>Given a string, find the first non-repeating character in it and return it’s index. If it doesn’t exist, return -1.</p>
+<p><strong>Examples:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">s = &quot;leetcode&quot;</div><div class="line">return 0.</div><div class="line"></div><div class="line">s = &quot;loveleetcode&quot;,</div><div class="line">return 2.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>非常直白的方法，利用26元素的数组充当一个字典，统计一下字符出现的次数即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">firstUniqChar</span><span class="params">(string s)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (s.length() == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> stats[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;s.length(); i++)&#123;</div><div class="line">            <span class="keyword">char</span> tmp = s[i];</div><div class="line">            stats[s[i] - <span class="string">'a'</span>] += <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;s.length(); i++)&#123;</div><div class="line">            <span class="keyword">char</span> tmp = s[i];</div><div class="line">            <span class="keyword">if</span> (stats[s[i] - <span class="string">'a'</span>] == <span class="number">1</span>) <span class="keyword">return</span> i;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[386 Lexicographical Numbers]]></title>
       <url>http://wf94.github.io/2017/05/12/386-Lexicographical-Numbers/</url>
       <content type="html"><![CDATA[<p>Given an integer <em>n</em>, return 1 - <em>n</em> in lexicographical order.</p>
@@ -830,9 +854,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -1687,9 +1711,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
             <tag> LeetCode </tag>
             
@@ -1722,9 +1746,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -2652,9 +2676,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3270,9 +3294,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -3864,9 +3888,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Two Pointers </tag>
             
@@ -4792,9 +4816,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -4890,9 +4914,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -4923,9 +4947,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Stack </tag>
-            
             <tag> Hash Table </tag>
+            
+            <tag> Stack </tag>
             
             <tag> Tree </tag>
             
@@ -5011,9 +5035,9 @@
             
             <tag> Math </tag>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -5041,9 +5065,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -5108,9 +5132,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -5191,9 +5215,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
@@ -5247,9 +5271,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
             <tag> Stack </tag>
             
@@ -5303,9 +5327,9 @@
         
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Easy </tag>
+            
+            <tag> String </tag>
             
         </tags>
         
