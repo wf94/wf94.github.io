@@ -130,6 +130,39 @@
     </entry>
     
     <entry>
+      <title><![CDATA[390 Elimination Game]]></title>
+      <url>http://wf94.github.io/2017/05/15/390-Elimination-Game/</url>
+      <content type="html"><![CDATA[<p>There is a list of sorted integers from 1 to <em>n</em>. Starting from left to right, remove the first number and every other number afterward until you reach the end of the list.</p>
+<p>Repeat the previous step again, but this time from right to left, remove the right most number and every other number from the remaining numbers.</p>
+<p>We keep repeating the steps again, alternating left to right and right to left, until a single number remains.</p>
+<p>Find the last number that remains starting with a list of length <em>n</em>.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">n = 9,</div><div class="line">[1] 2 [3] 4 [5] 6 [7] 8 [9]</div><div class="line">2 [4] 6 [8]</div><div class="line">2 6</div><div class="line">6</div><div class="line"></div><div class="line">Output:</div><div class="line">6</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>对于这样的数列，1,2,3,4,…n：如果从左到右开始输出结果是i，则从右到左输出结果是n+1-i。</p>
+<p>一趟操作之后，剩余的元素个数变成n/2，每一个元素对应为之前元素的两倍。如题目给出的示例。 </p>
+<p>如果[1,2,3,4]从左至右输出的结果是 f(4)，那么它从右至左输出的结果就是5-f(4)。</p>
+<p>进一步推知，[2,4,6,8]从右到左输出的结果就是2*(5-f(4))。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">      <span class="keyword">if</span> (n == <span class="number">1</span>)&#123;</div><div class="line">          <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">else</span>&#123;</div><div class="line">          <span class="keyword">return</span> <span class="number">2</span> * (n / <span class="number">2</span> + <span class="number">1</span> - lastRemaining(n / <span class="number">2</span>));</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>分享一个超时的暴力解法——实际上就是按照题目要求一直不停地删除元素，开销很大。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line">    <span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; visited(n);</div><div class="line">        <span class="keyword">if</span> (n &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n &gt; <span class="number">1</span> &amp;&amp; n &lt;= <span class="number">5</span>) <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">            <span class="keyword">int</span> final = <span class="number">0</span>;</div><div class="line">            <span class="keyword">while</span>(<span class="number">1</span>)&#123;</div><div class="line">                <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">                <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">                <span class="keyword">while</span>(visited[i]) i++;</div><div class="line">                <span class="keyword">while</span>(i &lt; n)&#123;</div><div class="line">                    <span class="keyword">if</span> (!visited[i])&#123;</div><div class="line">                        count++;</div><div class="line">                        final = i;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">if</span> (count % <span class="number">2</span> == <span class="number">1</span>) visited[i] = <span class="literal">true</span>;</div><div class="line">                    i++;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (count == <span class="number">1</span>)&#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                i = n - <span class="number">1</span>;</div><div class="line">                count = <span class="number">0</span>;</div><div class="line">                <span class="keyword">while</span>(visited[i]) i--;</div><div class="line">                <span class="keyword">while</span>(i &gt;= <span class="number">0</span>)&#123;</div><div class="line">                    <span class="keyword">if</span>(!visited[i])&#123;</div><div class="line">                        count++;</div><div class="line">                        final = i;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">if</span> (count % <span class="number">2</span> == <span class="number">1</span>) visited[i] = <span class="literal">true</span>;</div><div class="line">                    i--;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (count == <span class="number">1</span>)&#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> final+<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[388 Longest Absolute File Path]]></title>
       <url>http://wf94.github.io/2017/05/14/388-Longest-Absolute-File-Path/</url>
       <content type="html"><![CDATA[<p>Suppose we abstract our file system by a string in the following manner:</p>
@@ -4277,9 +4310,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Linked List </tag>
-            
             <tag> Two Pointers </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -4710,9 +4743,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Linked List </tag>
-            
             <tag> Two Pointers </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -5343,9 +5376,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Linked List </tag>
-            
             <tag> Two Pointers </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
