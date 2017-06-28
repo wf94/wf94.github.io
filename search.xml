@@ -130,6 +130,42 @@
     </entry>
     
     <entry>
+      <title><![CDATA[393 UTF-8 Validation]]></title>
+      <url>http://wf94.github.io/2017/05/15/393-UTF-8-Validation/</url>
+      <content type="html"><![CDATA[<p>A character in UTF8 can be from <strong>1 to 4 bytes</strong> long, subjected to the following rules:</p>
+<ol>
+<li>For 1-byte character, the first bit is a 0, followed by its unicode code.</li>
+<li>For n-bytes character, the first n-bits are all one’s, the n+1 bit is 0, followed by n-1 bytes with most significant 2 bits being 10.</li>
+</ol>
+<p>This is how the UTF-8 encoding would work:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Char. number range  |        UTF-8 octet sequence</div><div class="line">   (hexadecimal)    |              (binary)</div><div class="line">--------------------+---------------------------------------------</div><div class="line">0000 0000-0000 007F | 0xxxxxxx</div><div class="line">0000 0080-0000 07FF | 110xxxxx 10xxxxxx</div><div class="line">0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx</div><div class="line">0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</div></pre></td></tr></table></figure>
+<p>Given an array of integers representing the data, return whether it is a valid utf-8 encoding.</p>
+<p><strong>Note:</strong><br>The input is an array of integers. Only the <strong>least significant 8 bits</strong> of each integer is used to store the data. This means each integer represents only 1 byte of data.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">data = [197, 130, 1], which represents the octet sequence: 11000101 10000010 00000001.</div><div class="line"></div><div class="line">Return true.</div><div class="line">It is a valid utf-8 encoding for a 2-bytes character followed by a 1-byte character.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data = [235, 140, 4], which represented the octet sequence: 11101011 10001100 00000100.</div><div class="line"></div><div class="line">Return false.</div><div class="line">The first 3 bits are all one&apos;s and the 4th bit is 0 means it is a 3-bytes character.</div><div class="line">The next byte is a continuation byte which starts with 10 and that&apos;s correct.</div><div class="line">But the second continuation byte does not start with 10, so it is invalid.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>题目很长，但是读完题目之后，我们被要求的工作也非常自然得到了。按照题意构建判断条件即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">validUtf8</span><span class="params">(<span class="keyword">int</span>[] data)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(i &lt; data.length)&#123;</div><div class="line">            <span class="keyword">if</span>(data[i] &lt;= <span class="number">127</span> &amp;&amp; data[i] &gt;= <span class="number">0</span>)&#123;</div><div class="line">                i++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(data[i] &gt;= <span class="number">192</span> &amp;&amp; data[i] &lt;= <span class="number">223</span>)&#123;</div><div class="line">                i++;</div><div class="line">                <span class="keyword">if</span>(i &lt; data.length &amp;&amp; data[i] &gt;= <span class="number">128</span> &amp;&amp; data[i] &lt;= <span class="number">191</span>) i++;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(data[i] &gt;= <span class="number">224</span> &amp;&amp; data[i] &lt;= <span class="number">239</span>)&#123;</div><div class="line">                i++;</div><div class="line">                <span class="keyword">int</span> count = <span class="number">2</span>;</div><div class="line">                <span class="keyword">while</span>(count &gt; <span class="number">0</span>)&#123;</div><div class="line">                    <span class="keyword">if</span>(i &lt; data.length &amp;&amp; data[i] &gt;= <span class="number">128</span> &amp;&amp; data[i] &lt;= <span class="number">191</span>) i++;</div><div class="line">                    <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                    count--;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(data[i] &gt;= <span class="number">240</span> &amp;&amp; data[i] &lt;= <span class="number">247</span>)&#123;</div><div class="line">                i++;</div><div class="line">                <span class="keyword">int</span> count = <span class="number">3</span>;</div><div class="line">                <span class="keyword">while</span>(count &gt; <span class="number">0</span>)&#123;</div><div class="line">                    <span class="keyword">if</span>(i &lt; data.length &amp;&amp; data[i] &gt;= <span class="number">128</span> &amp;&amp; data[i] &lt;= <span class="number">191</span>) i++;</div><div class="line">                    <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                    count--;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Bit Manipulation </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[390 Elimination Game]]></title>
       <url>http://wf94.github.io/2017/05/15/390-Elimination-Game/</url>
       <content type="html"><![CDATA[<p>There is a list of sorted integers from 1 to <em>n</em>. Starting from left to right, remove the first number and every other number afterward until you reach the end of the list.</p>
@@ -869,9 +905,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Divide and Conquer </tag>
-            
             <tag> Binary Search </tag>
+            
+            <tag> Divide and Conquer </tag>
             
         </tags>
         
@@ -928,9 +964,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -957,9 +993,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Stack </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Stack </tag>
             
             <tag> Design </tag>
             
@@ -1785,9 +1821,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
             <tag> LeetCode </tag>
             
@@ -1820,9 +1856,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -4310,9 +4346,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -4712,9 +4748,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Stack </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Stack </tag>
             
         </tags>
         
@@ -4743,9 +4779,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -4890,9 +4926,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -4988,9 +5024,9 @@
             
             <tag> Tree </tag>
             
-            <tag> DFS </tag>
-            
             <tag> BFS </tag>
+            
+            <tag> DFS </tag>
             
         </tags>
         
@@ -5023,9 +5059,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Stack </tag>
-            
             <tag> Tree </tag>
+            
+            <tag> Stack </tag>
             
         </tags>
         
@@ -5376,9 +5412,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
