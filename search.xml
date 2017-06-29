@@ -166,6 +166,40 @@
     </entry>
     
     <entry>
+      <title><![CDATA[394 Decode String]]></title>
+      <url>http://wf94.github.io/2017/05/15/394-Decode-String/</url>
+      <content type="html"><![CDATA[<p>Given an encoded string, return it’s decoded string.</p>
+<p>The encoding rule is: <code>k[encoded_string]</code>, where the <em>encoded_string</em> inside the square brackets is being repeated exactly <em>k</em> times. Note that <em>k</em> is guaranteed to be a positive integer.</p>
+<p>You may assume that the input string is always valid; No extra white spaces, square brackets are well-formed, etc.</p>
+<p>Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, <em>k</em>. For example, there won’t be input like <code>3a</code> or <code>2[4]</code>.</p>
+<p><strong>Examples:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s = &quot;3[a]2[bc]&quot;, return &quot;aaabcbc&quot;.</div><div class="line">s = &quot;3[a2[c]]&quot;, return &quot;accaccacc&quot;.</div><div class="line">s = &quot;2[abc]3[cd]ef&quot;, return &quot;abcabccdcdcdef&quot;.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用堆栈来访问括号里面的各个元素。</p>
+<p>用到了几种常用的类: List, Stack, StringBuffer/StringBuilder, Character, Integer</p>
+<p>其中，定义一个list可以直接用Arrays.asList方法，就不用list.add方法了，比较简洁。</p>
+<p>需要注意的是，一开始没有考虑到数字会有多位，如”100[abc]”，这是之后才加的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">decodeString</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</div><div class="line">        List&lt;String&gt; nums = Arrays.asList(<span class="string">"0"</span>,<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>,<span class="string">"6"</span>,<span class="string">"7"</span>,<span class="string">"8"</span>,<span class="string">"9"</span>);</div><div class="line"></div><div class="line">        Stack&lt;String&gt; p = <span class="keyword">new</span> Stack&lt;String&gt;();</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> length = s.length();</div><div class="line">        <span class="keyword">while</span>(i &lt; length)&#123;</div><div class="line">            String cur = Character.toString(s.charAt(i));</div><div class="line">            <span class="keyword">if</span> (!cur.equals(<span class="string">"]"</span>))&#123;</div><div class="line">                p.push(cur);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">                StringBuffer tmp = <span class="keyword">new</span> StringBuffer();</div><div class="line">                <span class="keyword">while</span>(!p.peek().equals(<span class="string">"["</span>))&#123;</div><div class="line">                    tmp.append(p.pop());</div><div class="line">                &#125;</div><div class="line">                StringBuffer tmp_num = <span class="keyword">new</span> StringBuffer();</div><div class="line">                p.pop();</div><div class="line">                <span class="keyword">while</span>(!p.empty() &amp;&amp; nums.contains(p.peek()))&#123;</div><div class="line">                    tmp_num.append(p.pop());</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">int</span> times = Integer.parseInt(tmp_num.reverse().toString());</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; times; k++)&#123;</div><div class="line">                    p.push(tmp.toString());</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">while</span>(!p.empty())&#123;</div><div class="line">            res.append(p.pop());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> res.reverse().toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Stack </tag>
+            
+            <tag> DFS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[390 Elimination Game]]></title>
       <url>http://wf94.github.io/2017/05/15/390-Elimination-Game/</url>
       <content type="html"><![CDATA[<p>There is a list of sorted integers from 1 to <em>n</em>. Starting from left to right, remove the first number and every other number afterward until you reach the end of the list.</p>
@@ -551,9 +585,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -964,9 +998,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -1348,9 +1382,9 @@
             
             <tag> Array </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -1447,9 +1481,9 @@
             
             <tag> Array </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Two Pointers </tag>
             
             <tag> Sort </tag>
             
@@ -1683,9 +1717,9 @@
             
             <tag> Array </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -1711,11 +1745,11 @@
         
         <tags>
             
+            <tag> Linked List </tag>
+            
             <tag> Math </tag>
             
             <tag> Medium </tag>
-            
-            <tag> Linked List </tag>
             
         </tags>
         
@@ -1789,9 +1823,9 @@
         
         <tags>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Two Pointers </tag>
             
             <tag> Sort </tag>
             
@@ -1821,9 +1855,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
             <tag> LeetCode </tag>
             
@@ -1856,9 +1890,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -3120,9 +3154,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -4000,9 +4034,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -4346,9 +4380,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -4779,9 +4813,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -4809,9 +4843,9 @@
         
         <tags>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -4926,9 +4960,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -5024,9 +5058,9 @@
             
             <tag> Tree </tag>
             
-            <tag> BFS </tag>
-            
             <tag> DFS </tag>
+            
+            <tag> BFS </tag>
             
         </tags>
         
@@ -5354,9 +5388,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -5412,9 +5446,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> Linked List </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
