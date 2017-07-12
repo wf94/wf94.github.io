@@ -69,6 +69,46 @@
     </entry>
     
     <entry>
+      <title><![CDATA[474 Ones and Zeroes]]></title>
+      <url>http://wf94.github.io/2017/05/27/474-Ones-and-Zeroes/</url>
+      <content type="html"><![CDATA[<p>In the computer world, use restricted resource you have to generate maximum benefit is what we always want to pursue.</p>
+<p>For now, suppose you are a dominator of <strong>m</strong> <code>0s</code> and <strong>n</strong> <code>1s</code> respectively. On the other hand, there is an array with strings consisting of only <code>0s</code> and <code>1s</code>.</p>
+<p>Now your task is to find the maximum number of strings that you can form with given <strong>m</strong> <code>0s</code> and <strong>n</strong> <code>1s</code>. Each <code>0</code> and <code>1</code> can be used at most <strong>once</strong>.</p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The given numbers of <code>0s</code> and <code>1s</code> will both not exceed <code>100</code></li>
+<li>The size of given string array won’t exceed <code>600</code>.</li>
+</ol>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: Array = &#123;&quot;10&quot;, &quot;0001&quot;, &quot;111001&quot;, &quot;1&quot;, &quot;0&quot;&#125;, m = 5, n = 3</div><div class="line">Output: 4</div><div class="line"></div><div class="line">Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are “10,”0001”,”1”,”0”</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: Array = &#123;&quot;10&quot;, &quot;0&quot;, &quot;1&quot;&#125;, m = 1, n = 1</div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation: You could form &quot;10&quot;, but then you&apos;d have nothing left. Better form &quot;0&quot; and &quot;1&quot;.</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>The problem is really a knapsack-ish problem, so I knew DP was the way to go. In this problem, we have two knapsacks, one with capacity m and another with capacity n. The ‘weight’ of each item is the number of ones and zeroes in it. And the ‘value’ of each item is exactly one, since we just want to maximize the number of items. So for each item, i.e. <code>s</code>, we calculate its weight first and use DP for the rest. If you are unfamiliar with knapsack, maybe reading <a href="https://en.wikipedia.org/wiki/Knapsack_problem" target="_blank" rel="external">this</a> will help a little bit.</p>
+<p>dp(i)(j) = the max number of strings that can be formed with i 0’s and j 1’s from the first few strings up to the current string s Catch: have to go from bottom right to top left </p>
+<p>Why? If a cell in the memo is updated(because s is selected), we should be adding 1 to dp[i][j] from the previous iteration (when we were not considering s) </p>
+<p>If we go from top left to bottom right, we would be using results from this iteration =&gt; overcounting</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMaxForm</span><span class="params">(String[] strs, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[m+<span class="number">1</span>][n+<span class="number">1</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.length; i++)&#123;</div><div class="line">            <span class="keyword">int</span> zeros = <span class="number">0</span>;</div><div class="line">            <span class="keyword">int</span> ones = <span class="number">0</span>;</div><div class="line"></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; strs[i].length(); j++)&#123;</div><div class="line">                <span class="keyword">if</span>(strs[i].charAt(j) == <span class="string">'0'</span>)&#123;</div><div class="line">                    zeros++;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span>&#123;</div><div class="line">                    ones++;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = m; j &gt;= zeros; j--)&#123;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = n; k &gt;= ones; k--)&#123;</div><div class="line">                    dp[j][k] = Math.max(dp[j-zeros][k-ones] + <span class="number">1</span>, dp[j][k]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// for (int j = 0; j &lt;= m; j++)&#123;</span></div><div class="line">            <span class="comment">//     for(int k = 0; k &lt;= n; k++)&#123;</span></div><div class="line">            <span class="comment">//         System.out.print(dp[j][k] + " ");</span></div><div class="line">            <span class="comment">//     &#125;</span></div><div class="line">            <span class="comment">//     System.out.println();</span></div><div class="line">            <span class="comment">// &#125;</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[m][n];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考资料：<a href="https://discuss.leetcode.com/topic/71438/c-dp-solution-with-comments/4" target="_blank" rel="external">https://discuss.leetcode.com/topic/71438/c-dp-solution-with-comments/4</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Medium </tag>
+            
+            <tag> Dynamic Programming </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[找个实习：面经-II]]></title>
       <url>http://wf94.github.io/2017/05/26/Seeking-Internship-III/</url>
       <content type="html"><![CDATA[<h4 id="微软苏州"><a href="#微软苏州" class="headerlink" title="微软苏州"></a>微软苏州</h4><p>微软苏州是用Skype For Business进行视频面试的【Skype For Business并不好用啊……】</p>
@@ -782,9 +822,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -808,9 +848,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Heap </tag>
             
@@ -838,9 +878,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Brainteaser </tag>
             
@@ -975,9 +1015,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -1068,9 +1108,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -1942,11 +1982,11 @@
         
         <tags>
             
+            <tag> Medium </tag>
+            
             <tag> Linked List </tag>
             
             <tag> Math </tag>
-            
-            <tag> Medium </tag>
             
         </tags>
         
@@ -2841,9 +2881,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -2922,9 +2962,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> String </tag>
+            
+            <tag> Medium </tag>
             
             <tag> Backtracking </tag>
             
@@ -2955,11 +2995,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
             <tag> Medium </tag>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -3351,9 +3391,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -3671,9 +3711,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -3802,9 +3842,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
             <tag> Dynamic Programming </tag>
             
@@ -4059,9 +4099,9 @@
         
         <tags>
             
-            <tag> Math </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -4231,9 +4271,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -4910,9 +4950,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> String </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
@@ -5040,9 +5080,9 @@
         
         <tags>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -5376,9 +5416,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Math </tag>
-            
             <tag> String </tag>
+            
+            <tag> Math </tag>
             
         </tags>
         
@@ -5585,9 +5625,9 @@
         
         <tags>
             
-            <tag> Linked List </tag>
-            
             <tag> Medium </tag>
+            
+            <tag> Linked List </tag>
             
         </tags>
         
@@ -5725,11 +5765,11 @@
         
         <tags>
             
-            <tag> Math </tag>
+            <tag> String </tag>
             
             <tag> Medium </tag>
             
-            <tag> String </tag>
+            <tag> Math </tag>
             
         </tags>
         
@@ -5784,9 +5824,9 @@
         
         <tags>
             
-            <tag> Medium </tag>
-            
             <tag> String </tag>
+            
+            <tag> Medium </tag>
             
         </tags>
         
