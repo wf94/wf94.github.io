@@ -91,9 +91,44 @@
             
             <tag> Medium </tag>
             
+            <tag> String </tag>
+            
             <tag> Backtracking </tag>
             
-            <tag> String </tag>
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[039 Combination Sum]]></title>
+      <url>http://wf94.github.io/2017/05/28/039-Combination-Sum/</url>
+      <content type="html"><![CDATA[<p>Given a <strong>set</strong> of candidate numbers (<strong>C</strong>) <strong>(without duplicates)</strong> and a target number (<strong>T</strong>), find all unique combinations in <strong>C</strong> where the candidate numbers sums to <strong>T</strong>.</p>
+<p>The <strong>same</strong> repeated number may be chosen from <strong>C</strong> unlimited number of times.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All numbers (including target) will be positive integers.</li>
+<li>The solution set must not contain duplicate combinations.</li>
+</ul>
+<p>For example, given candidate set <code>[2, 3, 6, 7]</code> and target <code>7</code>,<br>A solution set is: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  [7],</div><div class="line">  [2, 2, 3]</div><div class="line">]</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>本题可以直接用回溯的方法来解决。</p>
+<p>效率特别低……开了好多奇奇怪怪的东西</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">combination</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target, <span class="built_in">set</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; result, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tmp)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(target == <span class="number">0</span>)&#123;</div><div class="line">            sort(tmp.begin(), tmp.end());</div><div class="line">            result.insert(tmp);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(target &lt; <span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; candidates.size(); i++)&#123;</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; new_tmp(tmp);</div><div class="line">            new_tmp.push_back(candidates[i]);</div><div class="line">            combination(candidates, target-candidates[i], result, new_tmp);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</div><div class="line">        <span class="built_in">set</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; result;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tmp;</div><div class="line">        combination(candidates, target, result, tmp);</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; real_result;</div><div class="line">        copy(result.begin(), result.end(), back_inserter(real_result));</div><div class="line">        <span class="keyword">return</span> real_result;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> LeetCode </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Array </tag>
+            
+            <tag> Medium </tag>
+            
+            <tag> Backtracking </tag>
             
         </tags>
         
@@ -2995,9 +3030,9 @@
             
             <tag> Medium </tag>
             
-            <tag> Backtracking </tag>
-            
             <tag> String </tag>
+            
+            <tag> Backtracking </tag>
             
         </tags>
         
@@ -4302,9 +4337,9 @@
             
             <tag> Easy </tag>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
@@ -5111,9 +5146,9 @@
         
         <tags>
             
-            <tag> Two Pointers </tag>
-            
             <tag> String </tag>
+            
+            <tag> Two Pointers </tag>
             
         </tags>
         
